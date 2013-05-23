@@ -1,0 +1,18 @@
+/*
+Theme Name: Mad Science Dept Base
+Theme URI: http://msdlab.com
+Description: A theme completely stripped of all styling and structure. Functionality is based on the twentyten theme.
+Version: 3.1
+Author: Mad Science Dept
+Author URI: http://msdlab.com
+Tags: msdbase, no style, clean, empty
+
+The CSS, XHTML and design is released under GPL:
+http://www.opensource.org/licenses/gpl-license.php
+*/
+
+
+@import "css/reset.css";
+@import "css/ie.css";
+@import "css/style.css";
+
