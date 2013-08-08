@@ -323,7 +323,7 @@ if ( ! class_exists( 'Bit51Foo' ) ) {
 							</div>
 						</div>
 					</div>
-					<div class="postbox-container side" style="width:20%;">
+					<div class="postbox-container side" style="width:25%;">
 						<div class="metabox-holder">	
 							<div class="meta-box-sortables">
 								<?php
@@ -498,7 +498,7 @@ if ( ! class_exists( 'Bit51Foo' ) ) {
 			
 			$content .= '<li class="twitter"><a href="http://twitter.com/Bit51" target="_blank">' . __( 'Follow Bit51 on Twitter', $this->hook ) . '</a></li>';
 			
-			$content .= '<li class="google"><a href="https://plus.google.com/104513012839087985497" target="_blank">' . __( 'Circle Bit51 on Google+', $this->hook ) . '</a></li>';
+			$content .= '<li class="google"><a href="https://plus.google.com/111800087192533843819" target="_blank">' . __( 'Circle Bit51 on Google+', $this->hook ) . '</a></li>';
 			
 			$content .= '<li class="subscribe"><a href="http://bit51.com/subscribe" target="_blank">' . __( 'Subscribe with RSS or Email', $this->hook ) . '</a></li>';
 			
