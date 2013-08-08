@@ -39,4 +39,5 @@ function msd_child_homepage_widgets(){
 	print '</div>';
 	print '</div>';
 }
+print 'test hooks';
 genesis();
