@@ -6,7 +6,7 @@ function msd_child_button_function($atts, $content = null){
 	  'target' => '_self'
       ), $atts ) );
 	$ret = '<div class="button-wrapper">
-<a class="redbutton" href="'.$url.'" target="'.$target.'">'.remove_wpautop($content).'</a>
+<a class="readmore button" href="'.$url.'" target="'.$target.'">'.remove_wpautop($content).'</a>
 </div>';
 	return $ret;
 }

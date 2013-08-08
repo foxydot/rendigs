@@ -48,6 +48,7 @@ h6,
 p,
 select,
 textarea {
+	.opensans;
 	line-height: 1.5625;
 	margin: 0;
 	padding: 0;
@@ -298,20 +299,21 @@ body {
 #nav{
 	.sub-menu{
 		position: absolute;
-		background-color: @beige;
+		background-color: fade(@black,50%);
 		padding-left: 0;
 		.drop-shadow(0, 1px, 8px, 0.4);
 		li{
-			padding: 0.5em;
-			border-top: 1px solid @ltbeige !important;
+			padding: .25em 0.5em;
 			margin: 0;
 			width: 100%;
 			a{
+				text-transform: none;
 				padding: 0.5em;
 			}
 		}
 		li:hover {
-			background: @dkbeige;
+			background: @black;
+			a{color: @beige;}
 		}
 	}
 }
@@ -346,7 +348,7 @@ body {
 ------------------------------------------------------------ */
 
 #inner {
-	margin: 1px auto;
+	margin: 0 auto;
 	padding: 0;
 	z-index: 50;
 	.wrap{
@@ -483,9 +485,9 @@ h1 {
 }
 
 h1.entry-title {
-	text-transform: uppercase;
-	font-size: 24px;
-	font-weight: bold;
+	font-size: 3em;
+	font-weight: normal;
+	color: @medgrey;
 }
 .taxonomy-description h1 {
 	margin: 0;
@@ -959,7 +961,7 @@ input.searchsubmit:hover {
 .gform_wrapper .top_label input.medium { width: 100% !important; padding: 0.5em 0.5em 0.5em 0.5em !important;}
 .gform_wrapper .gform_footer { padding: 0 !important; margin: 0 !important; }
 /* ETC */
-#header a.readmore {.button();float:right;}
+.readmore {.button();}
 
 .entry-content{
 	h6{
