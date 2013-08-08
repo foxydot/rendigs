@@ -18,9 +18,9 @@
 @orange: #F15F15;
 @yellow: #FED746;
 @green: #157947;
-@blue: #3A79B1;
+@blue: #262561;
 @purple: #660099;
-@beige: #CBC3AC;
+@beige: #E7D38A;
 @brown: #662200;
 
 @ltred: lighten(@red,20%);
@@ -42,32 +42,28 @@
 
 /* Neutrals */
 @white: #FFFFFF;
-@ltgrey: #F4F4F4;
-@medgrey: #7C7A6F;
-@dkgrey: #5C5A4F;
+@ltgrey: #C8C8C8;
+@medgrey: #7B7D6F;
+@dkgrey: #474747;
 @black: #000000;
 
 /* Gradients */
-.redgradient {
-	.gradient(@red,@dkred,@ltred);
+.quickgradient(@color) {
+	.gradient(@color,darken(@color,20%),lighten(@color,20%));
 }
 
 /* Buttons */
-.button(@color:@red) {
-	.gradient(@color,darken(@color,20%),lighten(@color,20%));
+.button(@color:@beige) {
+	background-color: @color;
 	.rounded(5px);
-	border: .5px solid darken(@color,20%);
-	.drop-shadow(0, 0, 2px, 0.2);
 	padding: 6px 24px;
-	.arial;
-	color: #FFFFFF !important;
+	.opensans;
+	color: @dkgrey !important;
 	font-size: 12px;
 	font-weight: normal;
-	text-shadow: 1px 1px 2px #000000;
     text-transform: uppercase;
     display: table;
     margin: 12px auto;
-    filter: dropshadow(color=#000000, offx=1, offy=1);
 }
 
 .button:hover,
@@ -75,10 +71,119 @@
 .button a,
 .button a:hover,
 .button a:visited {
-	color: white;
+	color: @dkgrey;
 	text-decoration: none;
 }
 
+.gradientimage(@imgurl: '',@color: @navy) {
+	@start:darken(@color,20%);
+	@stop:lighten(@color,20%);
+  background: url(@imgurl),@color;
+  background: url(@imgurl),-webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0, @start),
+                               color-stop(1, @stop));
+  background: url(@imgurl),-ms-linear-gradient(bottom,
+                                  @start,
+                                  @stop);
+  background: url(@imgurl),-moz-linear-gradient(center bottom,
+                                   @start 0%,
+                                   @stop 100%);
+}
+
+.iconbutton(@color:@navy,@imgurl:''){
+	.button(@color);
+	.gradientimage(@imgurl,@color);
+	background-position: center center, top left;
+	background-repeat: no-repeat, repeat;
+	text-indent: -9999px;
+	display: inline-block;
+	padding: 0;
+	height: 25px;
+	width: 25px;
+	cursor: pointer;
+}
+
+/* Column Classes
+------------------------------------------------------------ */
+
+.five-sixths,
+.four-fifths,
+.four-sixths,
+.one-fifth,
+.one-fourth,
+.one-half,
+.one-sixth,
+.one-third,
+.three-fifths,
+.three-fourths,
+.three-sixths,
+.two-fifths,
+.two-fourths,
+.two-sixths,
+.two-thirds {
+	float: left;
+	margin: 0 0 20px;
+	padding-left: 3%;
+}
+
+.one-half,
+.three-sixths,
+.two-fourths {
+	width: 48%;
+}
+
+.one-third,
+.two-sixths {
+	width: 31%;
+}
+
+.four-sixths,
+.two-thirds {
+	width: 65%;
+}
+
+.one-fourth {
+	width: 22.5%;
+}
+
+.three-fourths {
+	width: 73.5%;
+}
+
+.one-fifth {
+	width: 17.4%;
+}
+
+.two-fifths {
+	width: 37.8%;
+}
+
+.three-fifths {
+	width: 58.2%;
+}
+
+.four-fifths {
+	width: 78.6%;
+}
+
+.one-sixth {
+	width: 14%;
+}
+
+.five-sixths {
+	width: 82%;
+}
+
+.first {
+	clear: both;
+	margin-left: 0;
+	padding-left: 0;
+	}
+
+
+address{font-style: normal;}
 /* Clears */
 .clearfix {
     content: ".";

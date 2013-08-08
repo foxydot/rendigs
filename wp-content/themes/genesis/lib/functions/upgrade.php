@@ -78,18 +78,18 @@ function genesis_update_check() {
 }
 
 /**
- * Upgrade the database to version 1904.
+ * Upgrade the database to version 1905.
  *
- * @since 1.9.0
+ * @since 1.9.2
  *
  * @uses _genesis_update_settings()
  */
-function genesis_upgrade_1904() {
+function genesis_upgrade_1905() {
 
 	/** Update Settings */
 	_genesis_update_settings( array(
-		'theme_version' => '1.9.1',
-		'db_version'    => '1904',
+		'theme_version' => '1.9.2',
+		'db_version'    => '1905',
 	) );
 
 }
@@ -357,11 +357,11 @@ function genesis_upgrade() {
 		genesis_upgrade_1901();
 		
 	###########################
-	# UPDATE DB TO VERSION 1904
+	# UPDATE DB TO VERSION 1905
 	###########################
 
-	if ( genesis_get_option( 'db_version', null, false ) < '1904' )
-		genesis_upgrade_1904();
+	if ( genesis_get_option( 'db_version', null, false ) < '1905' )
+		genesis_upgrade_1905();
 
 	do_action( 'genesis_upgrade' );
 
@@ -383,8 +383,8 @@ function genesis_upgrade_redirect() {
 	if ( ! is_admin() || ! current_user_can( 'edit_theme_options' ) )
 		return;
 
-	#genesis_admin_redirect( 'genesis', array( 'upgraded', 'true' ) );
-	genesis_admin_redirect( 'genesis-upgraded' );
+	genesis_admin_redirect( 'genesis', array( 'upgraded' => 'true' ) );
+	#genesis_admin_redirect( 'genesis-upgraded' );
 	exit;
 
 }

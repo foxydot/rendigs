@@ -59,18 +59,17 @@ register_nav_menus( array(
  * Replace footer
  */
 remove_action('genesis_footer','genesis_do_footer');
-//add_action('genesis_footer','msdsocial_do_footer');
+add_action('genesis_footer','msdsocial_do_footer');
 function msdsocial_do_footer(){
 	global $msd_social;
-	if(has_nav_menu('footer_library_link')){$copyright .= wp_nav_menu( array( 'theme_location' => 'footer_library_link','container_class' => 'ftr-menu','echo' => FALSE ) ).'<br />';}
 	if($msd_social){
-		$copyright .= '&copy;Copyright '.date('Y').' '.$msd_social->get_bizname().' &middot; All Rights Reserved';
+		$copyright = '&copy;Copyright '.date('Y').' '.$msd_social->get_bizname().' &middot; All Rights Reserved';
 	} else {
-		$copyright .= '&copy;Copyright '.date('Y').' '.get_bloginfo('name').' &middot; All Rights Reserved ';
+		$copyright = '&copy;Copyright '.date('Y').' '.get_bloginfo('name').' &middot; All Rights Reserved ';
 	}
 	if(has_nav_menu('footer_menu')){$copyright .= wp_nav_menu( array( 'theme_location' => 'footer_menu','container_class' => 'ftr-menu ftr-links','echo' => FALSE ) );}
 	print '<div id="copyright" class="copyright gototop">'.$copyright.'</div><div id="social" class="social creds">';
-	if($msd_social){do_shortcode('[msd-social]');}
+	if($msd_social){print $msd_social->get_address().$msd_social->get_digits();}
 	print '</div>';
 }
 

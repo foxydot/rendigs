@@ -4,7 +4,7 @@
 	Description: The industry standard in design frameworks for WordPress. Please <strong>do not modify</strong> this stylesheet, as it might get overridden in updates.
 	Author: StudioPress
 	Author URI: http://www.studiopress.com/
-	Version: 1.9.1
+	Version: 1.9.2
 	Tags: black, orange, white, one-column, two-columns, three-columns, fixed-width, custom-menu, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
 
 	License: GPL-2.0+
@@ -1180,6 +1180,7 @@ video {
 }
 
 img {
+	width: auto;
 	height: auto;
 }
 

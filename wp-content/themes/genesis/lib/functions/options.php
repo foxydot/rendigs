@@ -232,7 +232,7 @@ function genesis_save_custom_fields( $data, $nonce_action, $nonce_name, $post, $
 		return;
 
 	/**	Check the user allowed to edit the post or page */
-	if ( ( 'page' == $post->post_type && ! current_user_can( 'edit_page' ) ) || ! current_user_can( 'edit_post' ) )
+	if ( ! current_user_can( 'edit_post', $post->ID ) )
 		return;
 
 	/** Cycle through $data, insert value or delete field */
@@ -259,6 +259,10 @@ add_filter( 'get_term', 'genesis_get_term_filter', 10, 2 );
  * @return object $term Database row object.
  */
 function genesis_get_term_filter( $term, $taxonomy ) {
+
+	//** Do nothing, if $term is not object 
+	if ( ! is_object( $term ) ) 
+		return $term;
 
 	$db = get_option( 'genesis-term-meta' );
 	$term_meta = isset( $db[$term->term_id] ) ? $db[$term->term_id] : array();

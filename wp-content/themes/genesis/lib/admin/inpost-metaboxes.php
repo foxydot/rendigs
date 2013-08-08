@@ -182,7 +182,7 @@ function genesis_inpost_layout_box() {
 
 	?>
 	<div class="genesis-layout-selector">
-		<p><input type="radio" name="genesis_layout[_genesis_layout]" id="default-layout" value="" <?php checked( $layout, '' ); ?> /> <label class="default" for="default-layout"><?php printf( __( 'Default Layout set in <a href="%s">Theme Settings</a>', 'genesis' ), menu_page_url( 'genesis', 0 ) ); ?></label></p>
+		<p><input type="radio" name="genesis_layout[_genesis_layout]" class="default-layout" id="default-layout" value="" <?php checked( $layout, '' ); ?> /> <label class="default" for="default-layout"><?php printf( __( 'Default Layout set in <a href="%s">Theme Settings</a>', 'genesis' ), menu_page_url( 'genesis', 0 ) ); ?></label></p>
 
 		<p><?php genesis_layout_selector( array( 'name' => 'genesis_layout[_genesis_layout]', 'selected' => $layout, 'type' => 'site' ) ); ?></p>
 	</div>

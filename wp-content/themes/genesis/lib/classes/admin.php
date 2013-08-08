@@ -411,8 +411,8 @@ abstract class Genesis_Admin_Form extends Genesis_Admin {
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 			<p class="top-buttons">
 				<?php
-				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false );
-				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
+				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false, array( 'id' => '' ) );
+				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'id' => '', 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
 				?>
 			</p>
 
@@ -420,8 +420,8 @@ abstract class Genesis_Admin_Form extends Genesis_Admin {
 
 			<div class="bottom-buttons">
 				<?php
-				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false );
-				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
+				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false, array( 'id' => '' ) );
+				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'id' => '', 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
 				?>
 			</div>
 		</form>
@@ -523,8 +523,8 @@ abstract class Genesis_Admin_Boxes extends Genesis_Admin {
 			<h2><?php echo esc_html( get_admin_page_title() ); ?></h2>
 			<p class="top-buttons">
 				<?php
-				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false );
-				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
+				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false, array( 'id' => '' ) );
+				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'id' => '', 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
 				?>
 			</p>
 
@@ -542,8 +542,8 @@ abstract class Genesis_Admin_Boxes extends Genesis_Admin {
 
 			<div class="bottom-buttons">
 				<?php
-				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false );
-				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
+				submit_button( $this->page_ops['save_button_text'], 'primary', 'submit', false, array( 'id' => '' ) );
+				submit_button( $this->page_ops['reset_button_text'], 'secondary', $this->get_field_name( 'reset' ), false, array( 'id' => '', 'onclick' => 'return genesis_confirm(\'' . esc_js( __( 'Are you sure you want to reset?', 'genesis' ) ) . '\');' ) );
 				?>
 			</div>
 		</form>

@@ -29,9 +29,9 @@
 * Footer
 
 */
+@import 'reset';
 @import 'elements';
 @import 'mixins';
-//@import 'main';
 
 /* Defaults
 ------------------------------------------------------------ */
@@ -64,13 +64,12 @@ textarea,
 .taxonomy-description,
 .wp-caption {
 	background-color: @white;
-	border: 0px solid #ddd;
+	border: 0px solid @medgrey;
 }
 
 input,
 select,
 textarea {
-	.box-shadow(inset 0 1px 5px #999);
 	.rounded(6px);
 	font-size: 12px;
 	padding: 5px;
@@ -81,7 +80,7 @@ textarea {
 
 a,
 a:visited {
-	color: @dkred;
+	color: @blue;
 	text-decoration: none;
 }
 
@@ -97,18 +96,18 @@ body {
 	.arial;
 	font-size: 14px;
 	margin:0;
+	background: @ltbeige url(../img/bkg-pg.png);
 	#wrap {
+		border-top: 10px solid @ltblue;
 	}
 }
 
 ::-moz-selection {
-	background-color: @red;
-	color: #fff;
+	background-color: @ltbeige;
 }
 
 ::selection {
-	background-color: @red;
-	color: #fff;
+	background-color: @ltbeige;
 }
 
 /* Wrap
@@ -126,12 +125,10 @@ body {
 ------------------------------------------------------------ */
 
 #header {
-	background: url('../img/bkg-hdr.png') repeat-y top center;
-	min-height: 72px;
-	z-index: 99;
+	background: @white;
+	min-height: 90px;
 	.wrap {
 		position: relative;
-		z-index: 99;
 		}
 	.wrap:after{.clearfix;}
 }
@@ -150,7 +147,7 @@ body {
 
 #title a,
 #title a:hover {
-	color: #333;
+	color: @dkgrey;
 	padding: 0 0 0 20px;
 	text-decoration: none;
 }
@@ -164,6 +161,15 @@ body {
 	float: right;
 	padding: 0;
 	width: 510px;
+	.msd-connected{
+		float: right;
+		h4.widgettitle{
+			font-size: 14px;
+			color: @medgrey;
+			text-transform: uppercase;
+			font-weight: normal;
+		}
+	}
 }
 
 
@@ -174,10 +180,10 @@ body {
 	#title-area {
 		#title {
 			a {
-				background: url('../img/logo.png') no-repeat top center;
+				background: url('../img/logo.png') no-repeat left center;
 				display: block;
-				height: 87px;
-				width: 200px;
+				height: 90px;
+				width: 194px;
 				overflow: hidden;
 				padding: 0;
 				text-indent: -9999px;
@@ -186,7 +192,7 @@ body {
 	}
 }
 
-.header-image #description {
+.header-image #header #description {
 	display: none;
 	overflow: hidden;
 }
@@ -201,82 +207,6 @@ body {
 
 */
 
-/* Column Classes
------------------------------------------------------------- */
-
-.five-sixths,
-.four-fifths,
-.four-sixths,
-.one-fifth,
-.one-fourth,
-.one-half,
-.one-sixth,
-.one-third,
-.three-fifths,
-.three-fourths,
-.three-sixths,
-.two-fifths,
-.two-fourths,
-.two-sixths,
-.two-thirds {
-	float: left;
-	margin: 0 0 20px;
-	padding-left: 3%;
-}
-
-.one-half,
-.three-sixths,
-.two-fourths {
-	width: 48%;
-}
-
-.one-third,
-.two-sixths {
-	width: 31%;
-}
-
-.four-sixths,
-.two-thirds {
-	width: 65%;
-}
-
-.one-fourth {
-	width: 22.5%;
-}
-
-.three-fourths {
-	width: 73.5%;
-}
-
-.one-fifth {
-	width: 17.4%;
-}
-
-.two-fifths {
-	width: 37.8%;
-}
-
-.three-fifths {
-	width: 58.2%;
-}
-
-.four-fifths {
-	width: 78.6%;
-}
-
-.one-sixth {
-	width: 14%;
-}
-
-.five-sixths {
-	width: 82%;
-}
-
-.first {
-	clear: both;
-	margin-left: 0;
-	padding-left: 0;
-}
 /* Header / Primary / Secondary Navigation
 ------------------------------------------------------------ */
 
@@ -295,7 +225,7 @@ body {
 
 .menu-secondary {
 	clear: both;
-	color: #333;
+	color: @dkgrey;
 	font-size: 10px;
 	margin: 0 auto;
 	overflow: hidden;
@@ -306,7 +236,7 @@ body {
 	list-style-type: none;
 		ul {}
 		}
-	a {color: #333;
+	a {color: @dkgrey;
 	display: block;
 	padding: 7px 15px 6px;
 	position: relative;
@@ -317,26 +247,26 @@ body {
 	width: 240px;
 }
 #nav {
-	.redgradient;
-	border-top: 1px solid ;
-	border-bottom: 4px solid @white;
-	z-index: 50;
-	.drop-shadow(0, 1px, 8px, 0.5); 
+	.quickgradient(@medgrey);
+	z-index: 100;
+	position: relative;
 	.wrap:after{.clearfix;}
 	.menu-primary{
-		padding: 0; margin: 0; float:right;
-		a{color: white;font-weight: normal;text-transform:uppercase;padding: 0.5em 1em;display: block;}
-		li {border-left: 1px solid @ltred;
-			border-right: 1px solid ;
+		padding: 0; margin: 0; float:left;
+		a{color: white;font-weight: normal;text-transform:uppercase;padding: .5em 2em;display: block;}
+		li {border-left: 1px solid @white;
 			margin-left:-4px;
 			li {border: none;}
 		}
-		li.first-child {border-left:none;}
 		li:hover, li.current-menu-item, li.current-menu-ancestor {
+			.quickgradient(darken(@medgrey,20%));
+		}
+		li.search:hover{
+			.quickgradient(@medgrey);
 		}
 	}
 	.s {margin:0;width:200px;}
-	.searchform {padding: 0.6em;}
+	.searchform {padding: 0.3em;}
 	a:hover{text-decoration: none;}
 }
 #nav:after{.clearfix;}
@@ -350,7 +280,7 @@ body {
 .menu-primary li a:active,.menu-primary li a:hover,.menu-primary .current_page_item a,.menu-primary .current-cat a,.menu-primary .current-menu-item a,
 .menu-secondary li a:active,.menu-secondary li a:hover,.menu-secondary .current_page_item a,.menu-secondary .current-cat a,.menu-secondary .current-menu-item a,
 #header .menu li a:active,#header .menu li a:hover,#header .menu .current_page_item a,#header .menu .current-cat a,#header .menu .current-menu-item a {
-	color: #333;
+	color: @dkgrey;
 }
 
 /*Sub Menu Drop Down link*/
@@ -390,7 +320,7 @@ body {
 .menu-primary li li a:active,.menu-primary li li a:hover,
 .menu-secondary li li a:active,.menu-secondary li li a:hover,
 #header .menu li li a:active,#header .menu li li a:hover {
-	color: #333;
+	color: @dkgrey;
 }
 
 /* Plus Sign Image */
@@ -417,7 +347,11 @@ body {
 
 #inner {
 	margin: 1px auto;
-	padding: 0 0 30px;
+	padding: 0;
+	z-index: 50;
+	.wrap{
+		background: @white;
+	}
 }
 #inner:after {
 	.clearfix;
@@ -497,7 +431,7 @@ blockquote {
 }
 
 blockquote p {
-	color: #999;
+	color: @medgrey;
 	font-style: italic;
 }
 
@@ -510,7 +444,7 @@ p.subscribe-to-comments {
 }
 
 .clear-line {
-	border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid @ltgrey;
 	clear: both;
 	margin: 0 0 25px;
 }
@@ -538,7 +472,7 @@ h4,
 h5,
 h6 {
 	.opensans;
-	color: @dkred;
+	color: @blue;
 	line-height: 1.25;
 	margin: 0 0 10px;
 	font-weight: normal;
@@ -565,12 +499,12 @@ h2 a:visited {
 
 h2 a,
 h2 a:visited {
-	color: #333;
+	color: @dkgrey;
 	.opensans;
 }
 
 h2 a:hover {
-	color: #0d72c7;
+	color: @blue;
 	text-decoration: none;
 }
 
@@ -591,7 +525,7 @@ h4 {
 	margin: .5em 0 0;}
 .taxonomy-description h1,
 .widget-area h4 {
-	color: @dkred;
+	color: @blue;
 	font-size: 18px;
 	padding: 0;
 	text-transform: uppercase;
@@ -646,7 +580,7 @@ h5 {
 ------------------------------------------------------------ */
 
 .post-meta {
-	border-top: 1px solid #ddd;
+	border-top: 1px solid @ltgrey;
 	clear: both;
 	font-size: 14px;
 	padding: 5px 0 0;
@@ -657,7 +591,7 @@ h5 {
 ------------------------------------------------------------ */
 
 .author-box {
-	background-color: #f5f5f5;
+	background-color: @ltgrey;
 }
 
 .author-box p {
@@ -683,13 +617,13 @@ h5 {
 .featuredpage img,
 .featuredpost img,
 .post-image {
-	background-color: #f5f5f5;
-	border: 1px solid #ddd;
+	background-color: @ltgrey;
+	border: 1px solid @ltgrey;
 	padding: 4px;
 }
 
 .author-box .avatar {
-	background-color: #fff;
+	background-color: @white;
 	float: left;
 	margin: 0 10px 0 0;
 }
@@ -699,7 +633,7 @@ h5 {
 }
 
 .comment-list li .avatar {
-	background-color: #fff;
+	background-color: @white;
 	float: right;
 	margin: 5px 0 0 10px;
 }
@@ -734,7 +668,7 @@ h5 {
 
 .sidebar.widget-area ul li,
 #footer-widgets .widget-area ul li {
-	border-bottom: 0px solid #ddd;
+	border-bottom: 0px solid @ltgrey;
 	list-style-type: none;
 	margin: 0 0 2px;
 	padding: 0 0 0px;
@@ -754,7 +688,7 @@ h5 {
 			padding: 0 0 6px;
 			text-transform: uppercase;
 			a{
-				color: @dkred;
+				color: @blue;
 				display: block;
 			}
 			ul{
@@ -766,7 +700,7 @@ h5 {
 					.arial;
 					border: none;
 					font-size: .8em;
-					color: @dkred;
+					color: @blue;
 					text-transform: none;
 					padding-left: 6px;
 					}
@@ -792,22 +726,23 @@ h5 {
 
 input[type="button"],
 input[type="submit"] {
-	.button(@red);
+	.button(@blue);
 }
 
 /* Search Form
 ------------------------------------------------------------ */
 
 .searchform input[type="text"]{
-	.box-shadow(inset 0 1px 5px #999);
-	.rounded(6px);
-	font-size: 12px;
-	padding: 5px;
+	.rounded(12px);
+	font-size: 10px;
+	padding: 4px;
+	background: darken(@medgrey, 20%);
+	color: @white;
 	}
 
 #header .searchform {
 	float: right;
-	padding: 12px 0 0;
+	padding: 0;
 }
 
 .sidebar-alt .searchform {
@@ -816,16 +751,18 @@ input[type="submit"] {
 
 input.searchsubmit,
 input.searchsubmit:hover {
+	background: url('../img/bkg-search.png') no-repeat center center;
 	text-indent: -9999px;
-	background: url(../img/bkg-search.png) no-repeat center center;
 	display: inline-block;
-	height: 30px;
-	width: 30px;
-	margin-left: 3px;
+	padding: 0;
+	margin: 0;
+	height: 25px;
+	width: 25px;
 	border: none;
 	position: relative;
 	top: 3px;
-	.drop-shadow(0, 0, 0, 0);
+	left: -30px;
+	cursor: pointer;
 	}
 
 /* eNews and Update Widget
@@ -858,13 +795,13 @@ input.searchsubmit:hover {
 }
 
 #wp-calendar thead {
-	background-color: #f5f5f5;
+	background-color: @ltgrey;
 	font-weight: bold;
 	margin: 10px 0 0;
 }
 
 #wp-calendar td {
-	background-color: #f5f5f5;
+	background-color: @ltgrey;
 	padding: 2px;
 	text-align: center;
 }
@@ -934,7 +871,7 @@ input.searchsubmit:hover {
 	}
 	input[type=text] {
 		width: 200px;
-		border: 1px solid #CCC;
+		border: 1px solid @medgrey;
 		font-size: 16px;
 	}
 }
@@ -969,7 +906,6 @@ input.searchsubmit:hover {
 ------------------------------------------------------------ */
 
 #footer {
-	background: @dkgrey;
 	border: none;
 	position: relative;
 	bottom: 0;
@@ -977,12 +913,16 @@ input.searchsubmit:hover {
 }
 
 #footer .wrap {
-	padding: 0;
+	background: @blue;
+	color: @white;
+	padding: 2em;
+	min-height: 200px;
 	-moz-box-sizing:    border-box;
 	   -webkit-box-sizing: border-box;
 	   -ms-box-sizing:     border-box;
 	    box-sizing:        border-box;
 }
+#footer .wrap:after {.clearfix;}
 
 #footer, #footer p {
 	font-size: .9em;
@@ -999,10 +939,13 @@ input.searchsubmit:hover {
 #footer .gototop {
 	width: 65%;
 	font-size: 12px;
+	float:right;
+	text-align: right;
 }
 
 #footer .creds {
-	text-align: right;
+	text-align: left;
+	float: left;
 	width: 31%;
 }
 
@@ -1016,7 +959,7 @@ input.searchsubmit:hover {
 .gform_wrapper .top_label input.medium { width: 100% !important; padding: 0.5em 0.5em 0.5em 0.5em !important;}
 .gform_wrapper .gform_footer { padding: 0 !important; margin: 0 !important; }
 /* ETC */
-#header a.readmore {.button(@red);float:right;}
+#header a.readmore {.button();float:right;}
 
 .entry-content{
 	h6{
@@ -1029,6 +972,6 @@ input.searchsubmit:hover {
 .widget_text, .widget_sp_image{
 	p {font-size: 12px;}
 	 .readmore{
-	.button(@red);
+	.button();
 	}
 }

@@ -76,10 +76,10 @@ function genesis_constants() {
 
 	/** Define Theme Info Constants */
 	define( 'PARENT_THEME_NAME', 'Genesis' );
-	define( 'PARENT_THEME_VERSION', '1.9.1' );
+	define( 'PARENT_THEME_VERSION', '1.9.2' );
 	define( 'PARENT_THEME_BRANCH', '1.9' );
-	define( 'PARENT_DB_VERSION', '1904' );
-	define( 'PARENT_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1357682400' ) );
+	define( 'PARENT_DB_VERSION', '1905' );
+	define( 'PARENT_THEME_RELEASE_DATE', date_i18n( 'F j, Y', '1365570000' ) );
 	#define( 'PARENT_THEME_RELEASE_DATE', 'TBD' );
 
 	/** Define Directory Location Constants */

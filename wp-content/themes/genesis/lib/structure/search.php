@@ -26,7 +26,11 @@ function genesis_search_form() {
 
 	$onfocus = " onfocus=\"if (this.value == '$search_text') {this.value = '';}\"";
 	$onblur  = " onblur=\"if (this.value == '') {this.value = '$search_text';}\"";
-	
+
+	//* Don't apply JS events to user input
+	if ( is_search() )
+		$onfocus = $onblur = '';
+
 	/** Empty label, by default. Filterable. */
 	$label = apply_filters( 'genesis_search_form_label', '' );
 
