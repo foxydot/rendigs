@@ -1,28 +1,26 @@
-@import 'reset';
 @import 'elements';
 /* Import Fonts
 ------------------------------------------------------------ */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
-@import url(http://fonts.googleapis.com/css?family=Raleway);
 
 /* Font Stacks */
 .opensans {
-	font-family: "Raleway", "Open Sans", "Trebuchet MS", Calibri, sans-serif;
+	font-family: "Open Sans", "Trebuchet MS", Calibri, sans-serif;
 }
 .arial {
-    font-family: "Raleway", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 /* Colors */
-@red: #D51D23;
-@orange: #F15F15;
-@yellow: #E7D488;
-@green: #157947;
-@blue: #262561;
-@purple: #660099;
-@beige: #E7D38A;
-@brown: #662200;
+@red: #f00;
+@orange: #f90;
+@yellow: #ff0;
+@green: #0f0;
+@blue: #00f;
+@purple: #90f;
+@beige: #c96;
+@brown: #630;
 
 @ltred: lighten(@red,20%);
 @dkred: darken(@red, 20%);
@@ -42,11 +40,11 @@
 @dkbrown: darken(@brown, 20%);
 
 /* Neutrals */
-@white: #FFFFFF;
-@ltgrey: #C8C8C8;
-@medgrey: #7B7D6F;
-@dkgrey: #474747;
-@black: #000000;
+@white: #FFF;
+@ltgrey: #CCC;
+@medgrey: #999;
+@dkgrey: #666;
+@black: #000;
 
 /* Gradients */
 .quickgradient(@color) {
@@ -54,17 +52,22 @@
 }
 
 /* Buttons */
-.button(@color:@beige) {
-	background-color: @color;
+.button(@color:@red) {
+	.gradient(@color,darken(@color,20%),lighten(@color,20%));
 	.rounded(5px);
+	border: .5px solid darken(@color,20%);
+	.drop-shadow(0, 0, 2px, 0.2);
 	padding: 6px 24px;
-	.opensans;
-	color: @dkgrey !important;
+	.arial;
+	color: #FFFFFF !important;
 	font-size: 12px;
 	font-weight: normal;
+	text-shadow: 1px 1px 2px #000000;
     text-transform: uppercase;
     display: table;
     margin: 12px auto;
+	text-decoration: none;
+    filter: dropshadow(color=#000000, offx=1, offy=1);
 }
 
 .button:hover,
@@ -72,11 +75,11 @@
 .button a,
 .button a:hover,
 .button a:visited {
-	color: @dkgrey;
+	color: white;
 	text-decoration: none;
 }
 
-.gradientimage(@imgurl: '',@color: @navy) {
+.gradientimage(@imgurl: '',@color: @red) {
 	@start:darken(@color,20%);
 	@stop:lighten(@color,20%);
   background: url(@imgurl),@color;
@@ -93,7 +96,7 @@
                                    @stop 100%);
 }
 
-.iconbutton(@color:@navy,@imgurl:''){
+.iconbutton(@color:@red,@imgurl:''){
 	.button(@color);
 	.gradientimage(@imgurl,@color);
 	background-position: center center, top left;
@@ -106,85 +109,6 @@
 	cursor: pointer;
 }
 
-/* Column Classes
------------------------------------------------------------- */
-
-.five-sixths,
-.four-fifths,
-.four-sixths,
-.one-fifth,
-.one-fourth,
-.one-half,
-.one-sixth,
-.one-third,
-.three-fifths,
-.three-fourths,
-.three-sixths,
-.two-fifths,
-.two-fourths,
-.two-sixths,
-.two-thirds {
-	float: left;
-	margin: 0 0 20px;
-	padding-left: 3%;
-}
-
-.one-half,
-.three-sixths,
-.two-fourths {
-	width: 48%;
-}
-
-.one-third,
-.two-sixths {
-	width: 31%;
-}
-
-.four-sixths,
-.two-thirds {
-	width: 65%;
-}
-
-.one-fourth {
-	width: 22.5%;
-}
-
-.three-fourths {
-	width: 73.5%;
-}
-
-.one-fifth {
-	width: 17.4%;
-}
-
-.two-fifths {
-	width: 37.8%;
-}
-
-.three-fifths {
-	width: 58.2%;
-}
-
-.four-fifths {
-	width: 78.6%;
-}
-
-.one-sixth {
-	width: 14%;
-}
-
-.five-sixths {
-	width: 82%;
-}
-
-.first {
-	clear: both;
-	margin-left: 0;
-	padding-left: 0;
-	}
-
-
-address{font-style: normal;}
 /* Clears */
 .clearfix {
     content: ".";
