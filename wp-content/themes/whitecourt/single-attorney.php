@@ -15,6 +15,34 @@ function msd_add_attorney_headshot(){
 		printf( '%s', genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) ) );
 	}
 }
+add_action('genesis_before_post_content','msd_attorney_contact_info');
+function msd_attorney_contact_info(){
+	global $post,$contact_info;
+	$fields = array(
+			'phone' => 'Phone',
+			'mobile' => 'Mobile',
+			'linkedin' => 'LinkedIn',
+			'vcard' => 'vCard',
+			'email' => 'Email',
+	);
+	?>
+	<ul class="attorney-contact-info">
+	<?php
+	foreach($fields AS $k=>$v){
+	?>
+		<?php $contact_info->the_field('_attorney_'.$k); ?>
+		<?php if($contact_info->get_the_value() != ''){ ?>
+			<li class="">
+				<h3><?php print $v; ?></h3>
+				<div><?php print $contact_info->get_the_value(); ?></div>
+			</li>
+		<?php 
+		$i++;
+		}
+	} ?>
+	</ul>
+	<?php
+}
 add_action('genesis_after_post_content','msd_attorney_additional_info');
 function msd_attorney_additional_info(){
 	global $post,$additional_info;
@@ -28,7 +56,7 @@ function msd_attorney_additional_info(){
 			'education' => 'Education',
 	);
 	$i = 0; ?>
-	<ul class="">
+	<ul class="attorney-additional-info">
 	<?php
 	foreach($fields AS $k=>$v){
 	?>
