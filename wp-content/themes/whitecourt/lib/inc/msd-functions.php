@@ -8,6 +8,7 @@ add_action('wp_print_styles', 'msd_add_styles');
 function msd_add_styles() {
 	global $is_IE,$post;
 	if(!is_admin()){
+		wp_enqueue_style('font-awesome','//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css');
 		wp_enqueue_style('msd-style',get_stylesheet_directory_uri().'/lib/css/style.css');
 		if($is_IE){
 			wp_enqueue_script('ie-style',get_stylesheet_directory_uri().'/lib/css/ie.css');
@@ -104,6 +105,29 @@ if(is_multisite()){
 		$classes[] = 'site-'.$sub;
 		$subdomain = $sub;
 		return $classes;
+	}
+}
+
+if(!function_exists('msd_str_fmt')){
+	function msd_str_fmt($str,$format = FALSE){
+		switch($format){
+			case 'email':
+				$ret = '<a href="mailto:'.$str.'" class="email">'.$str.'</a>';
+				break;
+			case 'phone':
+				$str = preg_replace("/[^0-9]/", "", $str);
+				if(strlen($str) == 7)
+					$ret = preg_replace("/([0-9]{3})([0-9]{4})/", "$1-$2", $str);
+				elseif(strlen($str) == 10)
+					$ret = preg_replace("/([0-9]{3})([0-9]{3})([0-9]{4})/", "($1) $2-$3", $str);
+				else
+					$ret = $str;
+				break;
+			default:
+				$ret = $str;
+				break;
+		}
+		return $ret;
 	}
 }
 

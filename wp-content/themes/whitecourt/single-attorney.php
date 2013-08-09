@@ -19,27 +19,38 @@ add_action('genesis_before_post_content','msd_attorney_contact_info');
 function msd_attorney_contact_info(){
 	global $post,$contact_info;
 	$fields = array(
-			'phone' => 'Phone',
-			'mobile' => 'Mobile',
-			'linkedin' => 'LinkedIn',
-			'vcard' => 'vCard',
-			'email' => 'Email',
+			'phone' => 'phone',
+			'mobile' => 'mobile-phone',
+			'linkedin' => 'linkedin-sign',
+			'vcard' => 'download-alt',
+			'email' => 'envelope-alt',
 	);
 	?>
 	<ul class="attorney-contact-info">
-	<?php
-	foreach($fields AS $k=>$v){
-	?>
-		<?php $contact_info->the_field('_attorney_'.$k); ?>
+		<?php $contact_info->the_field('_attorney_phone'); ?>
 		<?php if($contact_info->get_the_value() != ''){ ?>
-			<li class="">
-				<h3><?php print $v; ?></h3>
-				<div><?php print $contact_info->get_the_value(); ?></div>
-			</li>
-		<?php 
-		$i++;
-		}
-	} ?>
+			<li class="phone"><i class="icon-phone icon-large"></i> <?php print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
+		<?php } ?>
+		
+		<?php $contact_info->the_field('_attorney_mobile'); ?>
+		<?php if($contact_info->get_the_value() != ''){ ?>
+			<li class="mobile"><i class="icon-mobile-phone icon-large"></i> <?php print msd_str_fmt($contact_info->get_the_value(),'phone'); ?></li>
+		<?php } ?>
+		
+		<?php $contact_info->the_field('_attorney_linked_in'); ?>
+		<?php if($contact_info->get_the_value() != ''){ ?>
+			<li class="linkedin"><a href="<?php print $contact_info->get_the_value(); ?>"><i class="icon-linkedin-sign icon-large"></i> Connect</a></li>
+		<?php } ?>
+		
+		<?php $contact_info->the_field('_attorney_vcard'); ?>
+		<?php if($contact_info->get_the_value() != ''){ ?>
+			<li class="vcard"><i class="icon-download-alt icon-large"></i> <?php print $contact_info->get_the_value(); ?></li>
+		<?php } ?>
+		
+		<?php $contact_info->the_field('_attorney_email'); ?>
+		<?php if($contact_info->get_the_value() != ''){ ?>
+			<li class="email"><i class="icon-envelope-alt icon-large"></i> <?php print msd_str_fmt($contact_info->get_the_value(),'email'); ?></li>
+		<?php } ?>
 	</ul>
 	<?php
 }
@@ -56,6 +67,7 @@ function msd_attorney_additional_info(){
 			'education' => 'Education',
 	);
 	$i = 0; ?>
+	<h3 class="toggle">More Info<span>Expand</span></h3>
 	<ul class="attorney-additional-info">
 	<?php
 	foreach($fields AS $k=>$v){
