@@ -1,0 +1,31 @@
+@import 'elements';
+@import 'mixins';
+
+.single-attorney{
+	#content-sidebar-wrap{
+		padding: 0;
+		background: url("../img/bkg-pg.png") repeat scroll 0 0 #F8F3DF;
+		position: relative;
+		#content{
+			padding: 0;
+			width: 71.85%;
+			margin-right: 0;
+			background: @white;
+			.drop-shadow(6px,0,12px,0.2);
+			z-index: 100;
+			position: relative;
+			.entry{
+				padding: 30px;
+			}
+		}
+		#sidebar{
+			width: 28.05%;
+			background: fade(@black,10%) no-repeat top center;
+			color: @white;
+			padding: 0;
+			z-index: 50;
+			position: relative;
+		}
+	}
+	.readmore {.button();margin:0;}
+}

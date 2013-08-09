@@ -1,4 +1,5 @@
 <?php 
+global $contact_info,$additional_info;
 $contact_info = new WPAlchemy_MetaBox(array
 		(
 			'id' => '_contact_info',
@@ -12,7 +13,7 @@ $contact_info = new WPAlchemy_MetaBox(array
 			'prefix' => '_attorney_' // defaults to NULL
 		));
 
-$summary = new WPAlchemy_MetaBox(array
+$additional_info = new WPAlchemy_MetaBox(array
 		(
 			'id' => '_additional_information',
 			'title' => 'Additional Information',

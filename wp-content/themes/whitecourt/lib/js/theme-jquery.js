@@ -16,7 +16,8 @@ jQuery(document).ready(function($) {
 	$('div:nth-child(even)').addClass('even');
 	$('div:nth-child(odd)').addClass('odd');
 
-	
+	$('#content-sidebar-wrap>div').equalHeights();
+		
 	//special for lifestyle
 	$('.ftr-menu ul.menu>li').after(function(){
 		if(!$(this).hasClass('last-child') && $(this).hasClass('menu-item') && $(this).css('display')!='none'){
