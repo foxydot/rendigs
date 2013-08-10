@@ -18,7 +18,8 @@ foreach($fields AS $k=>$v){
 	<li class="gfield even" id="field_<?php $mb->the_name(); ?>"><label for="<?php $mb->the_name(); ?>"
 		class="gfield_label"><?php print $v; ?></label>
 	<div class="ginput_container last-child even">
-			<?php wp_editor($mb->get_the_value(),$mb->get_the_name(),array()); ?>
+			<textarea name="<?php print $mb->get_the_name(); ?>" id="<?php print $mb->get_the_name(); ?>"><?php print $mb->get_the_value(); ?></textarea>
+			<?php // wp_editor($mb->get_the_value(),$mb->get_the_name(),array()); ?>
 		</div>
 	</li>
 <?php 
