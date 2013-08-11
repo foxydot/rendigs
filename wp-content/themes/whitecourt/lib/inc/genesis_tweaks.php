@@ -1,6 +1,6 @@
 <?php
 add_theme_support( 'genesis-footer-widgets', 4 );
-add_action('after_setup_theme','msd_child_add_homepage_sidebars');
+//add_action('after_setup_theme','msd_child_add_homepage_sidebars');
 function msd_child_add_homepage_sidebars(){
 	genesis_register_sidebar(array(
 	'name' => 'Homepage Hero',
@@ -28,6 +28,14 @@ function msd_child_add_homepage_sidebars(){
     'id' => 'homepage-four'
     		));
     
+}
+add_action('after_setup_theme','msd_child_add_special_sidebars');
+function msd_child_add_special_sidebars(){
+	genesis_register_sidebar(array(
+	'name' => 'Attorney Pages Sidebar',
+	'description' => 'Sidebar on attorney profiles',
+	'id' => 'attorney-sidebar'
+			));    
 }
 /** Customize search form input box text */
 add_filter( 'genesis_search_text', 'custom_search_text' );

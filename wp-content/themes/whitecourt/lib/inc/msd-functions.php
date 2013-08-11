@@ -23,16 +23,18 @@ function msd_add_styles() {
 add_action('wp_print_scripts', 'msd_add_scripts');
 
 function msd_add_scripts() {
-	global $is_IE;
+	global $is_IE,$post;
 	if(!is_admin()){
-		wp_enqueue_script('msd-jquery',get_stylesheet_directory_uri().'/lib/js/theme-jquery.js');
-		wp_enqueue_script('equalHeights',get_stylesheet_directory_uri().'/lib/js/jquery.equalheights.js');
+		wp_enqueue_script('msd-jquery',get_stylesheet_directory_uri().'/lib/js/theme-jquery.js',array('jquery'));
+		wp_enqueue_script('equalHeights',get_stylesheet_directory_uri().'/lib/js/jquery.equal-height-columns.js',array('jquery'));
 		if($is_IE){
-			wp_enqueue_script('columnizr',get_stylesheet_directory_uri().'/lib/js/jquery.columnizer.js');
-			wp_enqueue_script('ie-fixes',get_stylesheet_directory_uri().'/lib/js/ie-jquery.js');
+			wp_enqueue_script('columnizr',get_stylesheet_directory_uri().'/lib/js/jquery.columnizer.js',array('jquery'));
+			wp_enqueue_script('ie-fixes',get_stylesheet_directory_uri().'/lib/js/ie-jquery.js',array('jquery'));
 		}
 		if(is_front_page()){
-			wp_enqueue_script('msd-homepage-jquery',get_stylesheet_directory_uri().'/lib/js/homepage-jquery.js');
+			wp_enqueue_script('msd-homepage-jquery',get_stylesheet_directory_uri().'/lib/js/homepage-jquery.js',array('jquery'));
+		} elseif(is_single() && $post->post_type == 'attorney') {
+			wp_enqueue_script('msd-attorney-jquery',get_stylesheet_directory_uri().'/lib/js/attorney-jquery.js',array('jquery'));
 		}
 	}
 }

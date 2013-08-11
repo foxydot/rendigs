@@ -2,13 +2,16 @@
 @import 'mixins';
 
 .single-attorney{
+	#inner .wrap {
+		background: none;
+		}
 	#content-sidebar-wrap{
 		padding: 0;
-		background: url("../img/bkg-pg.png") repeat scroll 0 0 #F8F3DF;
+		background: fade(@black,10%) no-repeat top center;
 		position: relative;
 		#content{
 			padding: 0;
-			width: 71.85%;
+			width: 66%;
 			margin-right: 0;
 			background: @white;
 			.drop-shadow(6px,0,12px,0.2);
@@ -38,15 +41,54 @@
 				.entry-content{
 					margin: 3em 0;
 				}
+				h3 {
+					text-transform: uppercase;
+					padding: 0.25em 0;
+				}
+				h3.toggle{
+					cursor: pointer;
+					span{
+						color: @red;
+						text-transform: none;
+						float: right;
+					}
+					span.collapse{
+						display: none;
+					}
+				}
+				ul.attorney-additional-info{
+					display: none;
+					h3 {
+						border: 1px solid @medgrey;
+						border-width: 1px 0px;
+						margin: .5em 0;
+					}
+					li{
+						list-style: none outside none;
+						ul{
+							li{
+								margin-bottom: .5em;
+							}
+						}
+					}
+				}
 			}
 		}
 		#sidebar{
-			width: 28.05%;
-			background: fade(@black,10%) no-repeat top center;
+			width: 34%;
 			color: @white;
 			padding: 0;
 			z-index: 50;
 			position: relative;
+			.widget{
+				ul{
+					li{
+						a{
+							color: @red;
+						}
+					}
+				}
+			}
 		}
 	}
 	.readmore {.button();margin:0;}

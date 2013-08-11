@@ -248,7 +248,7 @@ body {
 }
 #nav {
 	.quickgradient(lighten(@medgrey,10%));
-	z-index: 100;
+	z-index: 200;
 	position: relative;
 	.wrap:after{.clearfix;}
 	.menu-primary{
@@ -329,7 +329,7 @@ body {
 .menu li a .sf-sub-indicator,
 .menu li li a .sf-sub-indicator,
 .menu li li li a .sf-sub-indicator {
-	background: url(images/icon-plus.png) no-repeat;
+	background: no-repeat;
 	height: 16px;
 	position: absolute;
 	right: 8px;
@@ -663,6 +663,9 @@ h5 {
 #sidebar {
 	float: left;
 	padding: 10px 0 0;
+	.sidebar-content {
+		margin: 80px;
+	}
 .widget {
 	margin: 0 0 15px;
 	padding: 0 0 15px;

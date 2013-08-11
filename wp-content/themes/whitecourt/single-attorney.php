@@ -68,7 +68,7 @@ function msd_attorney_additional_info(){
 			'education' => 'Education',
 	);
 	$i = 0; ?>
-	<h3 class="toggle">More Info<span>Expand</span></h3>
+	<h3 class="toggle">More Info<span class="expand">Expand <i class="icon-angle-down"></i></span><span class="collapse">Collapse <i class="icon-angle-up"></i></span></h3>
 	<ul class="attorney-additional-info">
 	<?php
 	foreach($fields AS $k=>$v){
@@ -77,7 +77,7 @@ function msd_attorney_additional_info(){
 		<?php if($additional_info->get_the_value() != ''){ ?>
 			<li>
 				<h3><?php print $v; ?></h3>
-				<div><?php print $additional_info->get_the_value(); ?></div>
+				<?php print font_awesome_lists($additional_info->get_the_value()); ?>
 			</li>
 		<?php 
 		$i++;
@@ -85,5 +85,31 @@ function msd_attorney_additional_info(){
 	} ?>
 	</ul>
 	<?php
+}
+function font_awesome_lists($str){
+	$str = preg_replace('/<ul(.*?)>/i','<ul class="icons-ul"\1>',$str);
+	$str = preg_replace('/<li>/i','<li><i class="icon-li icon-angle-right"></i>',$str);
+	return $str;
+}
+remove_action('genesis_sidebar','genesis_do_sidebar');
+add_action('genesis_sidebar','msd_attorney_sidebar');
+function msd_attorney_sidebar(){
+	global $post;
+	$terms = wp_get_post_terms($post->ID,'practice_area');
+	print '<div class="sidebar-content">';
+	if(count($terms)>0){
+		print '<div class="widget">
+			<div class="widget-wrap">
+			<h4 class="widget-title widgettitle">Practice Areas</h4>
+			<ul>';
+		foreach($terms AS $term){
+			print '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>';
+		}
+		print '</ul>
+		</div>
+		</div>';
+	}
+	dynamic_sidebar('attorney-sidebar');
+	print '</div>';
 }
 genesis();
