@@ -1,6 +1,7 @@
 <?php 
 $fields = array(
 	'experience' => 'Experience',
+	'decisions' => 'Notable Decisions',
 	'honors' => 'Honors/Distinctions',
 	'admissions' => 'Admissions',
 	'affiliations' => 'Professional Affiliations',

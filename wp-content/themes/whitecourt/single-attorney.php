@@ -59,6 +59,7 @@ function msd_attorney_additional_info(){
 	global $post,$additional_info;
 	$fields = array(
 			'experience' => 'Experience',
+			'decisions' => 'Notable Decisions',
 			'honors' => 'Honors/Distinctions',
 			'admissions' => 'Admissions',
 			'affiliations' => 'Professional Affiliations',
