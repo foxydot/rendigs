@@ -5,7 +5,7 @@ function msd_add_attorney_headshot(){
 	//setup thumbnail image args to be used with genesis_get_image();
 	$size = 'headshot'; // Change this to whatever add_image_size you want
 	$default_attr = array(
-			'class' => "alignright attachment-$size $size",
+			'class' => "alignnone attachment-$size $size",
 			'alt'   => $post->post_title,
 			'title' => $post->post_title,
 	);
