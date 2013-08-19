@@ -691,18 +691,21 @@ h5 {
 			display: block;
 			.opensans;
 			font-weight: bold;
-			font-size: 1.2em;
+			font-size: 1em;
 			padding: 0 0 6px;
 			text-transform: uppercase;
 			a{
-				color: @blue;
+				color: @medgrey;
 				display: block;
+        border-top: 2px solid @medgrey;
+        border-bottom: 2px solid @medgrey;
 			}
 			ul{
-			padding: 1em 0;
+			padding: 0;
 				li {
 				font-weight: normal;
-				padding: 6px 0;
+				padding: .25em 0;
+        border-bottom: 1px solid @medgrey;
 				a {
 					.arial;
 					border: none;
@@ -713,7 +716,6 @@ h5 {
 					}
 				ul{
 					padding: 0;
-					border-top: 1px solid @medgrey;
 					li{
 						a{
 					padding-left: 12px;}
