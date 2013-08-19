@@ -29,6 +29,14 @@ function msd_child_add_homepage_sidebars(){
     		));
     
 }
+
+add_action('template_redirect','msd_child_check_special_templates');
+function msd_child_check_special_templates(){
+    if(stripos($_SERVER[REQUEST_URI],'practice-areas')){
+        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
+    }
+}
+
 add_action('after_setup_theme','msd_child_add_special_sidebars');
 function msd_child_add_special_sidebars(){
 	genesis_register_sidebar(array(

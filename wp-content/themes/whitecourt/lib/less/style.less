@@ -217,11 +217,7 @@ body {
 	}
 }
 
-#header .menu {
-}
 
-.menu-primary {
-}
 
 .menu-secondary {
 	clear: both;
@@ -242,8 +238,7 @@ body {
 	position: relative;
 	text-decoration: none;}
 }
-.menu-primary li ul,
-#header .menu li ul {
+.menu-primary li ul {
 	width: 240px;
 }
 #nav {
@@ -302,6 +297,7 @@ body {
 		background-color: fade(@black,50%);
 		padding-left: 0;
 		.drop-shadow(0, 1px, 8px, 0.4);
+		display: none;
 		li{
 			padding: .25em 0.5em;
 			margin: 0;
@@ -315,6 +311,11 @@ body {
 			background: @black;
 			a{color: @beige;}
 		}
+	}
+	li:hover{
+	  .sub-menu{
+	    display: block;
+	  }
 	}
 }
 
@@ -964,6 +965,23 @@ input.searchsubmit:hover {
 .gform_wrapper .top_label .gfield_label { font-weight: normal !important; font-size: .8em; }
 .gform_wrapper .top_label input.medium { width: 100% !important; padding: 0.5em 0.5em 0.5em 0.5em !important;}
 .gform_wrapper .gform_footer { padding: 0 !important; margin: 0 !important; }
+
+/*Practice Areas*/
+.section-practice-areas{
+  #inner{
+    .wrap{
+      background: @white;
+      #sidebar {
+        .widget{
+          margin: 0 .5em;
+        }
+      }
+    }
+    .wrap:after{
+      .clearfix();
+    }
+  }
+}
 /* ETC */
 .readmore {.button();}
 
