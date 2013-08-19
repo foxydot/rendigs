@@ -106,6 +106,9 @@ if (!class_exists('MSDLawfirmCPT')) {
         		register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
         		register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
         	}
+            if(class_exists('MSDLawfirmAttorneyDisplay')){
+                $this->display_class = new MSDLawfirmAttorneyDisplay();
+            }
         }
 
         /**
