@@ -49,9 +49,14 @@ function msd_child_get_attys_in_pa(){
         $terms = wp_get_post_terms($atty->ID,'practice_area');
         $practice_areas = '';
         if(count($terms)>0){
-            if(count($terms)>5){$terms = array_slice($terms, 0, 5);}
+            if(count($terms)>5){
+                $terms = array_slice($terms, 0, 5);
+            }
+            $i = 0;
             foreach($terms AS $term){
-                $practice_areas .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>';
+                $more_practice_areas = $i==4?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
+                $practice_areas .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                $i++;
             }
         }
         $mini_bio = msd_child_excerpt($atty->ID);
@@ -87,7 +92,7 @@ function msd_child_get_attys_in_pa(){
                 '.$headshot.'
             </div>
             <div class="info">
-                <h4>'.$atty->post_title.'</h4>
+                <h4><a href="'.get_post_permalink($atty->ID).'" title="'.$atty->post_title.'">'.$atty->post_title.'</a></h4>
                 <strong>Practice Areas</strong>
                 <ul class="practice-areas">
                 '.$practice_areas.'
@@ -101,7 +106,7 @@ function msd_child_get_attys_in_pa(){
         print $attystr;
     }
 }
-function msd_child_excerpt( $post_id, $excerpt_length = 30, $trailing_character = '&nbsp;&hellip;' ) {
+function msd_child_excerpt( $post_id, $excerpt_length = 30, $trailing_character = '&nbsp;<i class="icon-circle-arrow-right"></i>' ) {
 $the_post = get_post( $post_id );
 $the_excerpt = strip_tags( strip_shortcodes( $the_post->post_excerpt ) );
  
