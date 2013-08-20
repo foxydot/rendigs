@@ -543,6 +543,10 @@ class WPCF7_ContactForm {
 
 		extract( $components );
 
+		$subject = wpcf7_strip_newline( $subject );
+		$sender = wpcf7_strip_newline( $sender );
+		$recipient = wpcf7_strip_newline( $recipient );
+
 		$headers = "From: $sender\n";
 
 		if ( $use_html )
@@ -596,12 +600,7 @@ class WPCF7_ContactForm {
 			else
 				$submitted = $this->posted_data[$tagname];
 
-			$submitted = trim( $submitted );
-
-			if ( is_array( $submitted ) )
-				$replaced = join( ', ', $submitted );
-			else
-				$replaced = $submitted;
+			$replaced = wpcf7_flat_join( $submitted );
 
 			if ( $html ) {
 				$replaced = strip_tags( $replaced );
