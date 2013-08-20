@@ -45,7 +45,7 @@ function msd_child_get_attys_in_pa(){
     }
     foreach($attys AS $atty){
         //ts_data($atty);
-        $headshot = get_the_post_thumbnail($atty->ID,'thumb');
+        $headshot = get_the_post_thumbnail($atty->ID,'mini-headshot');
         $terms = wp_get_post_terms($atty->ID,'practice_area');
         $practice_areas = '';
         if(count($terms)>0){
