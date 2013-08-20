@@ -973,6 +973,7 @@ input.searchsubmit:hover {
   #inner{
     .wrap{
       background: @white;
+      #content-sidebar-wrap{padding: 30px 0 30px 30px}
       #sidebar{
         padding-top: 44px;
         .widget{
@@ -1029,6 +1030,24 @@ input.searchsubmit:hover {
         .atty:after{
           .clearfix();
         }
+      }
+      #sidebar-alt{
+        #tbtestimonials-widget{
+          li.testimonial-slide{
+            padding-right: .5em;
+            .testimonial-data{
+              width: auto;
+              p{
+                line-height: 1.5em;
+                font-size: 0.9em;
+              }
+              .testimonial-author{
+                color: @red;
+                font-size: 1em;
+              }
+            }
+          }
+        }  
       }
     }
     .wrap:after{
