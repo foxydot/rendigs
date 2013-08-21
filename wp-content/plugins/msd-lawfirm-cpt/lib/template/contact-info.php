@@ -44,17 +44,28 @@
 		</div>
 	</li>
 	
-	
-	<?php $mb->the_field('_attorney_vcard'); ?>
-	<li class="gfield even" id="field_attorney_vcard"><label for="<?php $mb->the_name(); ?>"
-		class="gfield_label">vCard File</label>
-	<div class="ginput_container last-child even">
+    
+    <?php $mb->the_field('_attorney_vcard'); ?>
+    <li class="gfield even" id="field_attorney_vcard"><label for="<?php $mb->the_name(); ?>"
+        class="gfield_label">vCard File</label>
+    <div class="ginput_container last-child even">
         <?php $wpalchemy_media_access->setGroupName('attorney_vcard'. $mb->get_the_index())->setInsertButtonLabel('Insert This')->setTab('gallery'); ?>
-		
-		<?php echo $wpalchemy_media_access->getField(array('name' => $mb->get_the_name(), 'value' => $mb->get_the_value())); ?>
+        
+        <?php echo $wpalchemy_media_access->getField(array('name' => $mb->get_the_name(), 'value' => $mb->get_the_value())); ?>
         <?php echo $wpalchemy_media_access->getButton(array('label' => '+')); ?>
-		</div>
-	</li>
+        </div>
+    </li>   
+    
+    <?php $mb->the_field('_attorney_bio_sheet'); ?>
+    <li class="gfield even" id="field_attorney_bio_sheet"><label for="<?php $mb->the_name(); ?>"
+        class="gfield_label">Bio Sheet File</label>
+    <div class="ginput_container last-child even">
+        <?php $wpalchemy_media_access->setGroupName('attorney_bio_sheet'. $mb->get_the_index())->setInsertButtonLabel('Insert This')->setTab('gallery'); ?>
+        
+        <?php echo $wpalchemy_media_access->getField(array('name' => $mb->get_the_name(), 'value' => $mb->get_the_value())); ?>
+        <?php echo $wpalchemy_media_access->getButton(array('label' => '+')); ?>
+        </div>
+    </li>
 	
 	<?php $mb->the_field('_attorney_email'); ?>
 	<li class="gfield last-child odd" id="field_attorney_email"><label
