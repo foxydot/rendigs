@@ -42,7 +42,7 @@ function get_address(){
 		$ret = '<address>';
 			$ret .= (get_option('msdsocial_street')!='')?get_option('msdsocial_street'):'';
 			$ret .= (get_option('msdsocial_street2')!='')?', '.get_option('msdsocial_street2').' ':'';
-			$ret .= (get_option('msdsocial_city')!='')?'<br/>'.get_option('msdsocial_city').', ':'';
+			$ret .= (get_option('msdsocial_city')!='')?' '.get_option('msdsocial_city').', ':'';
 			$ret .= (get_option('msdsocial_state')!='')?get_option('msdsocial_state').' ':'';
 			$ret .= (get_option('msdsocial_zip')!='')?get_option('msdsocial_zip').' ':'';
 		$ret .= '</address>';
