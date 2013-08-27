@@ -148,6 +148,7 @@ add_action('genesis_before_content_sidebar_wrap', 'genesis_do_breadcrumbs');
 
 remove_action( 'genesis_before_post_content', 'genesis_post_info' );
 remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
+
 /**
  * Add extra menu locations
  */

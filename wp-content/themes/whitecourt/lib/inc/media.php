@@ -12,7 +12,7 @@ add_image_size( 'headshot', 373, 600, FALSE );
 add_image_size( 'mini-headshot', 120, 120, TRUE );
 
 /* Manipulate the featured image */
-add_action( 'genesis_before_post', 'msd_post_image', 8 );
+//add_action( 'genesis_before_post', 'msd_post_image', 8 );
 function msd_post_image() {
 	global $post;
    	//setup thumbnail image args to be used with genesis_get_image();

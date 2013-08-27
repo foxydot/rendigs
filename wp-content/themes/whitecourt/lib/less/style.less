@@ -80,7 +80,7 @@ textarea {
 
 a,
 a:visited {
-	color: @blue;
+	color: @red;
 	text-decoration: none;
 }
 
@@ -355,6 +355,9 @@ body {
 	.wrap{
 		background: @white;
 	}
+  .wrap:after {
+    .clearfix;
+  }
 }
 #inner:after {
 	.clearfix;
@@ -383,7 +386,7 @@ body {
 #content-sidebar-wrap {
 	position: relative;
 	background: @white;
-	padding: 30px;
+	padding: 0;
 	-moz-box-sizing:    border-box;
 	   -webkit-box-sizing: border-box;
 	   -ms-box-sizing:     border-box;
@@ -404,11 +407,26 @@ body {
 
 #content {
 	float: left;
+	.entry {padding:30px 0;}
 }
 
 .content-sidebar-alt #content,
 .sidebar-content #content {
 	
+}
+.sidebar-content-sidebar {
+  #content{
+      margin-right: 0;
+      background: @white;
+      .drop-shadow(12px,0,12px,0.2);
+      z-index: 100;
+      position:relative;
+  }
+  #sidebar-alt{
+      padding: 0;
+      z-index: 50;
+      position: relative;
+  }
 }
 
 .full-width-content #content {
@@ -487,7 +505,7 @@ h1 {
 }
 
 h1.entry-title {
-	font-size: 3em;
+	font-size: 2.5em;
 	font-weight: normal;
 	color: @medgrey;
 }
@@ -520,6 +538,10 @@ h2 a:hover {
 
 h3 {
 	font-size: 16px;
+}
+.hentry h3{
+  color: @medgrey;
+  text-transform: uppercase;
 }
 
 h4 {
@@ -643,7 +665,6 @@ h5 {
 }
 
 .entry-content img {
-	border: 6px solid @ltgrey;
 }
 
 
@@ -653,6 +674,10 @@ h5 {
 #sidebar-alt {
 	margin-right: 0px;
 	float: right;
+	background-color: @medgrey;
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-image: url(../img/watch.jpg);
 }
 
 
@@ -663,14 +688,14 @@ h5 {
 
 #sidebar {
 	float: left;
-	padding: 10px 0 0;
+	padding: 44px 0 0;
 	.sidebar-content {
 		margin: 40px;
 	}
-.widget {
-	margin: 0 0 15px;
-	padding: 0 0 15px;
-}
+  .widget {
+  	margin: 0 1.5em;
+  	padding: 0 0 15px;
+  }
 }
 
 .sidebar.widget-area ul li,
@@ -972,14 +997,6 @@ input.searchsubmit:hover {
 .section-practice-areas{
   #inner{
     .wrap{
-      background: @white;
-      #content-sidebar-wrap{padding: 30px 0}
-      #sidebar{
-        padding-top: 44px;
-        .widget{
-          margin: 0 .5em;
-        }
-      }
       #content{
         h3{
           text-transform: uppercase;
@@ -1050,9 +1067,6 @@ input.searchsubmit:hover {
           }
         }  
       }
-    }
-    .wrap:after{
-      .clearfix();
     }
   }
 }
