@@ -25,7 +25,8 @@ ol li{list-style-type:decimal}
 address{font-style:normal}
 .clearfix{content:".";display:block;height:0;clear:both;visibility:hidden}
 .single-attorney #inner .wrap{background:none}
-.single-attorney #content-sidebar-wrap{padding:0;background:rgba(0,0,0,0.1) no-repeat top center;position:relative}.single-attorney #content-sidebar-wrap #content{padding:0;width:63%;margin-right:0;background:#fff;-webkit-box-shadow:6px 0 12px rgba(0,0,0,0.2);-moz-box-shadow:6px 0 12px rgba(0,0,0,0.2);box-shadow:6px 0 12px rgba(0,0,0,0.2);z-index:100;position:relative}.single-attorney #content-sidebar-wrap #content .entry{padding:30px}.single-attorney #content-sidebar-wrap #content .entry .entry-title{margin-bottom:0}
+.single-attorney #content-sidebar-wrap{padding:0;background:rgba(0,0,0,0.1) no-repeat top center;position:relative}.single-attorney #content-sidebar-wrap #content{padding:0;width:63%;margin-right:0;background:#fff;-webkit-box-shadow:6px 0 12px rgba(0,0,0,0.2);-moz-box-shadow:6px 0 12px rgba(0,0,0,0.2);box-shadow:6px 0 12px rgba(0,0,0,0.2);z-index:100;position:relative}.single-attorney #content-sidebar-wrap #content a{color:#262561}
+.single-attorney #content-sidebar-wrap #content .entry{padding:30px}.single-attorney #content-sidebar-wrap #content .entry .entry-title{margin-bottom:0}
 .single-attorney #content-sidebar-wrap #content .entry .entry-subtitle{margin:0}
 .single-attorney #content-sidebar-wrap #content .entry ul.attorney-contact-info{border:1px solid #7b7d6f;border-width:1px 0;margin:.5em 0;padding:.5em 0}.single-attorney #content-sidebar-wrap #content .entry ul.attorney-contact-info li{list-style:none outside none;display:inline-block;margin:0 .5em}
 .single-attorney #content-sidebar-wrap #content .entry ul.attorney-contact-info li:first-child{margin-left:0}

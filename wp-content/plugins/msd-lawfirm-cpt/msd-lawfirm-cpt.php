@@ -109,6 +109,9 @@ if (!class_exists('MSDLawfirmCPT')) {
             if(class_exists('MSDLawfirmAttorneyDisplay')){
                 $this->display_class = new MSDLawfirmAttorneyDisplay();
             }
+            if(class_exists('MSDLawfirmAttorneyWidget')){
+                add_action('widgets_init',array('MSDLawfirmAttorneyWidget','init'),10);
+            }
         }
 
         /**

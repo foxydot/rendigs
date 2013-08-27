@@ -32,6 +32,31 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             );
             $posts = get_posts($args);
             return $posts;
-        }           
+        }  
+        
+        function get_all_attorneys(){
+            $args = array(
+            'posts_per_page'   => -1,
+            'orderby'          => 'title',
+            'order'            => 'ASC',
+            'post_type'        => $this->cpt,
+            );
+            $posts = get_posts($args);
+            $i = 0;
+            foreach($posts AS $post){
+                $posts[$i]->lastname = get_post_meta($post->ID,'_attorney__attorney_last_name',TRUE);
+                $i++;
+            }
+            usort($posts,array(&$this,'sort_by_lastname'));
+            return $posts;
+        }        
+        
+        function sort_by_lastname( $a, $b ) {
+            return $a->lastname == $b->lastname ? 0 : ( $a->lastname < $b->lastname ) ? -1 : 1;
+        } 
+        
+        function get_all_practice_areas(){
+            return get_terms('practice_area');
+        }
   } //End Class
 } //End if class exists statement

@@ -25,5 +25,6 @@ ol li{list-style-type:decimal}
 address{font-style:normal}
 .clearfix{content:".";display:block;height:0;clear:both;visibility:hidden}
 .home #content-sidebar-wrap{background:url(../img/bkg-home-lighthouse.jpg) no-repeat center center;min-height:510px;padding:0}.home #content-sidebar-wrap #content{width:68.05%;margin-right:3.8%;color:#fff}.home #content-sidebar-wrap #content .entry{padding:75px 275px 75px 30px}.home #content-sidebar-wrap #content .entry .entry-title{color:#e7d488}
-.home #content-sidebar-wrap #sidebar{width:28.05%;min-height:510px;background:rgba(0,0,0,0.5);color:#fff;padding:20px}
+.home #content-sidebar-wrap #sidebar{width:28.05%;min-height:510px;background:rgba(0,0,0,0.5);color:#fff;padding:20px}.home #content-sidebar-wrap #sidebar .msd-widget-atty{margin-top:55px}.home #content-sidebar-wrap #sidebar .msd-widget-atty .widget-title{text-align:center;text-transform:none;color:#fff;font-weight:100;font-size:2em;line-height:1.5em}
+.home #content-sidebar-wrap #sidebar .msd-widget-atty select,.home #content-sidebar-wrap #sidebar .msd-widget-atty input{width:100%;overflow:hidden;margin:.5em 0;padding:.5em}
 .home .readmore{background-color:#e7d38a;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;padding:6px 24px;font-family:"Raleway","Open Sans","Trebuchet MS",Calibri,sans-serif;color:#474747 !important;font-size:12px;font-weight:normal;text-transform:uppercase;display:table;margin:12px auto;margin:0}
