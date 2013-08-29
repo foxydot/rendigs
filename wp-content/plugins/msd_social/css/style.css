@@ -1,1 +1,2 @@
-.msd-connected{position:relative;float:left;padding:6px 0}.msd-connected a{float:left;display:block;position:relative;margin:2px;text-indent:-9999px;text-decoration:none}
+.msd-connected{position:relative;float:right;padding:6px 0}.msd-connected a{float:right;display:block;position:relative;margin:0;text-decoration:none;color:#fff}.msd-connected a i{margin:1em auto}
+.msd-connected a:hover{text-decoration:none}

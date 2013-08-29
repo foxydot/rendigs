@@ -79,7 +79,7 @@ function social_media($attr){
 	?>
 	<div id="social-media" class="social-media">
 			<?php if(get_option('msdsocial_linkedin_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_linkedin_link'); ?>" class="li" title="LinkedIn" target="_blank">LinkedIn</a>
+			<a href="<?php echo get_option('msdsocial_linkedin_link'); ?>" class="li" title="LinkedIn" target="_blank"><i class="icon-linkedin"></i></a>
 			<?php }?>
 			<?php if(get_option('msdsocial_twitter_user')!=""){ ?>
 			<a href="http://www.twitter.com/<?php echo get_option('msdsocial_twitter_user'); ?>" class="tw" title="Follow Us on Twitter!" target="_blank">Twitter</a>
@@ -88,7 +88,7 @@ function social_media($attr){
 			<a href="<?php echo get_option('msdsocial_google_link'); ?>" class="gl" title="Google+" target="_blank">Google+</a>
 			<?php }?>
 			<?php if(get_option('msdsocial_facebook_link')!=""){ ?>
-			<a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb" title="Join Us on Facebook!" target="_blank">Facebook</a>
+			<a href="<?php echo get_option('msdsocial_facebook_link'); ?>" class="fb" title="Join Us on Facebook!" target="_blank"><i class="icon-facebook"></i></a>
 			<?php }?>
 			<?php if(get_option('msdsocial_flickr_link')!=""){ ?>
 			<a href="<?php echo get_option('msdsocial_flickr_link'); ?>" class="fl" title="Flickr" target="_blank">Flickr</a>
