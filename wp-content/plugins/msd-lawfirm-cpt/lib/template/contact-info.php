@@ -39,8 +39,8 @@
 	<li class="gfield even" id="field_attorney_linked_in"><label for="<?php $mb->the_name(); ?>"
 		class="gfield_label">Linked In URL</label>
 	<div class="ginput_container last-child even">
-			<input type="text" tabindex="32" class="medium" value="http://"
-				id="<?php $mb->the_name(); ?>" name="<?php $mb->the_name(); ?>">
+			<input type="text" tabindex="32" class="medium" value="<?php $mb->the_value(); ?>"
+				id="<?php $mb->the_name(); ?>" name="<?php $mb->the_name(); ?>" placeholder="http://">
 		</div>
 	</li>
 	
