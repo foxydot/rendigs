@@ -79,7 +79,7 @@ function msd_attorney_additional_info(){
 		<?php if($additional_info->get_the_value() != ''){ ?>
 			<li>
 				<h3><?php print $v; ?></h3>
-				<?php print font_awesome_lists($additional_info->get_the_value()); ?>
+				<?php print apply_filters('the_content',font_awesome_lists($additional_info->get_the_value())); ?>
 			</li>
 		<?php 
 		$i++;
