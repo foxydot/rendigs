@@ -248,7 +248,7 @@ body {
 	.wrap:after{.clearfix;}
 	.menu-primary{
 		padding: 0; margin: 0; float:left;
-		a{color: white;font-weight: normal;text-transform:uppercase;padding: .5em 1.85em;display: block;}
+		a{color: white;font-weight: normal;text-transform:uppercase;padding: .5em .98em;display: block;}
 		li {border-left: 1px solid @white;
 			margin-left:-4px;
 			li {border: none;}
@@ -262,7 +262,7 @@ body {
 		li.first-child{margin-left:0;}
 	}
 	.s {margin:0;width:200px;}
-	.searchform {padding: 0.3em;}
+	.searchform {padding: 0.5em;}
 	a:hover{text-decoration: none;}
 }
 #nav:after{.clearfix;}
@@ -286,36 +286,54 @@ body {
 	#header .menu li li a,#header .menu li li a:link,#header .menu li li a:visited {
 		background: none;
 		border-top: none;
-		padding: .25em 1em;
+		padding: 0.25em 1em;
 		width: 240px;
 	}
 }
 
 #nav{
+  li:hover{
+    .sub-menu{
+      display: block;
+    }
+  }
 	.sub-menu{
 		position: absolute;
-		background-color: fade(@black,50%);
+		background-color: fade(@black,70%);
 		padding-left: 0;
 		.drop-shadow(0, 1px, 8px, 0.4);
 		display: none;
+    .sub-menu{
+      left: 240px;
+      top: 0;
+    }
 		li{
-			padding: .25em 0.5em;
+			padding: 0.25em 0.5em;
 			margin: 0;
 			width: 100%;
+			position: relative;
 			a{
 				text-transform: none;
 				padding: 0.5em;
 			}
+      .sub-menu {
+        display: none;
+      }
 		}
 		li:hover {
 			background: @black;
 			a{color: @beige;}
+			.sub-menu{
+			  display: block;
+        li {
+          a{color: @white;}
+        }
+        li:hover {
+          background: @black;
+          a{color: @beige;}
+        }
+			}
 		}
-	}
-	li:hover{
-	  .sub-menu{
-	    display: block;
-	  }
 	}
 }
 
@@ -771,14 +789,16 @@ input[type="submit"] {
 /* Search Form
 ------------------------------------------------------------ */
 
-.searchform input[type="text"]{
-	.rounded(12px);
-	font-size: 10px;
-	padding: 4px;
-	background: darken(@medgrey, 20%);
-	color: @white;
-	}
-
+.searchform {
+  position: relative;
+  input[type="text"]{
+  	.rounded(12px);
+  	font-size: 10px;
+  	padding: 4px;
+  	background: darken(@medgrey, 20%);
+  	color: @white;
+  	}
+  }
 #header .searchform {
 	float: right;
 	padding: 0;
@@ -798,9 +818,9 @@ input.searchsubmit:hover {
 	height: 25px;
 	width: 25px;
 	border: none;
-	position: relative;
-	top: 3px;
-	left: -30px;
+	position: absolute;
+	top: 5px;
+	right: 6px;
 	cursor: pointer;
 	}
 
