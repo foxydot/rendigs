@@ -45,7 +45,7 @@ function msd_attorney_contact_info(){
 		
 		<?php $contact_info->the_field('_attorney_bio_sheet'); ?>
 		<?php if($contact_info->get_the_value() != ''){ ?>
-			<li class="vcard"><i class="icon-download-alt icon-large"></i> Download Bio</li>
+			<li class="vcard"><a href="<?php print $contact_info->get_the_value(); ?>"><i class="icon-download-alt icon-large"></i> Download Bio</a></li>
 		<?php } ?>
 		
 		<?php $contact_info->the_field('_attorney_email'); ?>

@@ -79,7 +79,7 @@ function msd_child_get_attys_in_pa(){
         
         $contact_info->the_field('_attorney_bio_sheet');
         if($contact_info->get_the_value() != ''){
-            $atty_contact_info .= '<li class="vcard"><i class="icon-download-alt icon-large"></i> '.$contact_info->get_the_value().'</li>';
+            $atty_contact_info .= '<li class="vcard"><a href="'.$contact_info->get_the_value().'"><i class="icon-download-alt icon-large"></i> Download Bio</a></li>';
         }
         
         $contact_info->the_field('_attorney_email');
