@@ -19,7 +19,8 @@ if (!class_exists('MSDLawfirmAttorneyCPT')) {
         	$this->plugin_path = plugin_dir_path('msd-lawfirm-cpt/msd-lawfirm-cpt.php');
 			//Actions
 			add_action( 'init', array(&$this,'register_tax_practice_areas') );
-			add_action( 'init', array(&$this,'register_cpt_attorney') );
+            add_action( 'init', array(&$this,'register_cpt_attorney') );
+            add_action( 'init', array(&$this,'register_cpt_industry') );
 			add_action('admin_head', array(&$this,'plugin_header'));
 			add_action('admin_print_scripts', array(&$this,'add_admin_scripts') );
 			add_action('admin_print_styles', array(&$this,'add_admin_styles') );
@@ -67,46 +68,88 @@ if (!class_exists('MSDLawfirmAttorneyCPT')) {
 		    register_taxonomy( 'practice_area', array($this->cpt), $args );
 		}
 		
-		function register_cpt_attorney() {
-		
-		    $labels = array( 
-		        'name' => _x( 'Attorneys', 'attorney' ),
-		        'singular_name' => _x( 'Attorney', 'attorney' ),
-		        'add_new' => _x( 'Add New', 'attorney' ),
-		        'add_new_item' => _x( 'Add New Attorney', 'attorney' ),
-		        'edit_item' => _x( 'Edit Attorney', 'attorney' ),
-		        'new_item' => _x( 'New Attorney', 'attorney' ),
-		        'view_item' => _x( 'View Attorney', 'attorney' ),
-		        'search_items' => _x( 'Search Attorney', 'attorney' ),
-		        'not_found' => _x( 'No attorney found', 'attorney' ),
-		        'not_found_in_trash' => _x( 'No attorney found in Trash', 'attorney' ),
-		        'parent_item_colon' => _x( 'Parent Attorney:', 'attorney' ),
-		        'menu_name' => _x( 'Attorney', 'attorney' ),
-		    );
-		
-		    $args = array( 
-		        'labels' => $labels,
-		        'hierarchical' => false,
-		        'description' => 'Attorney',
-		        'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields' ),
-		        'taxonomies' => array( 'practice_area' ),
-		        'public' => true,
-		        'show_ui' => true,
-		        'show_in_menu' => true,
-		        'menu_position' => 20,
-		        
-		        'show_in_nav_menus' => true,
-		        'publicly_queryable' => true,
-		        'exclude_from_search' => true,
-		        'has_archive' => true,
-		        'query_var' => true,
-		        'can_export' => true,
-		        'rewrite' => array('slug'=>'attorney','with_front'=>false),
-		        'capability_type' => 'post'
-		    );
-		
-		    register_post_type( $this->cpt, $args );
-		}
+        function register_cpt_attorney() {
+        
+            $labels = array( 
+                'name' => _x( 'Attorneys', 'attorney' ),
+                'singular_name' => _x( 'Attorney', 'attorney' ),
+                'add_new' => _x( 'Add New', 'attorney' ),
+                'add_new_item' => _x( 'Add New Attorney', 'attorney' ),
+                'edit_item' => _x( 'Edit Attorney', 'attorney' ),
+                'new_item' => _x( 'New Attorney', 'attorney' ),
+                'view_item' => _x( 'View Attorney', 'attorney' ),
+                'search_items' => _x( 'Search Attorney', 'attorney' ),
+                'not_found' => _x( 'No attorney found', 'attorney' ),
+                'not_found_in_trash' => _x( 'No attorney found in Trash', 'attorney' ),
+                'parent_item_colon' => _x( 'Parent Attorney:', 'attorney' ),
+                'menu_name' => _x( 'Attorney', 'attorney' ),
+            );
+        
+            $args = array( 
+                'labels' => $labels,
+                'hierarchical' => false,
+                'description' => 'Attorney',
+                'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields' ),
+                'taxonomies' => array( 'practice_area' ),
+                'public' => true,
+                'show_ui' => true,
+                'show_in_menu' => true,
+                'menu_position' => 20,
+                
+                'show_in_nav_menus' => true,
+                'publicly_queryable' => true,
+                'exclude_from_search' => true,
+                'has_archive' => true,
+                'query_var' => true,
+                'can_export' => true,
+                'rewrite' => array('slug'=>'attorney','with_front'=>false),
+                'capability_type' => 'post'
+            );
+        
+            register_post_type( $this->cpt, $args );
+        }
+
+
+        function register_cpt_industry() {
+        
+            $labels = array( 
+                'name' => _x( 'Industries', 'industry' ),
+                'singular_name' => _x( 'Industry', 'industry' ),
+                'add_new' => _x( 'Add New', 'industry' ),
+                'add_new_item' => _x( 'Add New Industry', 'industry' ),
+                'edit_item' => _x( 'Edit Industry', 'industry' ),
+                'new_item' => _x( 'New Industry', 'industry' ),
+                'view_item' => _x( 'View Industry', 'industry' ),
+                'search_items' => _x( 'Search Industries', 'industry' ),
+                'not_found' => _x( 'No Industries found', 'industry' ),
+                'not_found_in_trash' => _x( 'No Industries found in Trash', 'industry' ),
+                'parent_item_colon' => _x( 'Parent Industry:', 'industry' ),
+                'menu_name' => _x( 'Industry', 'industry' ),
+            );
+        
+            $args = array( 
+                'labels' => $labels,
+                'hierarchical' => false,
+                'description' => 'Industry',
+                'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields' ),
+                'taxonomies' => array(),
+                'public' => true,
+                'show_ui' => true,
+                'show_in_menu' => true,
+                'menu_position' => 20,
+                
+                'show_in_nav_menus' => true,
+                'publicly_queryable' => true,
+                'exclude_from_search' => true,
+                'has_archive' => true,
+                'query_var' => true,
+                'can_export' => true,
+                'rewrite' => array('slug'=>'industry','with_front'=>false),
+                'capability_type' => 'post'
+            );
+        
+            register_post_type( 'industry', $args );
+        }
 		
 		function plugin_header() {
 			global $post_type;
