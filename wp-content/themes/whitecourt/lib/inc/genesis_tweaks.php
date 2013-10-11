@@ -35,7 +35,7 @@ function msd_child_check_special_templates(){
     if(stripos($_SERVER[REQUEST_URI],'practice-areas')){
         add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
         add_action('genesis_after_loop','msd_child_get_attys_in_pa');
-    }
+    } 
 }
 function msd_child_get_attys_in_pa(){
     global $post,$msd_lawfirm,$contact_info;
