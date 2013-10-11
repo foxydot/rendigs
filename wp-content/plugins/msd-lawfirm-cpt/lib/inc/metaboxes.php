@@ -25,3 +25,42 @@ $additional_info = new WPAlchemy_MetaBox(array
 			'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
 			'prefix' => '_attorney_' // defaults to NULL
 		));
+        
+global $date_info,$location_info,$event_info;
+
+$date_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_date_information',
+            'title' => 'Event Date and Location',
+            'types' => array('targeted_event'),
+            'context' => 'normal',
+            'priority' => 'high',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/date-information.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_date_' // defaults to NULL
+        ));
+/*$location_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_location_information',
+            'title' => 'Venue Information',
+            'types' => array('targeted_event'),
+            'context' => 'normal',
+            'priority' => 'high',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/location-information.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_location_' // defaults to NULL
+        ));
+$event_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_event_information',
+            'title' => 'Event Information',
+            'types' => array('targeted_event'),
+            'context' => 'normal',
+            'priority' => 'high',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php').'lib/template/event-information.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_event_' // defaults to NULL
+        ));*/

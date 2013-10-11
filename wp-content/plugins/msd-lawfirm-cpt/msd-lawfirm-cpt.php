@@ -112,6 +112,18 @@ if (!class_exists('MSDLawfirmCPT')) {
             if(class_exists('MSDLawfirmAttorneyWidget')){
                 add_action('widgets_init',array('MSDLawfirmAttorneyWidget','init'),10);
             }
+            if(class_exists('MSDEventCPT')){
+                $this->location_class = new MSDEventCPT();
+                register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
+                register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
+            }
+            if(class_exists('MSDEventShortcodes')){
+                $this->shortcodes_class = new MSDEventShortcodes();
+            }
+            if(class_exists('MSDEventFullYear')){
+                $this->fullyear_class = new MSDEventFullYear();
+                //register_activation_hook( __FILE__, array(&$this->fullyear_class,'msd_add_rewite_rules') );
+            }
         }
 
         /**
