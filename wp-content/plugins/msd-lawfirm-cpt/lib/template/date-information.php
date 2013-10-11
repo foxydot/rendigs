@@ -5,7 +5,7 @@ $all_locations = $wpdb->get_col("SELECT meta_value
     $location_values = array_unique($all_locations);
     asort($location_values);
     ?>
-<ul class="my_meta_control">
+<ul class="event_meta_control">
     <li>
     <?php $metabox->the_field('event_location'); ?>
     <label id="<?php $metabox->the_name(); ?>_label" for="<?php $metabox->the_name(); ?>">Event Location (Title)</label>

@@ -15,8 +15,8 @@ if (!class_exists('MSDEventCPT')) {
         function __construct(){
             global $current_screen;
             //"Constants" setup
-            $this->plugin_url = plugin_dir_url('msd-custom-cpt/msd-custom-cpt.php');
-            $this->plugin_path = plugin_dir_path('msd-custom-cpt/msd-custom-cpt.php');
+            $this->plugin_url = plugin_dir_url('msd-lawfirm-cpt/msd-lawfirm-cpt.php');
+            $this->plugin_path = plugin_dir_path('msd-lawfirm-cpt/msd-lawfirm-cpt.php');
             //Actions
             add_action( 'init', array(&$this,'register_taxonomy_event_category') );
             add_action( 'init', array(&$this,'register_taxonomy_event_type') );
