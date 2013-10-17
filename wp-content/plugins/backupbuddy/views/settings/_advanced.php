@@ -82,8 +82,8 @@ $settings_form->add_setting( array(
 	'name'		=>		'backup_mode',
 	'title'		=>		__('Manual backup mode', 'it-l10n-backupbuddy' ),
 	'options'	=>		array(
-								'1'		=>		__( 'Classic (v1.x)', 'it-l10n-backupbuddy' ),
-								'2'		=>		__( 'Modern (v2.x)', 'it-l10n-backupbuddy' ),
+								'1'		=>		__( 'Classic (v1.x) - Entire backup in single PHP page load', 'it-l10n-backupbuddy' ),
+								'2'		=>		__( 'Modern (v2.x+) - Split across page loads via WP cron', 'it-l10n-backupbuddy' ),
 							),
 	'tip'		=>		__('[Default: Modern] - If you are encountering difficulty backing up due to WordPress cron, HTTP Loopbacks, or other features specific to version 2.x you can try classic mode which runs like BackupBuddy v1.x did.', 'it-l10n-backupbuddy' ),
 	'rules'		=>		'required',

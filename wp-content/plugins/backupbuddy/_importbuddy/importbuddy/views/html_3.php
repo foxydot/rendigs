@@ -110,7 +110,7 @@ $custom_home_tip = 'OPTIONAL. This is also known as the site address. This is th
 				 }, function(data) {
 				 	data = jQuery.trim( data );
 					jQuery('#ithemes_loading').html( data );
-					if ( data.slice( -17 ) == '<!-- Success. -->' ) {
+					if ( data.toLowerCase().indexOf( 'overall result success' ) >= 0 ) {
 						jQuery('.pb_database_next_submit').removeClass( 'button_disabled' );
 					} else {
 						jQuery('.pb_database_next_submit').addClass( 'button_disabled' );

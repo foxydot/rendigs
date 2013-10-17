@@ -223,18 +223,22 @@ function rename_htaccess_temp_back() {
 function trouble_scan() {
 	$trouble = array();
 	
+	// .maintenance
 	if ( file_exists( ABSPATH . '.maintenance' ) ) {
 		$trouble[] = '.maintenance file found in WordPress root. The site may not be accessible unless this file is deleted.';
 	}
 	
+	// index.htm
 	if ( file_exists( ABSPATH . 'index.htm' ) ) {
 		$trouble[] = 'index.htm file found in WordPress root. This may prevent WordPress from loading on some servers & may need to be deleted.';
 	}
 	
+	// index.html
 	if ( file_exists( ABSPATH . 'index.html' ) ) {
 		$trouble[] = 'index.html file found in WordPress root. This may prevent WordPress from loading on some servers & may need to be deleted.';
 	}
 	
+	// wp-config.php
 	if ( ! file_exists( ABSPATH . 'wp-config.php' ) ) {
 		$trouble[] = 'Warning only: wp-config.php file not found WordPress root. <i>This is normal for a database-only restore.</i>';
 	} else { // wp-config.php exists so check for unchanged URLs not updated due to provenance unknown.
@@ -263,8 +267,14 @@ function trouble_scan() {
 		}
 	}
 	
+	// .htaccess
 	if ( ! file_exists( ABSPATH . '.htaccess' ) ) {
 		$trouble[] = 'Warning only: .htaccess file not found in WordPress root. This is used for permalinks on servers which support it. If needed or URLs result in a 404 you may regenerate this file by logging into the wp-admin & navigating to Settings: Permalinks and clicking "Save".';
+	}
+	
+	// php.ini
+	if ( file_exists( ABSPATH . 'php.ini' ) ) {
+		$trouble[] = 'A php.ini file was restored in the import process in the site root. This may cause problems with site functionality if imported to a different server as configuration options often differ between servers, possibly resulting in degraded performance or unexpected behavior.';
 	}
 	
 	if ( count( $trouble ) > 0 ) {

@@ -231,6 +231,22 @@ class pb_backupbuddy_destination_ftp {
 	 */
 	public static function test( $settings ) {
 		
+		if ( ( $settings['address'] == '' ) || ( $settings['username'] == '' ) || ( $settings['password'] == '' ) ) {
+			return __('Missing required input.', 'it-l10n-backupbuddy' );
+		}
+		
+		// Try sending a file.
+		$send_response = pb_backupbuddy_destinations::send( $settings, dirname( dirname( __FILE__ ) ) . '/remote-send-test.php', $send_id = 'TEST-' . pb_backupbuddy::random_string( 12 ) ); // 3rd param true forces clearing of any current uploads.
+		if ( false === $send_response ) {
+			$send_response = 'Error sending test file to FTP.';
+		} else {
+			$send_response = 'Success.';
+		}
+		
+		// Now we will need to go and cleanup this potentially uploaded file.
+		$delete_response = 'Error deleting test file from FTP.'; // Default.
+		
+		// Settings.
 		$server = $settings['address'];
 		$username = $settings['username'];
 		$password = $settings['password'];
@@ -242,12 +258,6 @@ class pb_backupbuddy_destination_ftp {
 			$active_mode = true;
 		}
 		$url = $settings['url']; // optional url for using with migration.
-		
-				
-		if ( ( $server == '' ) || ( $username == '' ) || ( $password == '' ) ) {
-			return __('Missing required input.', 'it-l10n-backupbuddy' );
-		}
-		
 		$port = '21';
 		if ( strstr( $server, ':' ) ) {
 			$server_params = explode( ':', $server );
@@ -256,21 +266,22 @@ class pb_backupbuddy_destination_ftp {
 			$port = $server_params[1];
 		}
 		
+		// Connect.
 		if ( $ftps == '0' ) {
 			$conn_id = @ftp_connect( $server, $port, 10 ); // timeout of 10 seconds.
 			if ( $conn_id === false ) {
 				$error = __( 'Unable to connect to FTP address `' . $server . '` on port `' . $port . '`.', 'it-l10n-backupbuddy' );
 				$error .= "\n" . __( 'Verify the server address and port (default 21). Verify your host allows outgoing FTP connections.', 'it-l10n-backupbuddy' );
-				return $error;
+				return $send_response . ' ' . $error;
 			}
 		} else {
 			if ( function_exists( 'ftp_ssl_connect' ) ) {
 				$conn_id = @ftp_ssl_connect( $server, $port );
 				if ( $conn_id === false ) {
-					return __('Destination server does not support FTPS?', 'it-l10n-backupbuddy' );
+					return $send_response . ' ' . __('Destination server does not support FTPS?', 'it-l10n-backupbuddy' );
 				}
 			} else {
-				return __('Your web server doesnt support FTPS.', 'it-l10n-backupbuddy' );
+				return $send_response . ' ' . __('Your web server doesnt support FTPS.', 'it-l10n-backupbuddy' );
 			}
 		}
 		
@@ -282,12 +293,12 @@ class pb_backupbuddy_destination_ftp {
 			if ( $ftps != '0' ) {
 				$response .= "\n\nNote: You have FTPs enabled. You may get this error if your host does not support encryption at this address/port.";
 			}
-			return $response;
+			return $send_response . ' ' . $response;
 		}
 		
 		pb_backupbuddy::status( 'details', 'FTP test: Success logging in.' );
 		
-		
+		// Handle active/pasive mode.
 		if ( $active_mode === true ) {
 			// do nothing, active is default.
 			pb_backupbuddy::status( 'details', 'Active FTP mode based on settings.' );
@@ -299,56 +310,45 @@ class pb_backupbuddy_destination_ftp {
 			pb_backupbuddy::status( 'error', 'Unknown FTP active/passive mode: `' . $active_mode . '`.' );
 		}
 		
-		
-		// Create directory if it does not exist.
-		pb_backupbuddy::status( 'details', 'FTP test: Making directory.' );
-		@ftp_mkdir( $conn_id, $path );
-	
-		pb_backupbuddy::status( 'details', 'FTP test: Uploading temp test file.' );
-		$tmp = tmpfile(); // Write tempory text file to stream.
-		fwrite( $tmp, 'Upload test for BackupBuddy' );
-		rewind( $tmp );
-		$upload = @ftp_fput( $conn_id, $path . '/backupbuddy.txt', $tmp, FTP_BINARY );
-		fclose( $tmp );
-		
-		if ( !$upload ) {
-			pb_backupbuddy::status( 'details', 'FTP test: Failure uploading test file.' );
-			@ftp_delete( $conn_id, $path . '/backupbuddy.txt' ); // Just in case it partionally made file. This has happened oddly.
-			return __('Failure uploading. Check path & permissions.', 'it-l10n-backupbuddy' );
-		} else { // File uploaded.
-			
-			
-			if ( $url != '' ) {
-				$response = wp_remote_get( $url . '/backupbuddy.txt', array(
-						'method' => 'GET',
-						'timeout' => 20,
-						'redirection' => 5,
-						'httpversion' => '1.0',
-						'blocking' => true,
-						'headers' => array(),
-						'body' => null,
-						'cookies' => array()
-					)
-				);
-								
-				if ( is_wp_error( $response ) ) {
-					return __( 'Failure. Unable to connect to the provided optional URL.', 'it-l10n-backupbuddy' );
-				}
-				
-				if ( stristr( $response['body'], 'backupbuddy' ) === false ) {
-					return __('Failure. The path appears valid but the URL does not correspond to it. Leave the URL blank if not using this destination for migrations.', 'it-l10n-backupbuddy' );
-				}
-			}
-			
-			
-			pb_backupbuddy::status( 'details', 'FTP test: Deleting temp test file.' );
-			ftp_delete( $conn_id, $path . '/backupbuddy.txt' );
+		// Delete test file.
+		pb_backupbuddy::status( 'details', 'FTP test: Deleting temp test file.' );
+		if ( true === ftp_delete( $conn_id, $path . '/remote-send-test.php' ) ) {
+			$delete_response = 'Success.';
 		}
 		
+		// Close FTP connection.
 		pb_backupbuddy::status( 'details', 'FTP test: Closing FTP connection.' );
 		@ftp_close($conn_id);
 		
-		return true; // Success if we got this far.
+		
+		// Load destination fileoptions.
+		pb_backupbuddy::status( 'details', 'About to load fileoptions data.' );
+		require_once( pb_backupbuddy::plugin_path() . '/classes/fileoptions.php' );
+		$fileoptions_obj = new pb_backupbuddy_fileoptions( pb_backupbuddy::$options['log_directory'] . 'fileoptions/send-' . $send_id . '.txt', $read_only = false, $ignore_lock = false, $create_file = false );
+		if ( true !== ( $result = $fileoptions_obj->is_ok() ) ) {
+			pb_backupbuddy::status( 'error', __('Fatal Error #9034.72373. Unable to access fileoptions data.', 'it-l10n-backupbuddy' ) . ' Error: ' . $result );
+			return false;
+		}
+		pb_backupbuddy::status( 'details', 'Fileoptions data loaded.' );
+		$fileoptions = &$fileoptions_obj->options;
+		
+		if ( ( 'Success.' != $send_response ) || ( 'Success.' != $delete_response ) ) {
+			$fileoptions['status'] = 'failure';
+			
+			$fileoptions_obj->save();
+			unset( $fileoptions_obj );
+			
+			return 'Send details: `' . $send_response . '`. Delete details: `' . $delete_response . '`.';
+		} else {
+			$fileoptions['status'] = 'success';
+			$fileoptions['finish_time'] = time();
+		}
+		
+		$fileoptions_obj->save();
+		unset( $fileoptions_obj );
+		
+		return true;
+		
 	} // End test().
 	
 	

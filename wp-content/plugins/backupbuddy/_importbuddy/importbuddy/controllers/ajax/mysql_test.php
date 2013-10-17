@@ -277,10 +277,3 @@ if ( ( pb_backupbuddy::_POST( 'skip_database_import' ) == '1' ) && ( pb_backupbu
 		echo '<div class="test_title"><b>Overall result success. Proceed to next step.</b></div>';
 	} ?>
 </div>
-
-
-<?php
-// Ouput message for AJAX to detect and allow passage to next step.
-if ( false === $fatal_error ) {
-	echo '<!-- Success. -->';
-}

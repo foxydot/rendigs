@@ -73,10 +73,10 @@ pb_backupbuddy::load_style( 'filetree.css' );
 global $wpdb;
 if ( $profile_array['type'] == 'defaults' ) {
 	$title = '<b>Default</b> base database tables to backup';
-	$options = array( '0' => 'This WordPress\' tables (prefix ' . $wpdb->prefix . ')', '1' => 'All tables in database (including non-WordPress)' );
+	$options = array( '0' => 'This WordPress\' tables (prefix ' . $wpdb->prefix . ')', '1' => __( 'All tables in database (including non-WordPress)', 'it-l10n-backupbuddy' ), '2' => __( 'None (use with caution)', 'it-l10n-backupbuddy' ) );
 } else {
 	$title = 'Base database tables to backup for this profile';
-	$options = array( '-1' => 'Use global default', '0' => 'This WordPress\' tables (prefix ' . $wpdb->prefix . ')', '1' => 'All tables in database (including non-WordPress)' );
+	$options = array( '-1' => __( 'Use global default', 'it-l10n-backupbuddy' ), '0' => 'This WordPress\' tables (prefix ' . $wpdb->prefix . ')', '1' => __( 'All tables in database (including non-WordPress)', 'it-l10n-backupbuddy' ), '2' => __( 'None (use with caution)', 'it-l10n-backupbuddy' ) );
 }
 $settings_form->add_setting( array(
 	'type'		=>		'radio',

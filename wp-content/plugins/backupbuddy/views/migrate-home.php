@@ -113,6 +113,12 @@
 	
 	
 </script>
+<style>
+	.backupbuddyFileTitle {
+		color: #0084CB;
+		font-size: 1.2em;
+	}
+</style>
 
 
 
@@ -149,7 +155,7 @@ if ( pb_backupbuddy::$options['importbuddy_pass_hash'] == '' ) { // NO HASH SET.
 </ol>
 <br><br>
 
-<h3 id="pb_backupbuddy_restoremigratelisttitle">Additional Restore Options (highlight a backup)</h3>
+<h3 id="pb_backupbuddy_restoremigratelisttitle">Hover Backup for Additional Options</h3>
 <?php
 
 

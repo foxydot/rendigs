@@ -3,11 +3,14 @@
 /*
 Provides a reliable way of retrieving which projects have updates.
 Written by Chris Jean for iThemes.com
-Version 1.0.0
+Version 1.0.1
 
 Version History
 	1.0.0 - 2013-04-11 - Chris Jean
 		Release ready
+	1.0.1 - 2013-09-19 - Chris Jean
+		Added support for 'upgrade' data for a package.
+		Updated requires to no longer use dirname().
 */
 
 
@@ -18,7 +21,7 @@ class Ithemes_Updater_Packages {
 	
 	public static function get_full_details( $response = false ) {
 		if ( false === $response ) {
-			require_once( dirname( __FILE__ ) . '/api.php' );
+			require_once( $GLOBALS['ithemes_updater_path'] . '/api.php' );
 			$response = Ithemes_Updater_API::get_package_details();
 		}
 		
@@ -59,6 +62,7 @@ class Ithemes_Updater_Packages {
 					continue;
 				}
 				
+				
 				$key_map = array(
 					'status'     => 'status',
 					'link'       => 'package-url',
@@ -67,11 +71,14 @@ class Ithemes_Updater_Packages {
 					'total'      => 'total',
 					'user'       => 'user',
 					'sub_expire' => 'expiration',
+					'upgrade'    => 'upgrade',
 				);
 				
 				foreach ( $key_map as $old => $new ) {
 					if ( isset( $package[$old] ) )
 						$packages[$path][$new] = $package[$old];
+					else
+						$packages[$path][$new] = null;
 				}
 				
 				if ( isset( $package['link_expire'] ) )
@@ -86,7 +93,7 @@ class Ithemes_Updater_Packages {
 	}
 	
 	public static function get_local_details() {
-		require_once( dirname( __FILE__ ) . '/keys.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/keys.php' );
 		
 		
 		$all_packages = self::get_all();

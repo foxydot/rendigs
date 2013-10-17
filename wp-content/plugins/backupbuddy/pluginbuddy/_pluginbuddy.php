@@ -251,20 +251,21 @@ class pb_backupbuddy {
 	 *	@return		mixed		Value of POST variable if set. If not set returns a blank string ''.
 	 */
 	public static function _POST( $value = null ) {
-		if ( isset( $_POST[$value] ) || ( $value === null ) ) {
-			if ( $value === null ) { // Requesting $_POST variable.
-				if ( defined( 'PB_STANDALONE' ) && ( PB_STANDALONE === true ) && !get_magic_quotes_gpc() ) { // If in ImportBuddy mode AND magic quotes is not on, dont strip. WP escapes for us if magic quotes are off.
-					return $_POST;
-				}
-				return stripslashes_deep( $_POST );
-			} else {
-				if ( defined( 'PB_STANDALONE' ) && ( PB_STANDALONE === true ) && !get_magic_quotes_gpc() ) { // If in ImportBuddy mode AND magic quotes is not on, dont strip. WP escapes for us if magic quotes are off.
-					return $_POST[$value];
-				}
-				return stripslashes_deep( $_POST[$value] ); // Remove WordPress' magic-quotes style escaping of data. *shakes head*
+		if ( ( $value == '' ) || ( null == $value ) ) { // Requesting $_POST variable.
+			if ( defined( 'PB_STANDALONE' ) && ( PB_STANDALONE === true ) && !get_magic_quotes_gpc() ) { // If in ImportBuddy mode AND magic quotes is not on, dont strip. WP escapes for us if magic quotes are off.
+				return $_POST;
 			}
+			return stripslashes_deep( $_POST );
 		} else {
-			return '';
+			$postValue = '';
+			if ( isset( $_POST[$value] ) ) {
+				$postValue = $_POST[$value];
+			}
+			if ( defined( 'PB_STANDALONE' ) && ( PB_STANDALONE === true ) && !get_magic_quotes_gpc() ) { // If in ImportBuddy mode AND magic quotes is not on, dont strip. WP escapes for us if magic quotes are off.
+				return $postValue;
+			} else {
+				return stripslashes_deep( $postValue ); // Remove WordPress' magic-quotes-style escaping of data.
+			}
 		}
 	} // End _POST().
 	
@@ -279,10 +280,21 @@ class pb_backupbuddy {
 	 *	@return		mixed		Value of POST variable if set. If not set returns a blank string ''.
 	 */
 	public static function _GET( $value = '' ) {
-		if ( isset( $_GET[$value] ) ) {
-			return $_GET[$value];
+		if ( ( $value == '' ) || ( null == $value ) ) { // Requesting $_GET variable.
+			if ( defined( 'PB_STANDALONE' ) && ( PB_STANDALONE === true ) && !get_magic_quotes_gpc() ) { // If in ImportBuddy mode AND magic quotes is not on, dont strip. WP escapes for us if magic quotes are off.
+				return $_GET;
+			}
+			return stripslashes_deep( $_GET );
 		} else {
-			return '';
+			$getValue = '';
+			if ( isset( $_GET[$value] ) ) {
+				$getValue = $_GET[$value];
+			}
+			if ( defined( 'PB_STANDALONE' ) && ( PB_STANDALONE === true ) && !get_magic_quotes_gpc() ) { // If in ImportBuddy mode AND magic quotes is not on, dont strip. WP escapes for us if magic quotes are off.
+				return $getValue;
+			} else {
+				return stripslashes_deep( $getValue ); // Remove WordPress' magic-quotes-style escaping of data.
+			}
 		}
 	} // End _GET().
 	

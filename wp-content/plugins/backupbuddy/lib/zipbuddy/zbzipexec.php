@@ -299,13 +299,16 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 		 *	set_zip_version()
 		 *	
 		 *	This sets the zip version information in the method details
-		 *	Note: pre-v3 zip running "zip -v" will not produce the required output because
+		 *	Use "zip -h" to get a standardized help output that contains the zip version.
+		 *	Theoretically we should be able to use "zip -v" to get zip version and build
+		 *	details but pre-v3 zip running "zip -v" will not produce the required output because
 		 *	there is no tty attached (when running through exec() or equivalent), instead
-		 *	it will produce a zip file.Currently we'll just detect that and set the version
-		 *	as 2.0 and not set the info.
-		 *	TODO: We could parse the zip file to get the version but also considering doing
-		 *	that in the is_available() test where we already created a zip file.
-		 *	TODO: Consider testing if method can zip and only then run the test
+		 *	it will (or should) produce a zip file. However, it has been found that even this
+		 *	is not reliable and some installations just seem to freeze when "zip -v" is run
+		 *	which borks the whole process.
+		 *	So we use "zip -h" first to get the basic zip version information and as a future
+		 *	extension if it is version 3.0+ (3.0 is current and 3.1 hasn't been officially
+		 *	released) we may then run "zip -v" to get the extended version and build information.
 		 *	
 		 *	@param		int		$major		Value to use if none found or override true
 		 *	@param		int		$minor		Value to use if none found or override true
@@ -335,63 +338,57 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 			$zippath = $this->get_command_path( self::COMMAND_ZIP_PATH );
 			
 			// Add the trailing slash if required
-			$command = $this->slashify( $zippath ) . 'zip -v';
-			pb_backupbuddy::status( 'details', 'Retrieving zip version.' );
+			$command = $this->slashify( $zippath ) . 'zip -h';
 			@exec( $command, $output, $exitcode );
-			pb_backupbuddy::status( 'details', 'Zip version response retrieved.' );
 			
 			if ( 0 === $exitcode ) {
 			
-				// Should be good output to try at least
-				// If this has a zip file signature then it must be pre-v3 zip
-				$z_data = unpack( 'Vsig', $output[0] );
-			
-				if ( 0x04034b50 == $z_data[ 'sig' ] ) {
-				
-					// TODO: Consider that we could use unzip -Z -v on this file and parse the
-					// output for the Central Dir info on what version of zip created the file.
-					// Currently, where this function is called, we don't know if we have unzip
-					// so we can't assume - with a rejig we could call this later and use unzip
-					// if available.
-					// Can't tell which 2.X version, cannot populate $info
-					$major = 2;
-					$minor = 0;
+				// Expect format like: Zip 3.0 (July 5th 2008)...
+				//                     Zip 3.1c BETA (June 22nd 2010)...
+				// The match should take only the major/minor digits and ignore any following alpha
+				// May extend to capture the alpha and also whether BETA indicated but not currently
+				// required.
+				foreach ( $output as $line ) {
+
+					if ( preg_match( '/^\s*(zip)\s+(?P<major>\d)\.(?P<minor>\d+)/i', $line, $matches ) ) {
 					
-				} else {
-				
-					// Doesn't appear to be a zip file so should be version info
-					// Expect format like: This is Zip 3.0 (July 5th 2008)...
-					//                     This is Zip 3.1c BETA (June 22nd 2010)...
-					// The match should take only the major/minor digits and ignore any following alpha
-					// May extend to capture the alpha and also whether BETA indicated but not currently
-					// required.
-					foreach ( $output as $line ) {
-	
-						if ( preg_match( '/^\s*(this)\s+(is)\s+(zip)\s+(?P<major>\d)\.(?P<minor>\d+)/i', $line, $matches ) ) {
-						
-							$major = (int)$matches[ 'major' ];
-							$minor = (int)$matches[ 'minor' ];
-							break;
-						
-						}
-					
-					}
-					
-					// If we didn't match a version then suspect this is still not valid version info
-					if ( !empty( $matches ) ) {
-					
-						// Now create the info string
-						// Note: not worth compressing as that gives a larger string after converting
-						// from binary to hex format for saving
-						$info = implode( PHP_EOL, $output );
-						$this->_method_details[ 'param' ][ 'zip' ][ 'info' ] = $info;
+						$major = (int)$matches[ 'major' ];
+						$minor = (int)$matches[ 'minor' ];
+						break;
 					
 					}
 				
 				}
 				
-			}
+				// If we didn't match a version then suspect this is still not valid version info
+// 				if ( !empty( $matches ) ) {
+// 				
+// 					// We did match a version so check if we have a chance of getting additional information
+// 					if ( 3 === $major ) {
+// 					
+// 						$exitcode = 127;
+// 						$output = array();
+// 					
+// 						// Add the trailing slash if required
+// 						$command = $this->slashify( $zippath ) . 'zip -v';
+// 						@exec( $command, $output, $exitcode );
+// 						
+// 						if ( 0 === $exitcode ) {
+// 				
+// 							// Now create the info string
+// 							// Note: not worth compressing as that gives a larger string after converting
+// 							// from binary to hex format for saving
+// 							$info = implode( PHP_EOL, $output );
+// 							$this->_method_details[ 'param' ][ 'zip' ][ 'info' ] = $info;
+// 						
+// 						}
+// 					
+// 					}
+// 				
+// 				}
 			
+			}
+
 			// Now use either what we got or what we were given...
 			if ( ( is_int( $major) ) && ( 0 < $major ) && ( is_int( $minor ) ) ) {
 			
@@ -612,7 +609,7 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 					// Make sure it is clean of leading/trailing whitespace
 					$path = trim( array_shift( $candidate_paths ) );
 					
-					pb_backupbuddy::status( 'details', __( 'Trying executable path for zip exec:','it-l10n-backupbuddy' ) . ' `' . $path . '`.' );
+					pb_backupbuddy::status( 'details', __( 'Exec test (zip) trying executable path:','it-l10n-backupbuddy' ) . ' `' . $path . '`.' );
 
 					$test_file = $tempdir . 'temp_test_' . uniqid() . '.zip';
 					
@@ -693,7 +690,7 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 				// If we didn't find zip anywhere (or maybe found it but it failed) then log it
 				if ( false === $found_zip ) {
 					
-					pb_backupbuddy::status( 'details', __('Exec test Failed: Unable to find zip executable on any specified path.','it-l10n-backupbuddy' ) );
+					pb_backupbuddy::status( 'details', __('Exec test (zip) FAILED: Unable to find zip executable on any specified path.','it-l10n-backupbuddy' ) );
 					$result = false;
 					
 				}
@@ -706,8 +703,23 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 				// determine how to execute operations such as creating a zip file
 				if ( true === $found_zip ) {
 					
+					pb_backupbuddy::status( 'details', 'Checking zip version...' );
+
 					$this->set_zip_version();
+					
+					$version = $this->get_zip_version();
+					if ( true === is_array( $version ) ) {
+			
+						( ( 2 == $version[ 'major' ] ) && ( 0 == $version[ 'minor' ] ) ) ? $version[ 'minor' ] = 'X' : true ;
+						pb_backupbuddy::status( 'details', sprintf( __( 'Found zip version: %1$s.%2$s', 'it-l10n-backupbuddy' ), $version[ 'major' ], $version[ 'minor' ] ) );
 				
+					} else {
+			
+						$version = array( "major" => "X", "minor" => "Y" );
+						pb_backupbuddy::status( 'details', sprintf( __( 'Found zip version: %1$s.%2$s', 'it-l10n-backupbuddy' ), $version[ 'major' ], $version[ 'minor' ] ) );
+
+					}
+
 				}
 				
 				// Reset the candidate paths for a full search for unzip
@@ -723,11 +735,11 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 				$test_file = dirname( __FILE__ ) . self::ZIP_TEST_FILE;
 				
 				// It has to exist and be readable otehrwise we just have to bail on testing for unzip
-				pb_backupbuddy::status( 'details', 'Checking test file.' );
+				pb_backupbuddy::status( 'details', sprintf( __( 'Exec test (unzip) checking test file readable: %1$s', 'it-l10n-backupbuddy' ), $test_file ) );
 				if ( is_readable( $test_file ) ) {
-					pb_backupbuddy::status( 'details', 'Test file readable.' );
 				
 					// Only proceed if the file looks as expected
+					pb_backupbuddy::status( 'details', sprintf( __( 'Exec test (unzip) checking test file intact: %1$s', 'it-l10n-backupbuddy' ), self::ZIP_TEST_FILE_SIG ) );
 					if ( self::ZIP_TEST_FILE_SIG === md5_file( $test_file ) ) {
 				
 						// We are searching for unzip using the list of possible paths
@@ -736,7 +748,7 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 							// Make sure it is clean of leading/trailing whitespace
 							$path = trim( array_shift( $candidate_paths ) );
 					
-							pb_backupbuddy::status( 'details', __( 'Trying executable path for unzip:','it-l10n-backupbuddy' ) . ' `' . $path . '`.' );
+							pb_backupbuddy::status( 'details', __( 'Exec test (unzip) trying executable path:','it-l10n-backupbuddy' ) . ' `' . $path . '`.' );
 
 							$command = $this->slashify( $path ) . 'unzip -qt' . " '{$test_file}'" . " 'test.txt'";
 									
@@ -794,14 +806,14 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 					} else {
 				
 						// The test file looked corrupted so warn and bail out
-						pb_backupbuddy::status( 'details', __('Exec test Failed: Test file appears to be corrupted.','it-l10n-backupbuddy' ) );
+						pb_backupbuddy::status( 'details', sprintf( __('Exec test (unzip) FAILED: Test file appears to be corrupted: %1$s','it-l10n-backupbuddy' ), md5_file( $test_file ) ) );
 
 					}
 				
 				} else {
 				
 					// The test file doesn't seem to exist or be readable so warn and bail out
-					pb_backupbuddy::status( 'details', __('Exec test Failed: Test file appears to either not exist or not be readable.','it-l10n-backupbuddy' ) );
+					pb_backupbuddy::status( 'details', __('Exec test (unzip) FAILED: Test file appears to either not exist or not be readable.','it-l10n-backupbuddy' ) );
 				
 				}
 			
@@ -811,7 +823,7 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 					// We speculatively set this true when we found zip but we need both zip and unzip so set if false
 					$this->_method_details[ 'attr' ][ 'is_commenter' ] = false;
 
-					pb_backupbuddy::status( 'details', __('Exec test Failed: Unable to find unzip executable on any specified path.','it-l10n-backupbuddy' ) );
+					pb_backupbuddy::status( 'details', __('Exec test (unzip) FAILED: Unable to find unzip executable on any specified path.','it-l10n-backupbuddy' ) );
 					$result = false;
 					
 				} else {
@@ -819,13 +831,27 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 					// See if we can determine unzip version and possibly available options. This can help us
 					// determine how to execute operations such as unzipping a file
 					
+					pb_backupbuddy::status( 'details', 'Checking unzip version...' );
+
 					$this->set_unzip_version();
 				
+					$version = $this->get_unzip_version();
+					if ( true === is_array( $version ) ) {
+			
+						pb_backupbuddy::status( 'details', sprintf( __( 'Found unzip version: %1$s.%2$s', 'it-l10n-backupbuddy' ), $version[ 'major' ], $version[ 'minor' ] ) );
+				
+					} else {
+			
+						$version = array( "major" => "X", "minor" => "Y" );
+						pb_backupbuddy::status( 'details', sprintf( __( 'Found unzip version: %1$s.%2$s', 'it-l10n-backupbuddy' ), $version[ 'major' ], $version[ 'minor' ] ) );
+
+					}
+
 				}
 				
 			} else {
 			
-				pb_backupbuddy::status( 'details', __('Exec test FAILED: One or more required function do not exist.','it-l10n-backupbuddy' ) );
+				pb_backupbuddy::status( 'details', __('Exec test (zip/unzip) FAILED: One or more required function do not exist.','it-l10n-backupbuddy' ) );
 				$result = false;
 		  
 		  	}
@@ -2237,4 +2263,3 @@ if ( !class_exists( "pluginbuddy_zbzipexec" ) ) {
 	} // end pluginbuddy_zbzipexec class.	
 	
 }
-?>

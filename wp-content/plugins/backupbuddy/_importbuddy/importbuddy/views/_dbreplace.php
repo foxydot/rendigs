@@ -7,12 +7,18 @@ if ( ! is_admin() ) { // Not in WordPress (or not logged in). Check if in Import
 	Auth::require_authentication(); // Die if not logged in.
 }
 
-
+pb_backupbuddy::load_style( 'admin.css', true );
 global $wpdb;
 
-echo '<a name="database_replace"></a>';
 
-echo '<p><b>Warning: This is an advanced feature. Use with caution; improper use may result in data loss.</b></p>';
+echo '<a name="database_replace"></a>';
+echo 'This tool allows you to automatically replace text contained throughout your WordPress database.<br>';
+echo '<br><b>Note:</b> ImportBuddy automatically handles migrating & replacing your site URLs and file paths during restore/migration; this tool is not needed for normal backup / restore operations.';
+echo '<p><b>Tip:</b> When replacing a site address there may be more than one URL so multiple passes at replacements may need to be made. Ie. http://site.com, http://<b>www.</b>site.com, http<b>s</b>://site.com, etc.</p>';
+echo '<p><img src="' . pb_backupbuddy::plugin_url() . '/images/bullet_error.png" style="vertical-align: -3px;"> Caution: This is an advanced feature. Use with care; improper use may result in data loss.</p>';
+echo '<br>';
+
+
 if ( pb_backupbuddy::_GET( 'database_replace' ) == '1' ) {
 	
 	global $pb_backupbuddy_js_status;
@@ -32,7 +38,11 @@ if ( pb_backupbuddy::_GET( 'database_replace' ) == '1' ) {
 		</script>
 	<?php
 	
-	echo pb_backupbuddy::status_box( 'Mass replacing in database with Server Tools from BackupBuddy v' . pb_backupbuddy::settings( 'version' ) . '...' );
+	echo '<div style="width: 98%;">';
+	echo pb_backupbuddy::status_box( 'Mass replacing in database powered by BackupBuddy v' . PB_BB_VERSION . '...' );
+	echo '</div>';
+	echo '<div id="pb_importbuddy_working"><img src="' . pb_backupbuddy::plugin_url() . '/images/loading_large.gif" title="Working... Please wait as this may take a moment..."></div>';
+	pb_backupbuddy::flush();
 	//echo '<div id="pb_backupbuddy_replace_working"><img src="' . pb_backupbuddy::plugin_url() . '/images/loading_large.gif" title="Working... Please wait as this may take a moment..."></div>';
 	
 	// Instantiate database replacement class.
@@ -43,7 +53,7 @@ if ( pb_backupbuddy::_GET( 'database_replace' ) == '1' ) {
 	$needle = mysql_real_escape_string( pb_backupbuddy::_POST( 'needle' ) );
 	if ( $needle == '' ) {
 		echo '<b>Error #4456582. Missing needle. You must enter text to search for.';
-		echo '<br><a href="' . pb_backupbuddy::page_url() . '&tab=3#database_replace" class="button secondary-button">&larr; ' .  __( 'back', 'it-l10n-backupbuddy' ) . '</a>';
+		echo '<br><a href="' . pb_backupbuddy::page_url() . '&parent_config=' . htmlentities( pb_backupbuddy::_GET( 'parent_config' ) ) . '" class="button secondary-button">&larr; ' .  __( 'back', 'it-l10n-backupbuddy' ) . '</a>';
 		return;
 	}
 	$replacement = mysql_real_escape_string( pb_backupbuddy::_POST( 'replacement' ) );
@@ -102,10 +112,12 @@ if ( pb_backupbuddy::_GET( 'database_replace' ) == '1' ) {
 		
 		pb_backupbuddy::status( 'message', 'Replacement finished.' );
 	} else {
+		echo '<script type="text/javascript">jQuery("#pb_importbuddy_working").hide();</script>';
 		die( 'Error #4456893489349834. Unknown method.' );
 	}
 	
-	echo '<br><a href="' . pb_backupbuddy::page_url() . '&tab=3#database_replace" class="button secondary-button">&larr; ' .  __( 'back', 'it-l10n-backupbuddy' ) . '</a>';
+	echo '<script type="text/javascript">jQuery("#pb_importbuddy_working").hide();</script>';
+	echo '<br><a href="' . pb_backupbuddy::page_url() . '&parent_config=' . htmlentities( pb_backupbuddy::_GET( 'parent_config' ) ) . '" class="button secondary-button">&larr; ' .  __( 'back', 'it-l10n-backupbuddy' ) . '</a>';
 	
 	$pb_backupbuddy_js_status = false;
 	return;
@@ -120,7 +132,6 @@ if ( pb_backupbuddy::_GET( 'database_replace' ) == '1' ) {
 
 
 
-echo '<p><b>Tip:</b> When replacing a site address there may be more than one URL. Ie. http://site.com, http://<b>www.</b>site.com, http<b>s</b>://site.com, etc.</p>';
 
 
 $tables = array();
@@ -145,7 +156,7 @@ $prefixes = array_unique( $prefixes );
 natsort( $prefixes );
 ?>
 <div>
-	<form action="<?php echo pb_backupbuddy::page_url();?>&database_replace=1&tab=3#database_replace" method="post">
+	<form action="<?php echo pb_backupbuddy::page_url();?>&database_replace=1&parent_config=<?php echo htmlentities( pb_backupbuddy::_GET( 'parent_config' ) ); ?>" method="post">
 		<input type="hidden" name="action" value="replace">
 		
 		<h4>Replace <?php pb_backupbuddy::tip( 'Text you want to be searched for and replaced. Everything in the box is considered one match and may span multiple lines.' ); ?></h4>
@@ -156,8 +167,8 @@ natsort( $prefixes );
 		<textarea name="replacement" style="width: 100%;"></textarea>
 		
 		<h4>In table(s)</h4>
-		<label for="table_selection_all"><input id="table_selection_all"  checked='checked' type="radio" name="table_selection" value="all"> all tables</label>
-		<label for="table_selection_prefix"><input id="table_selection_prefix" type="radio" name="table_selection" value="prefix"> with prefix:</label>
+		<label style="float: none;" for="table_selection_all"><input id="table_selection_all"  checked='checked' type="radio" name="table_selection" value="all"> all tables</label>
+		<label style="float: none;" for="table_selection_prefix"><input id="table_selection_prefix" type="radio" name="table_selection" value="prefix"> with prefix:</label>
 		<select name="table_prefix" id="table_selection_prefix" onclick="jQuery('#table_selection_prefix').click();">
 			<?php
 			foreach( $prefixes as $prefix ) {
@@ -165,7 +176,7 @@ natsort( $prefixes );
 			}
 			?>
 		</select>
-		<label for="table_selection_table"><input id="table_selection_table" type="radio" name="table_selection" value="single_table"> single:</label>
+		<label style="float: none;" for="table_selection_table"><input id="table_selection_table" type="radio" name="table_selection" value="single_table"> single:</label>
 		<select name="table" id="table_selection_table" onclick="jQuery('#table_selection_table').click();">
 			<?php
 			foreach( $tables as $table ) {
@@ -173,6 +184,8 @@ natsort( $prefixes );
 			}
 			?>
 		</select>
+		<h4>In database</h4>
+		"<?php echo $databaseSettings['name']; ?>" on host "<?php echo $databaseSettings['host']; ?>" with username "<?php echo $databaseSettings['username']; ?>".
 		<?php
 		if ( substr_count( $table_prefix, '_' ) > 1 ) {
 			echo '<span class="pb_label pb_label-warning">Warning</span> ';

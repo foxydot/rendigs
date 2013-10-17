@@ -3,13 +3,15 @@
 /*
 Provides an easy to use interface for communicating with the iThemes updater server.
 Written by Chris Jean for iThemes.com
-Version 1.0.1
+Version 1.0.2
 
 Version History
 	1.0.0 - 2013-04-11 - Chris Jean
 		Release ready
 	1.0.1 - 2013-06-21 - Chris Jean
 		Updated the http_build_query call to force a separator of & in order to avoid issues with servers that change the arg_separator.output php.ini value.
+	1.0.2 - 2013-09-19 - Chris Jean
+		Updated ithemes-updater-object to ithemes-updater-settings.
 */
 
 
@@ -88,16 +90,16 @@ class Ithemes_Updater_Server {
 			'use_ssl'      => true,
 		);
 		
-		$patch_enabled = $GLOBALS['ithemes-updater-object']->get_option( 'use_ca_patch' );
+		$patch_enabled = $GLOBALS['ithemes-updater-settings']->get_option( 'use_ca_patch' );
 		
 		if ( $patch_enabled )
-			$GLOBALS['ithemes-updater-object']->disable_ssl_ca_patch();
+			$GLOBALS['ithemes-updater-settings']->disable_ssl_ca_patch();
 		
 		
 		$response = wp_remote_post( self::$secure_server_url . $request, $remote_post_args );
 		
 		if ( is_wp_error( $response ) ) {
-			$GLOBALS['ithemes-updater-object']->enable_ssl_ca_patch();
+			$GLOBALS['ithemes-updater-settings']->enable_ssl_ca_patch();
 			$response = wp_remote_post( self::$secure_server_url . $request, $remote_post_args );
 			
 			if ( ! is_wp_error( $response ) )
@@ -112,9 +114,9 @@ class Ithemes_Updater_Server {
 		
 		
 		if ( ! $options['use_ca_patch'] )
-			$GLOBALS['ithemes-updater-object']->disable_ssl_ca_patch();
+			$GLOBALS['ithemes-updater-settings']->disable_ssl_ca_patch();
 		
-		$GLOBALS['ithemes-updater-object']->update_options( $options );
+		$GLOBALS['ithemes-updater-settings']->update_options( $options );
 		
 		
 		if ( is_wp_error( $response ) )

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/backupbuddy\n"
-"POT-Creation-Date: 2013-09-14 20:25-0500\n"
+"POT-Creation-Date: 2013-10-14 21:23-0500\n"
 "PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Chris Jean <support@ithemes.com>\n"
 "Language: \n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Sending scheduled backup start email notification if applicable."
 msgstr ""
 
-#: classes/backup.php:149 classes/backup.php:1384
+#: classes/backup.php:149 classes/backup.php:1400
 msgid "Scheduled backup"
 msgstr ""
 
@@ -57,82 +57,82 @@ msgstr ""
 msgid "Backup FAILED. Unknown backup type."
 msgstr ""
 
-#: classes/backup.php:483
+#: classes/backup.php:499
 msgid "Skipping database dump based on advanced options."
 msgstr ""
 
-#: classes/backup.php:505
+#: classes/backup.php:521
 msgid "Integrity check will be performed based on settings for this profile."
 msgstr ""
 
-#: classes/backup.php:514
+#: classes/backup.php:530
 msgid "Skipping integrity check step based on settings for this profile."
 msgstr ""
 
-#: classes/backup.php:575
+#: classes/backup.php:591
 msgid "Problem creating DAT file."
 msgstr ""
 
-#: classes/backup.php:597
+#: classes/backup.php:613
 msgid "Finished pre-backup procedures."
 msgstr ""
 
-#: classes/backup.php:629
+#: classes/backup.php:645
 msgid "Warning #9034 B. Unable to access fileoptions data."
 msgstr ""
 
-#: classes/backup.php:728 classes/backup.php:761
+#: classes/backup.php:744 classes/backup.php:777
 msgid "Peak memory usage"
 msgstr ""
 
-#: classes/backup.php:746
+#: classes/backup.php:762
 msgid "Error #82783745: Invalid function `"
 msgstr ""
 
-#: classes/backup.php:793
+#: classes/backup.php:809
 #, php-format
 msgid "Finished function `%s`. Peak memory usage"
 msgstr ""
 
-#: classes/backup.php:811
+#: classes/backup.php:827
 msgid "No more backup steps remain. Finishing..."
 msgstr ""
 
-#: classes/backup.php:853
+#: classes/backup.php:869
 msgid ""
 "Database Server has gone away, unable to schedule next backup step. The "
 "backup cannot continue. This is most often caused by mysql running out of "
 "memory or timing out far too early. Please contact your host."
 msgstr ""
 
-#: classes/backup.php:861 classes/backup.php:1169 classes/core.php:2067
+#: classes/backup.php:877 classes/backup.php:1185 classes/core.php:2069
 msgid "Database Server connection status unverified."
 msgstr ""
 
-#: classes/backup.php:904
+#: classes/backup.php:920
 msgid "Creating DAT (data) file snapshotting site & backup information."
 msgstr ""
 
-#: classes/backup.php:988
+#: classes/backup.php:1004
 msgid "Compensating for SSL in siteurl."
 msgstr ""
 
-#: classes/backup.php:1005
+#: classes/backup.php:1021
 #, php-format
 msgid ""
 "Error #9017: Temp data file is not creatable/writable. Check your "
 "permissions. (%s)"
 msgstr ""
 
-#: classes/backup.php:1012
+#: classes/backup.php:1028
 msgid "Finished creating DAT (data) file."
 msgstr ""
 
-#: classes/backup.php:1030
+#: classes/backup.php:1046
 msgid "Starting database backup process."
 msgstr ""
 
-#: classes/backup.php:1051
+#: classes/backup.php:1067
 msgid ""
 "ERROR #9027b: The mySQL server went away at some point during the database "
 "dump step. This is almost always caused by mySQL running out of memory or "
@@ -140,80 +140,80 @@ msgid ""
 "dump integrity can no longer be guaranteed so the backup has been halted."
 msgstr ""
 
-#: classes/backup.php:1093
+#: classes/backup.php:1109
 msgid "Backup ZIP file successfully created."
 msgstr ""
 
-#: classes/backup.php:1095
+#: classes/backup.php:1111
 msgid "Chmod of ZIP file to 0644 succeeded."
 msgstr ""
 
-#: classes/backup.php:1097
+#: classes/backup.php:1113
 msgid "Chmod of ZIP file to 0644 failed."
 msgstr ""
 
-#: classes/backup.php:1130 classes/backup.php:1329
+#: classes/backup.php:1146 classes/backup.php:1345
 msgid "Removing temp data directory."
 msgstr ""
 
-#: classes/backup.php:1136 classes/backup.php:1334
+#: classes/backup.php:1152 classes/backup.php:1350
 msgid "Removing temp zip directory."
 msgstr ""
 
-#: classes/backup.php:1140
+#: classes/backup.php:1156
 msgid ""
 "Error #3382: Backup FAILED. Unable to successfully generate ZIP archive."
 msgstr ""
 
-#: classes/backup.php:1141
+#: classes/backup.php:1157
 msgid ""
 "Error #3382 help: http://ithemes.com/codex/page/BackupBuddy:_Error_Codes#3382"
 msgstr ""
 
-#: classes/backup.php:1162
+#: classes/backup.php:1178
 msgid ""
 "Backup FAILED. Backup file produced but Database Server has gone away, "
 "unable to schedule next backup step"
 msgstr ""
 
-#: classes/backup.php:1187
+#: classes/backup.php:1203
 msgid "Trimming old archives (if needed)."
 msgstr ""
 
-#: classes/backup.php:1207
+#: classes/backup.php:1223
 msgid "No old archive trimming needed."
 msgstr ""
 
-#: classes/backup.php:1224
+#: classes/backup.php:1240
 msgid "Deleting old archive `"
 msgstr ""
 
-#: classes/backup.php:1242
+#: classes/backup.php:1258
 #, php-format
 msgid ""
 "Deleting old archive `%s` as it causes archives to exceed total number "
 "allowed."
 msgstr ""
 
-#: classes/backup.php:1258
+#: classes/backup.php:1274
 #, php-format
 msgid ""
 "Deleting old archive `%s` due as it causes archives to exceed total size "
 "allowed."
 msgstr ""
 
-#: classes/backup.php:1264
+#: classes/backup.php:1280
 msgid ""
 "ERROR #9028: Based on your backup archive limits (size limit) the backup "
 "that was just created would be deleted. Skipped deleting this backup. Please "
 "update your archive limits."
 msgstr ""
 
-#: classes/backup.php:1287
+#: classes/backup.php:1303
 msgid "Scanning and verifying backup file integrity."
 msgstr ""
 
-#: classes/backup.php:1299
+#: classes/backup.php:1315
 msgid ""
 "Backup failed to pass integrity check. The backup may have failed OR the "
 "backup may be valid but the integrity check could not verify it. This could "
@@ -222,27 +222,27 @@ msgid ""
 "scan."
 msgstr ""
 
-#: classes/backup.php:1306
+#: classes/backup.php:1322
 msgid "Sending integrity check failure email."
 msgstr ""
 
-#: classes/backup.php:1325
+#: classes/backup.php:1341
 msgid "Cleaning up after backup."
 msgstr ""
 
-#: classes/backup.php:1361
+#: classes/backup.php:1377
 msgid "Final ZIP file size"
 msgstr ""
 
-#: classes/backup.php:1382
+#: classes/backup.php:1398
 msgid "Sending scheduled backup complete email notification."
 msgstr ""
 
-#: classes/backup.php:1391
+#: classes/backup.php:1407
 msgid "Finished cleaning up."
 msgstr ""
 
-#: classes/backup.php:1398
+#: classes/backup.php:1414
 msgid ""
 "As this backup did not pass the integrity check you should verify it "
 "manually or re-scan. Integrity checks can fail on good backups due to "
@@ -251,11 +251,11 @@ msgid ""
 "notified of potentially bad backups."
 msgstr ""
 
-#: classes/backup.php:1458
+#: classes/backup.php:1474
 msgid "Error. Unable to delete local archive as requested."
 msgstr ""
 
-#: classes/backup.php:1461
+#: classes/backup.php:1477
 msgid "Deleted local archive as requested."
 msgstr ""
 
@@ -297,26 +297,26 @@ msgstr ""
 msgid "Deleted:"
 msgstr ""
 
-#: classes/core.php:963
+#: classes/core.php:966
 msgid "Backup Status"
 msgstr ""
 
-#: classes/core.php:963
+#: classes/core.php:966
 msgid "View Details"
 msgstr ""
 
-#: classes/core.php:1381
+#: classes/core.php:1383
 msgid ""
 "Running in Alternate WordPress Cron mode. HTTP Loopback Connections are not "
 "enabled on this server but you have overridden this in the wp-config.php "
 "file (this is a good thing)."
 msgstr ""
 
-#: classes/core.php:1381
+#: classes/core.php:1383
 msgid "Additional Information Here"
 msgstr ""
 
-#: classes/core.php:1383
+#: classes/core.php:1385
 msgid ""
 "HTTP Loopback Connections are not enabled on this server or are not "
 "functioning properly. You may encounter stalled, significantly delayed "
@@ -324,11 +324,11 @@ msgid ""
 "caused by a conflicting plugin such as a caching plugin."
 msgstr ""
 
-#: classes/core.php:1383
+#: classes/core.php:1385
 msgid "Click for instructions on how to resolve this issue."
 msgstr ""
 
-#: classes/core.php:1408
+#: classes/core.php:1410
 msgid ""
 "One or more caching plugins were detected as activated. Some caching plugin "
 "configurations may possibly cache & interfere with backup processes or "
@@ -336,11 +336,11 @@ msgid ""
 "(deactivating the plugin may help) to troubleshoot."
 msgstr ""
 
-#: classes/core.php:1409
+#: classes/core.php:1411
 msgid "Activated caching plugins detected:"
 msgstr ""
 
-#: classes/core.php:1425
+#: classes/core.php:1427
 msgid ""
 "WordPress may have been detected in one or more subdirectories. Backing up "
 "multiple instances of WordPress may result in server timeouts due to "
@@ -348,14 +348,14 @@ msgid ""
 "Settings page. Detected non-excluded locations:"
 msgstr ""
 
-#: classes/core.php:1485
+#: classes/core.php:1487
 msgid ""
 "A backup was recently started and reports unfinished steps. You should wait "
 "unless you are sure the previous backup has completed or failed to avoid "
 "placing a heavy load on your server."
 msgstr ""
 
-#: classes/core.php:2061
+#: classes/core.php:2063
 msgid ""
 "Database Server has gone away, unable to update remote destination transfer "
 "status. This is most often caused by mysql running out of memory or timing "
@@ -378,19 +378,19 @@ msgstr ""
 msgid "Database Backup"
 msgstr ""
 
-#: controllers/ajax/_destination_picker.php:379
+#: controllers/ajax/_destination_picker.php:347
 #: views/settings/DELETE-_profiles-dest.php:378
 msgid "Tip"
 msgstr ""
 
-#: controllers/ajax/_destination_picker.php:380
+#: controllers/ajax/_destination_picker.php:348
 msgid ""
 "If you encounter difficulty try the ImportBuddy tool. Verify the destination "
 "URL by entering the \"Migration URL\", and clicking \"Test Settings\" before "
 "proceeding."
 msgstr ""
 
-#: controllers/ajax/_destination_picker.php:381
+#: controllers/ajax/_destination_picker.php:349
 #: views/settings/DELETE-_profiles-dest.php:380
 msgid "Only Local & FTP destinations may be used for automated migrations."
 msgstr ""
@@ -439,81 +439,89 @@ msgstr ""
 msgid "Fatal Error #9034.2342348. Unable to access fileoptions data."
 msgstr ""
 
-#: controllers/ajax.php:1210 views/_backup-home.php:432
+#: controllers/ajax.php:1210 views/_backup-home.php:442
 msgid "Unable to access fileoptions data file."
 msgstr ""
 
-#: controllers/ajax.php:1262
+#: controllers/ajax.php:1216
+#: controllers/pages/server_info/remote_sends.php:148
+#: destinations/dropbox/_manage.php:86 destinations/dropbox/_manage.php:97
+#: destinations/ftp/_manage.php:209 destinations/ftp/_manage.php:224
+msgid "Backup File"
+msgstr ""
+
+#: controllers/ajax.php:1276
 msgid "Integrity Test"
 msgstr ""
 
-#: controllers/ajax.php:1263 controllers/pages/server_info/database.php:59
+#: controllers/ajax.php:1277 controllers/pages/server_info/database.php:59
 #: controllers/pages/server_info/database.php:72
 #: controllers/pages/server_info/permissions.php:57
 #: controllers/pages/server_info/permissions.php:69
-#: controllers/pages/server_info/remote_sends.php:151
+#: controllers/pages/server_info/remote_sends.php:152
 #: controllers/pages/server_info/server.php:890
-#: controllers/pages/server_info/server.php:902 views/_backup-home.php:486
+#: controllers/pages/server_info/server.php:902 views/_backup-home.php:510
 #: views/_backup_listing.php:75 views/scheduling.php:68
 msgid "Status"
 msgstr ""
 
-#: controllers/ajax.php:1349
-msgid "Backup Steps"
+#: controllers/ajax.php:1366 init_admin.php:166 init_admin.php:203
+#: views/getting_started.php:36
+msgid "Backup"
 msgstr ""
 
-#: controllers/ajax.php:1350
-msgid "Time Taken"
+#: controllers/ajax.php:1367
+msgid "Time"
 msgstr ""
 
-#: controllers/ajax.php:1351
+#: controllers/ajax.php:1368
 msgid "Attempts"
 msgstr ""
 
-#: controllers/ajax.php:1355
+#: controllers/ajax.php:1372
 msgid "No step statistics were found for this backup."
 msgstr ""
 
-#: controllers/ajax.php:1709
+#: controllers/ajax.php:1726
 msgid "Site Size Listing & Exclusions"
 msgstr ""
 
-#: controllers/ajax.php:1711
+#: controllers/ajax.php:1728
 msgid "Size + Children"
 msgstr ""
 
-#: controllers/ajax.php:1712
+#: controllers/ajax.php:1729
 msgid "- Exclusions"
 msgstr ""
 
-#: controllers/ajax.php:1713 controllers/ajax.php:1720
-#: controllers/ajax.php:1729
+#: controllers/ajax.php:1730 controllers/ajax.php:1737
+#: controllers/ajax.php:1746
 msgid "Directory"
 msgstr ""
 
-#: controllers/ajax.php:1721 controllers/ajax.php:1730
+#: controllers/ajax.php:1738 controllers/ajax.php:1747
 msgid "Size with Children"
 msgstr ""
 
-#: controllers/ajax.php:1722 controllers/ajax.php:1731
+#: controllers/ajax.php:1739 controllers/ajax.php:1748
 msgid "Size with Exclusions"
 msgstr ""
 
-#: controllers/ajax.php:1739 controllers/ajax.php:1741
-#: controllers/ajax.php:1771 controllers/ajax.php:1773
+#: controllers/ajax.php:1756 controllers/ajax.php:1758
+#: controllers/ajax.php:1788 controllers/ajax.php:1790
 #: controllers/pages/server_info/database.php:204
 msgid "TOTALS"
 msgstr ""
 
-#: controllers/ajax.php:1789
+#: controllers/ajax.php:1806
 msgid "Display Results in Text Format"
 msgstr ""
 
-#: controllers/ajax.php:1992
+#: controllers/ajax.php:2018
 msgid "Success."
 msgstr ""
 
-#: controllers/ajax.php:2062
+#: controllers/ajax.php:2093
 msgid ""
 "Error #9036. The destination directory being restored already exists and is "
 "NOT empty. The directory will not be restored to prevent inadvertently "
@@ -521,8 +529,34 @@ msgid ""
 "if you wish to proceed or restore individual files."
 msgstr ""
 
-#: controllers/ajax.php:2232
+#: controllers/ajax.php:2278
 msgid "Fatal Error #9034.324544. Unable to access fileoptions data."
+msgstr ""
+
+#: controllers/ajax.php:2327
+msgid "Missing required FTP server inputs."
+msgstr ""
+
+#: controllers/ajax.php:2349 destinations/ftp/init.php:273
+msgid "Unable to connect to FTP address `"
+msgstr ""
+
+#: controllers/ajax.php:2350 destinations/ftp/init.php:274
+msgid ""
+"Verify the server address and port (default 21). Verify your host allows "
+"outgoing FTP connections."
+msgstr ""
+
+#: controllers/ajax.php:2357 destinations/ftp/init.php:281
+msgid "Destination server does not support FTPS?"
+msgstr ""
+
+#: controllers/ajax.php:2360 destinations/ftp/init.php:284
+msgid "Your web server doesnt support FTPS."
+msgstr ""
+
+#: controllers/ajax.php:2368
+msgid "Unable to login to FTP server. Bad user/pass."
 msgstr ""
 
 #: controllers/dashboard.php:31
@@ -630,8 +664,7 @@ msgstr ""
 #: controllers/pages/server_info/server.php:437
 #: controllers/pages/server_info/server.php:449
 #: controllers/pages/server_info/server.php:461
-#: controllers/pages/server_info/site_size.php:131
-#: views/_backup_listing.php:71 views/_quicksetup.php:745
+#: controllers/pages/server_info/site_size.php:131 views/_quicksetup.php:745
 #: views/_quicksetup.php:776 views/quicksetup.php:735 views/quicksetup.php:766
 msgid "Loading..."
 msgstr ""
@@ -686,158 +719,154 @@ msgstr ""
 msgid "Malware Scan"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:37
-msgid "Malware Scan Powered by Sucuri"
+#: controllers/pages/malware_scan.php:30
+msgid "Malware Scan URL"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:58
+#: controllers/pages/malware_scan.php:48
 msgid ""
 "ERROR: You are currently running your site locally. Your site must be "
 "internet accessible to scan."
 msgstr ""
 
-#: controllers/pages/malware_scan.php:78
+#: controllers/pages/malware_scan.php:68
 msgid "Scanning for Malware... Please wait..."
 msgstr ""
 
-#: controllers/pages/malware_scan.php:98
+#: controllers/pages/malware_scan.php:88
 msgid "ERROR #24452. Unable to load Malware Scan results. Details:"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:115
+#: controllers/pages/malware_scan.php:105
 msgid "An error was encountered attempting to scan this site."
 msgstr ""
 
-#: controllers/pages/malware_scan.php:116
+#: controllers/pages/malware_scan.php:106
 msgid ""
 "An internet connection is required and this site must be accessible on the "
 "public internet."
 msgstr ""
 
-#: controllers/pages/malware_scan.php:153
+#: controllers/pages/malware_scan.php:143
+#: controllers/pages/malware_scan.php:170
+#: controllers/pages/malware_scan.php:179
 #: controllers/pages/malware_scan.php:180
-#: controllers/pages/malware_scan.php:189
-#: controllers/pages/malware_scan.php:190
+#: controllers/pages/malware_scan.php:181
+#: controllers/pages/malware_scan.php:182
+#: controllers/pages/malware_scan.php:183
 #: controllers/pages/malware_scan.php:191
 #: controllers/pages/malware_scan.php:192
 #: controllers/pages/malware_scan.php:193
-#: controllers/pages/malware_scan.php:201
-#: controllers/pages/malware_scan.php:202
+#: controllers/pages/malware_scan.php:194
+#: controllers/pages/malware_scan.php:195
 #: controllers/pages/malware_scan.php:203
-#: controllers/pages/malware_scan.php:204
-#: controllers/pages/malware_scan.php:205
-#: controllers/pages/malware_scan.php:213
-#: controllers/pages/malware_scan.php:221
-#: controllers/pages/malware_scan.php:229
-#: controllers/pages/malware_scan.php:237
-#: controllers/pages/malware_scan.php:245
+#: controllers/pages/malware_scan.php:211
+#: controllers/pages/malware_scan.php:219
+#: controllers/pages/malware_scan.php:227
+#: controllers/pages/malware_scan.php:235
 #: controllers/pages/server_info/cron.php:115
 msgid "none"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:162
+#: controllers/pages/malware_scan.php:152
 msgid "Warning: Possible Malware Detected!"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:162
+#: controllers/pages/malware_scan.php:152
 msgid "See details below."
 msgstr ""
 
 #: controllers/pages/malware_scan.php:162
-msgid "Sign up with Sucuri for removal assistance."
-msgstr ""
-
-#: controllers/pages/malware_scan.php:172
-#: controllers/pages/malware_scan.php:186
-#: controllers/pages/malware_scan.php:210
-#: controllers/pages/malware_scan.php:218
-#: controllers/pages/malware_scan.php:226
-#: controllers/pages/malware_scan.php:234
-#: controllers/pages/malware_scan.php:242
+#: controllers/pages/malware_scan.php:176
+#: controllers/pages/malware_scan.php:200
+#: controllers/pages/malware_scan.php:208
+#: controllers/pages/malware_scan.php:216
+#: controllers/pages/malware_scan.php:224
+#: controllers/pages/malware_scan.php:232
 msgid "Click to toggle"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:173
+#: controllers/pages/malware_scan.php:163
 msgid "Malware Detected"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:175
+#: controllers/pages/malware_scan.php:165
 msgid "Malware"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:187
+#: controllers/pages/malware_scan.php:177
 msgid "Web server details"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:189
+#: controllers/pages/malware_scan.php:179
 msgid "Site"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:190
+#: controllers/pages/malware_scan.php:180
 msgid "Hostname"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:191
+#: controllers/pages/malware_scan.php:181
 msgid "IP Address"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:192
+#: controllers/pages/malware_scan.php:182
 msgid "System details"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:193
+#: controllers/pages/malware_scan.php:183
 msgid "Information"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:199
+#: controllers/pages/malware_scan.php:189
 msgid "Web application"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:201
+#: controllers/pages/malware_scan.php:191
 msgid "Details"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:202
+#: controllers/pages/malware_scan.php:192
 msgid "Versions"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:203
+#: controllers/pages/malware_scan.php:193
 msgid "Notices"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:204
+#: controllers/pages/malware_scan.php:194
 msgid "Errors"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:205
+#: controllers/pages/malware_scan.php:195
 msgid "Warnings"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:211
+#: controllers/pages/malware_scan.php:201
 msgid "Links"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:219
+#: controllers/pages/malware_scan.php:209
 msgid "Local Javascript"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:227
+#: controllers/pages/malware_scan.php:217
 msgid "External Javascript"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:235
+#: controllers/pages/malware_scan.php:225
 msgid "Iframes Included"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:243
+#: controllers/pages/malware_scan.php:233
 msgid "Blacklisting Status"
 msgstr ""
 
-#: controllers/pages/malware_scan.php:265
+#: controllers/pages/malware_scan.php:246
 msgid "Malware scan results are cached for one hour."
 msgstr ""
 
-#: controllers/pages/malware_scan.php:276
+#: controllers/pages/malware_scan.php:257
 msgid "Perform New Scan Now"
 msgstr ""
 
@@ -888,7 +917,7 @@ msgid ""
 msgstr ""
 
 #: controllers/pages/migrate_restore.php:139
-#: destinations/ftp/_configure.php:97
+#: destinations/ftp/_configure.php:184
 msgid "Use FTPs encryption"
 msgstr ""
 
@@ -1154,7 +1183,7 @@ msgstr ""
 
 #: controllers/pages/server_info/database.php:60
 #: controllers/pages/server_info/database.php:73 init_admin.php:174
-#: init_admin.php:210 lib/updater/settings-page.php:312
+#: init_admin.php:210 lib/updater/settings-page.php:315
 msgid "Settings"
 msgstr ""
 
@@ -1322,40 +1351,37 @@ msgstr ""
 msgid "Database Mass Text Replacement"
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:38
+#: controllers/pages/server_info/remote_sends.php:39
 msgid "Fatal Error #9034.32393. Unable to access fileoptions data."
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:100
-#: views/_backup-home.php:459
+#: controllers/pages/server_info/remote_sends.php:101
+#: views/_backup-home.php:469
 msgid "Backup Process Technical Details"
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:119
+#: controllers/pages/server_info/remote_sends.php:120
 msgid "Remote destination test"
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:140
+#: controllers/pages/server_info/remote_sends.php:122
+msgid "Manual settings test"
+msgstr ""
+
+#: controllers/pages/server_info/remote_sends.php:141
 msgid "There have been no recent file transfers."
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:147
-#: destinations/dropbox/_manage.php:86 destinations/dropbox/_manage.php:97
-#: destinations/ftp/_manage.php:209 destinations/ftp/_manage.php:224
-#: views/_backup_listing.php:71
-msgid "Backup File"
-msgstr ""
-
-#: controllers/pages/server_info/remote_sends.php:148
+#: controllers/pages/server_info/remote_sends.php:149
 msgid "Destination"
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:149
-#: views/_backup-home.php:485
+#: controllers/pages/server_info/remote_sends.php:150
+#: views/_backup-home.php:509
 msgid "Trigger"
 msgstr ""
 
-#: controllers/pages/server_info/remote_sends.php:150
+#: controllers/pages/server_info/remote_sends.php:151
 msgid "Transfer Information"
 msgstr ""
 
@@ -1719,7 +1745,7 @@ msgid ""
 msgstr ""
 
 #: destinations/bootstrap.php:280 destinations/dropbox2/init.php:331
-#: destinations/local/init.php:117 destinations/s3/init.php:125
+#: destinations/local/init.php:117 destinations/s3/init.php:130
 #: destinations/stash/init.php:142
 msgid "Fatal Error #9034.2344848. Unable to access fileoptions data."
 msgstr ""
@@ -1758,7 +1784,7 @@ msgstr ""
 
 #: destinations/dropbox2/_configure.php:136
 #: destinations/dropbox/_configure.php:181
-#: destinations/email/_configure.php:18 destinations/ftp/_configure.php:10
+#: destinations/email/_configure.php:18 destinations/ftp/_configure.php:92
 #: destinations/local/_configure.php:10
 #: destinations/rackspace/_configure.php:10 destinations/s3/_configure.php:36
 #: destinations/sftp/_configure.php:10 destinations/stash/_configure.php:183
@@ -1767,7 +1793,7 @@ msgstr ""
 
 #: destinations/dropbox2/_configure.php:137
 #: destinations/dropbox/_configure.php:182
-#: destinations/email/_configure.php:19 destinations/ftp/_configure.php:11
+#: destinations/email/_configure.php:19 destinations/ftp/_configure.php:93
 #: destinations/local/_configure.php:11
 #: destinations/rackspace/_configure.php:11 destinations/s3/_configure.php:37
 #: destinations/sftp/_configure.php:11 destinations/stash/_configure.php:184
@@ -1776,7 +1802,7 @@ msgid ""
 msgstr ""
 
 #: destinations/dropbox2/_configure.php:144
-#: destinations/dropbox/_configure.php:190 destinations/s3/_configure.php:81
+#: destinations/dropbox/_configure.php:190 destinations/s3/_configure.php:100
 msgid "Directory (optional)"
 msgstr ""
 
@@ -1788,7 +1814,7 @@ msgid ""
 msgstr ""
 
 #: destinations/dropbox2/_configure.php:151
-#: destinations/dropbox/_configure.php:198 destinations/ftp/_configure.php:74
+#: destinations/dropbox/_configure.php:198 destinations/ftp/_configure.php:161
 #: destinations/local/_configure.php:53
 #: destinations/rackspace/_configure.php:53
 #: destinations/sftp/_configure.php:76
@@ -1796,7 +1822,7 @@ msgid "Archive limit"
 msgstr ""
 
 #: destinations/dropbox2/_configure.php:152
-#: destinations/dropbox/_configure.php:199 destinations/ftp/_configure.php:75
+#: destinations/dropbox/_configure.php:199 destinations/ftp/_configure.php:162
 #: destinations/local/_configure.php:54
 #: destinations/rackspace/_configure.php:54
 #: destinations/sftp/_configure.php:77
@@ -1806,12 +1832,12 @@ msgid ""
 "backups will be deleted."
 msgstr ""
 
-#: destinations/dropbox2/_configure.php:160 destinations/s3/_configure.php:99
+#: destinations/dropbox2/_configure.php:160 destinations/s3/_configure.php:118
 #: destinations/stash/_configure.php:218
 msgid "Max chunk size"
 msgstr ""
 
-#: destinations/dropbox2/_configure.php:161 destinations/s3/_configure.php:100
+#: destinations/dropbox2/_configure.php:161 destinations/s3/_configure.php:119
 #: destinations/stash/_configure.php:219
 msgid ""
 "[Example: 5] - Enter 0 for no chunking; minimum of 5 if enabling. This is "
@@ -1823,7 +1849,7 @@ msgid ""
 msgstr ""
 
 #: destinations/dropbox2/init.php:188 destinations/ftp/init.php:202
-#: destinations/s3/init.php:392 destinations/s3/init.php:553
+#: destinations/s3/init.php:364 destinations/s3/init.php:534
 #: destinations/stash/init.php:450 destinations/stash/init.php:593
 msgid "Fatal Error #9034.84838. Unable to access fileoptions data."
 msgstr ""
@@ -1835,7 +1861,7 @@ msgstr ""
 
 #: destinations/dropbox2/_manage.php:13 destinations/dropbox2/_manage.php:310
 #: destinations/dropbox/_manage.php:64 destinations/ftp/_manage.php:103
-#: destinations/rackspace/_manage.php:48 destinations/s3/_manage.php:86
+#: destinations/rackspace/_manage.php:48 destinations/s3/_manage.php:104
 #: destinations/stash/_manage.php:170
 #, php-format
 msgctxt "%1$s and %2$s are open and close <a> tags"
@@ -1911,7 +1937,7 @@ msgstr ""
 
 #: destinations/dropbox/_manage.php:88 destinations/dropbox/_manage.php:99
 #: destinations/ftp/_manage.php:210 destinations/ftp/_manage.php:225
-#: views/_backup_listing.php:73
+#: views/_backup-home.php:508 views/_backup_listing.php:74
 msgid "File Size"
 msgstr ""
 
@@ -1925,7 +1951,7 @@ msgid "You have not created any dropbox backups yet."
 msgstr ""
 
 #: destinations/dropbox/_manage.php:127 destinations/ftp/_manage.php:255
-#: pluginbuddy/classes/format.php:139
+#: pluginbuddy/classes/format.php:144
 msgid "ago"
 msgstr ""
 
@@ -1941,51 +1967,52 @@ msgstr ""
 msgid "[Example: your@email.com] - Email address for this destination."
 msgstr ""
 
-#: destinations/ftp/_configure.php:19 destinations/sftp/_configure.php:19
+#: destinations/ftp/_configure.php:101 destinations/sftp/_configure.php:19
 msgid "Server address"
 msgstr ""
 
-#: destinations/ftp/_configure.php:20 destinations/sftp/_configure.php:20
+#: destinations/ftp/_configure.php:102 destinations/sftp/_configure.php:20
 msgid ""
 "[Example: ftp.foo.com] - FTP server address.  Do not include http:// or "
 "ftp:// or any other prefixes. You may specify an alternate port in the "
 "format of ftp_address:ip_address such as yourftp.com:21"
 msgstr ""
 
-#: destinations/ftp/_configure.php:27 destinations/rackspace/_configure.php:19
+#: destinations/ftp/_configure.php:109
+#: destinations/rackspace/_configure.php:19
 #: destinations/sftp/_configure.php:27
 msgid "Username"
 msgstr ""
 
-#: destinations/ftp/_configure.php:28 destinations/sftp/_configure.php:28
+#: destinations/ftp/_configure.php:110 destinations/sftp/_configure.php:28
 msgid "[Example: foo] - Username to use when connecting to the FTP server."
 msgstr ""
 
-#: destinations/ftp/_configure.php:35 destinations/sftp/_configure.php:35
+#: destinations/ftp/_configure.php:117 destinations/sftp/_configure.php:35
 msgid "Password"
 msgstr ""
 
-#: destinations/ftp/_configure.php:36 destinations/sftp/_configure.php:36
+#: destinations/ftp/_configure.php:118 destinations/sftp/_configure.php:36
 msgid "[Example: 1234xyz] - Password to use when connecting to the FTP server."
 msgstr ""
 
-#: destinations/ftp/_configure.php:43 destinations/sftp/_configure.php:43
+#: destinations/ftp/_configure.php:125 destinations/sftp/_configure.php:43
 msgid "Remote path (optional)"
 msgstr ""
 
-#: destinations/ftp/_configure.php:44 destinations/sftp/_configure.php:44
+#: destinations/ftp/_configure.php:126 destinations/sftp/_configure.php:44
 msgid ""
 "[Example: /public_html/backups] - Remote path to place uploaded files into "
 "on the destination FTP server. Make sure this path is correct; if it does "
 "not exist BackupBuddy will attempt to create it. No trailing slash is needed."
 msgstr ""
 
-#: destinations/ftp/_configure.php:60 destinations/local/_configure.php:42
+#: destinations/ftp/_configure.php:147 destinations/local/_configure.php:42
 #: destinations/sftp/_configure.php:62
 msgid "Migration URL"
 msgstr ""
 
-#: destinations/ftp/_configure.php:61 destinations/sftp/_configure.php:63
+#: destinations/ftp/_configure.php:148 destinations/sftp/_configure.php:63
 msgid ""
 "Enter the URL corresponding to the FTP destination path. This URL must lead "
 "to the location where files uploaded to this remote destination would end "
@@ -1993,33 +2020,33 @@ msgid ""
 "corresponding URL."
 msgstr ""
 
-#: destinations/ftp/_configure.php:84
+#: destinations/ftp/_configure.php:171
 msgid "Transfer mode"
 msgstr ""
 
-#: destinations/ftp/_configure.php:86
+#: destinations/ftp/_configure.php:173
 msgid "Active (default)"
 msgstr ""
 
-#: destinations/ftp/_configure.php:87
+#: destinations/ftp/_configure.php:174
 msgid "Passive"
 msgstr ""
 
-#: destinations/ftp/_configure.php:89
+#: destinations/ftp/_configure.php:176
 msgid ""
 "[Default: Active] - Determines whether the FTP file transfer happens in FTP "
 "active or passive mode.  Some servers or those behind a firewall may need to "
 "use PASV, or passive mode as a workaround."
 msgstr ""
 
-#: destinations/ftp/_configure.php:98
+#: destinations/ftp/_configure.php:185
 msgid ""
 "[Default: disabled] - Select whether this connection is for FTP or FTPs "
 "(enabled; FTP over SSL). Note that FTPs is NOT the same as sFTP (FTP over "
 "SSH) and is not compatible or equal."
 msgstr ""
 
-#: destinations/ftp/_configure.php:100
+#: destinations/ftp/_configure.php:187
 msgid "Enable high security mode (not supported by most servers)"
 msgstr ""
 
@@ -2030,45 +2057,16 @@ msgid ""
 "permissions."
 msgstr ""
 
-#: destinations/ftp/init.php:248
+#: destinations/ftp/init.php:235
 msgid "Missing required input."
 msgstr ""
 
-#: destinations/ftp/init.php:262
-msgid "Unable to connect to FTP address `"
-msgstr ""
-
-#: destinations/ftp/init.php:263
-msgid ""
-"Verify the server address and port (default 21). Verify your host allows "
-"outgoing FTP connections."
-msgstr ""
-
-#: destinations/ftp/init.php:270
-msgid "Destination server does not support FTPS?"
-msgstr ""
-
-#: destinations/ftp/init.php:273
-msgid "Your web server doesnt support FTPS."
-msgstr ""
-
-#: destinations/ftp/init.php:281
+#: destinations/ftp/init.php:292
 msgid "Unable to login. Bad user/pass."
 msgstr ""
 
-#: destinations/ftp/init.php:317 destinations/sftp/init.php:235
-msgid "Failure uploading. Check path & permissions."
-msgstr ""
-
-#: destinations/ftp/init.php:335 destinations/sftp/init.php:253
-msgid "Failure. Unable to connect to the provided optional URL."
-msgstr ""
-
-#: destinations/ftp/init.php:339 destinations/local/init.php:183
-#: destinations/sftp/init.php:257
-msgid ""
-"Failure. The path appears valid but the URL does not correspond to it. Leave "
-"the URL blank if not using this destination for migrations."
+#: destinations/ftp/init.php:329
+msgid "Fatal Error #9034.72373. Unable to access fileoptions data."
 msgstr ""
 
 #: destinations/ftp/_manage.php:95 destinations/sftp/_manage.php:56
@@ -2118,6 +2116,12 @@ msgstr ""
 
 #: destinations/local/init.php:179
 msgid "Failure. Unable to connect to the provided URL."
+msgstr ""
+
+#: destinations/local/init.php:183 destinations/sftp/init.php:257
+msgid ""
+"Failure. The path appears valid but the URL does not correspond to it. Leave "
+"the URL blank if not using this destination for migrations."
 msgstr ""
 
 #: destinations/rackspace/_configure.php:20
@@ -2200,37 +2204,47 @@ msgstr ""
 msgid "Get Key"
 msgstr ""
 
-#: destinations/s3/_configure.php:71
+#: destinations/s3/_configure.php:70
 msgid "Bucket name"
 msgstr ""
 
-#: destinations/s3/_configure.php:72
+#: destinations/s3/_configure.php:71
 msgid ""
 "[Example: wordpress_backups] - This bucket will be created for you "
 "automatically if it does not already exist. Bucket names must be globally "
 "unique amongst all Amazon S3 users."
 msgstr ""
 
-#: destinations/s3/_configure.php:82
+#: destinations/s3/_configure.php:81
+msgid "New bucket region"
+msgstr ""
+
+#: destinations/s3/_configure.php:92
+msgid ""
+"[Default: US Standard] - Determines the region where NEW buckets will be "
+"created (if any). If your bucket already exists then it will NOT be modified."
+msgstr ""
+
+#: destinations/s3/_configure.php:101
 msgid "[Example: backupbuddy] - Directory name to place the backup within."
 msgstr ""
 
-#: destinations/s3/_configure.php:90
+#: destinations/s3/_configure.php:109
 msgid "Remote archive limit"
 msgstr ""
 
-#: destinations/s3/_configure.php:91
+#: destinations/s3/_configure.php:110
 msgid ""
 "[Example: 5] - Enter 0 for no limit. This is the maximum number of backup "
 "archives to be stored in this specific destination. If this limit is met the "
 "oldest backup will be deleted."
 msgstr ""
 
-#: destinations/s3/_configure.php:109 destinations/stash/_configure.php:228
+#: destinations/s3/_configure.php:128 destinations/stash/_configure.php:228
 msgid "Encrypt connection"
 msgstr ""
 
-#: destinations/s3/_configure.php:110 destinations/stash/_configure.php:229
+#: destinations/s3/_configure.php:129 destinations/stash/_configure.php:229
 msgid ""
 "[Default: enabled] - When enabled, all transfers will be encrypted with SSL "
 "encryption. Disabling this may aid in connection troubles but results in "
@@ -2239,7 +2253,7 @@ msgid ""
 "download as needed."
 msgstr ""
 
-#: destinations/s3/_configure.php:112
+#: destinations/s3/_configure.php:131
 msgid "Enable connecting over SSL."
 msgstr ""
 
@@ -2247,7 +2261,7 @@ msgstr ""
 msgid "S3 Destination"
 msgstr ""
 
-#: destinations/s3/_manage.php:170
+#: destinations/s3/_manage.php:187
 msgid ""
 "You have not completed sending any backups to this S3 destination for this "
 "site yet."
@@ -2268,6 +2282,14 @@ msgstr ""
 msgid ""
 "Unable to connect to server using host, username, and password combination "
 "provided."
+msgstr ""
+
+#: destinations/sftp/init.php:235
+msgid "Failure uploading. Check path & permissions."
+msgstr ""
+
+#: destinations/sftp/init.php:253
+msgid "Failure. Unable to connect to the provided optional URL."
 msgstr ""
 
 #: destinations/sftp/_manage.php:141
@@ -2354,14 +2376,14 @@ msgid ""
 "site yet."
 msgstr ""
 
-#: _importbuddy/importbuddy/views/_dbreplace.php:46
-#: _importbuddy/importbuddy/views/_dbreplace.php:108
+#: _importbuddy/importbuddy/views/_dbreplace.php:56
+#: _importbuddy/importbuddy/views/_dbreplace.php:120
 #: views/_server_tools-database_replace.php:39
 #: views/_server_tools-database_replace.php:101
 msgid "back"
 msgstr ""
 
-#: _importbuddy/importbuddy/views/_dbreplace.php:179
+#: _importbuddy/importbuddy/views/_dbreplace.php:192
 #: views/_server_tools-database_replace.php:172
 msgid ""
 "Site table prefix contains multiple underscores. Prefix list may be "
@@ -2377,11 +2399,6 @@ msgstr ""
 #: _importbuddy/importbuddy/views/_html_1_stash.php:152
 msgid ""
 "You have not sent any backups to Stash yet (or files are still transferring)."
-msgstr ""
-
-#: init_admin.php:166 init_admin.php:203 views/_backup-home.php:482
-#: views/getting_started.php:36
-msgid "Backup"
 msgstr ""
 
 #: init_admin.php:167
@@ -2426,55 +2443,77 @@ msgstr ""
 msgid "Finished PHP based SQL dump method."
 msgstr ""
 
-#: lib/updater/information.php:50
-msgid "These details will be available soon."
-msgstr ""
-
-#: lib/updater/init.php:223
+#: lib/updater/admin.php:119
 msgid ""
 "To receive automatic updates for %l, use the <a href=\"%s\">iThemes "
 "Licensing</a> page found in the Settings menu."
 msgstr ""
 
-#: lib/updater/init.php:234 lib/updater/init.php:240
-#: lib/updater/settings-page.php:286
+#: lib/updater/admin.php:131 lib/updater/admin.php:137
+#: lib/updater/settings-page.php:289
 msgid "iThemes Licensing"
 msgstr ""
 
-#: lib/updater/init.php:308
+#: lib/updater/admin.php:163
 msgid "Manage iThemes product licenses to receive automatic upgrade support"
 msgstr ""
 
-#: lib/updater/init.php:308
+#: lib/updater/admin.php:163
 msgid "License"
 msgstr ""
 
-#: lib/updater/server.php:127
+#: lib/updater/api.php:41 lib/updater/api.php:56
+#, php-format
+msgid ""
+"<p>Unable to get changelog data at this time.</p><p>Error <code>%1$s</code>: "
+"%2$s</p>"
+msgstr ""
+
+#: lib/updater/api.php:44
+msgid ""
+"<p>Unable to get changelog data at this time.</p><p>Error: Unrecognized "
+"response from <code>wp_remote_get</code>.</p>"
+msgstr ""
+
+#: lib/updater/api.php:47
+#, php-format
+msgid ""
+"<p>Unable to get changelog data at this time.</p><p>Error code <code>%1$s</"
+"code>: %2$s</p>"
+msgstr ""
+
+#: lib/updater/api.php:58
+msgid ""
+"<p>Unable to get changelog data at this time.</p><p>Error: Unrecognized "
+"response from iThemes API server.</p>"
+msgstr ""
+
+#: lib/updater/server.php:129
 #, php-format
 msgid ""
 "An error occurred when communicating with the iThemes update server: %s (%s)"
 msgstr ""
 
-#: lib/updater/settings-page.php:71
+#: lib/updater/settings-page.php:74
 msgid ""
 "Incorrect password. Please make sure that you are supplying your iThemes "
 "membership username and password details."
 msgstr ""
 
-#: lib/updater/settings-page.php:75
+#: lib/updater/settings-page.php:78
 msgid ""
 "Invalid username. Please make sure that you are supplying your iThemes "
 "membership username and password details."
 msgstr ""
 
-#: lib/updater/settings-page.php:78
+#: lib/updater/settings-page.php:81
 #, php-format
 msgid ""
 "The licensing server reports that the %1$s (%2$s) product is unknown. Please "
 "contact support for assistance."
 msgstr ""
 
-#: lib/updater/settings-page.php:81
+#: lib/updater/settings-page.php:84
 #, php-format
 msgid ""
 "%1$s could not be licensed since the membership account is out of available "
@@ -2483,7 +2522,7 @@ msgid ""
 "increase the amount of available licenses."
 msgstr ""
 
-#: lib/updater/settings-page.php:84
+#: lib/updater/settings-page.php:87
 #, php-format
 msgid ""
 "%s could not be licensed due to an internal error. Please try to license %s "
@@ -2491,205 +2530,205 @@ msgid ""
 "support."
 msgstr ""
 
-#: lib/updater/settings-page.php:90
+#: lib/updater/settings-page.php:93
 #, php-format
 msgid ""
 "An unknown error relating to the %1$s product occurred. Please contact "
 "iThemes support. Error details: %2$s"
 msgstr ""
 
-#: lib/updater/settings-page.php:92
+#: lib/updater/settings-page.php:95
 #, php-format
 msgid ""
 "An unknown error occurred. Please contact iThemes support. Error details: %s"
 msgstr ""
 
-#: lib/updater/settings-page.php:118
+#: lib/updater/settings-page.php:121
 msgid "Settings saved"
 msgstr ""
 
-#: lib/updater/settings-page.php:125
+#: lib/updater/settings-page.php:128
 msgid ""
 "You must supply an iThemes membership username and password in order to "
 "license products."
 msgstr ""
 
-#: lib/updater/settings-page.php:127
+#: lib/updater/settings-page.php:130
 msgid ""
 "You must supply an iThemes membership username in order to license products."
 msgstr ""
 
-#: lib/updater/settings-page.php:129
+#: lib/updater/settings-page.php:132
 msgid ""
 "You must supply an iThemes membership password in order to license products."
 msgstr ""
 
-#: lib/updater/settings-page.php:131
+#: lib/updater/settings-page.php:134
 msgid ""
 "You must select at least one product to license. Ensure that you select the "
 "products that you wish to license in the listing below."
 msgstr ""
 
-#: lib/updater/settings-page.php:146
+#: lib/updater/settings-page.php:149
 msgid ""
 "An unknown server error occurred. Please try to license your products again "
 "at another time."
 msgstr ""
 
-#: lib/updater/settings-page.php:166
+#: lib/updater/settings-page.php:169
 msgid "Your product subscription has expired"
 msgstr ""
 
-#: lib/updater/settings-page.php:173
+#: lib/updater/settings-page.php:176
 msgid "Successfully licensed %l."
 msgstr ""
 
-#: lib/updater/settings-page.php:177 lib/updater/settings-page.php:182
+#: lib/updater/settings-page.php:180 lib/updater/settings-page.php:185
 #, php-format
 msgid "Unable to license %1$s. Reason: %2$s"
 msgstr ""
 
-#: lib/updater/settings-page.php:190
+#: lib/updater/settings-page.php:193
 msgid ""
 "You must supply an iThemes membership username and password in order to "
 "remove licenses."
 msgstr ""
 
-#: lib/updater/settings-page.php:192
+#: lib/updater/settings-page.php:195
 msgid ""
 "You must supply an iThemes membership username in order to remove licenses."
 msgstr ""
 
-#: lib/updater/settings-page.php:194
+#: lib/updater/settings-page.php:197
 msgid ""
 "You must supply an iThemes membership password in order to remove licenses."
 msgstr ""
 
-#: lib/updater/settings-page.php:196
+#: lib/updater/settings-page.php:199
 msgid ""
 "You must select at least one license to remove. Ensure that you select the "
 "licenses that you wish to remove in the listing below."
 msgstr ""
 
-#: lib/updater/settings-page.php:211
+#: lib/updater/settings-page.php:214
 msgid ""
 "An unknown server error occurred. Please try to remove licenses from your "
 "products again at another time."
 msgstr ""
 
-#: lib/updater/settings-page.php:232
+#: lib/updater/settings-page.php:235
 msgid "Unknown server error."
 msgstr ""
 
-#: lib/updater/settings-page.php:237
+#: lib/updater/settings-page.php:240
 msgid "Successfully removed license from %l."
 msgid_plural "Successfully removed licenses from %l."
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/updater/settings-page.php:241
+#: lib/updater/settings-page.php:244
 #, php-format
 msgid "Unable to remove license from %1$s. Reason: %2$s"
 msgstr ""
 
-#: lib/updater/settings-page.php:318
+#: lib/updater/settings-page.php:321
 msgid "Licensing Page Access"
 msgstr ""
 
-#: lib/updater/settings-page.php:325
+#: lib/updater/settings-page.php:328
 msgid "Show this licensing page on site dashboards"
 msgstr ""
 
-#: lib/updater/settings-page.php:328
+#: lib/updater/settings-page.php:331
 msgid ""
 "By default, this page only shows on the network dashboard. Enable the option "
 "above in order to have this page accessible on sites as well."
 msgstr ""
 
-#: lib/updater/settings-page.php:335
+#: lib/updater/settings-page.php:338
 msgid "Save Settings"
 msgstr ""
 
-#: lib/updater/settings-page.php:354 lib/updater/settings-page.php:385
-#: lib/updater/settings-page.php:505 lib/updater/settings-page.php:566
+#: lib/updater/settings-page.php:357 lib/updater/settings-page.php:388
+#: lib/updater/settings-page.php:508 lib/updater/settings-page.php:569
 msgid "Product"
 msgstr ""
 
-#: lib/updater/settings-page.php:355 lib/updater/settings-page.php:387
+#: lib/updater/settings-page.php:358 lib/updater/settings-page.php:390
 msgid "Member"
 msgstr ""
 
-#: lib/updater/settings-page.php:356 lib/updater/settings-page.php:389
+#: lib/updater/settings-page.php:359 lib/updater/settings-page.php:392
 msgid "Expiration"
 msgstr ""
 
-#: lib/updater/settings-page.php:357 lib/updater/settings-page.php:390
+#: lib/updater/settings-page.php:360 lib/updater/settings-page.php:393
 msgid "Remaining Licenses"
 msgstr ""
 
-#: lib/updater/settings-page.php:373
+#: lib/updater/settings-page.php:376
 msgid "Licensed Products"
 msgstr ""
 
-#: lib/updater/settings-page.php:379 lib/updater/settings-page.php:499
+#: lib/updater/settings-page.php:382 lib/updater/settings-page.php:502
 msgid "Select All"
 msgstr ""
 
-#: lib/updater/settings-page.php:388
+#: lib/updater/settings-page.php:391
 msgid "Product Status"
 msgstr ""
 
-#: lib/updater/settings-page.php:398
+#: lib/updater/settings-page.php:401
 msgid "unlimited"
 msgstr ""
 
-#: lib/updater/settings-page.php:435 lib/updater/settings-page.php:522
+#: lib/updater/settings-page.php:438 lib/updater/settings-page.php:525
 #, php-format
 msgid "Select %s"
 msgstr ""
 
-#: lib/updater/settings-page.php:455
+#: lib/updater/settings-page.php:458
 msgid "Remove Licenses"
 msgstr ""
 
-#: lib/updater/settings-page.php:489
+#: lib/updater/settings-page.php:492
 msgid "Unlicensed Products"
 msgstr ""
 
-#: lib/updater/settings-page.php:491
+#: lib/updater/settings-page.php:494
 msgid ""
 "The following products have not been licensed. Licensing a product gives you "
 "access to automatic updates from within WordPress."
 msgstr ""
 
-#: lib/updater/settings-page.php:492
+#: lib/updater/settings-page.php:495
 msgid ""
 "To license products, select the products you wish to license, enter your "
 "iThemes membership username and password, and press the License Products "
 "button."
 msgstr ""
 
-#: lib/updater/settings-page.php:493
+#: lib/updater/settings-page.php:496
 #, php-format
 msgid "Need help? <a href=\"%s\">Click here for a quick video tutorial</a>."
 msgstr ""
 
-#: lib/updater/settings-page.php:538
+#: lib/updater/settings-page.php:541
 msgid "License Products"
 msgstr ""
 
-#: lib/updater/settings-page.php:558
+#: lib/updater/settings-page.php:561
 msgid "Unrecognized Products"
 msgstr ""
 
-#: lib/updater/settings-page.php:560
+#: lib/updater/settings-page.php:563
 msgid ""
 "The following products were not recognized by the licensing system. This can "
 "be due to a bug in the product code, a temporary server issue, or because "
 "the product is no longer supported."
 msgstr ""
 
-#: lib/updater/settings-page.php:561
+#: lib/updater/settings-page.php:564
 #, php-format
 msgid ""
 "Please check this page again at a later time to see if the problem resolves "
@@ -2697,55 +2736,56 @@ msgid ""
 "support</a> and provide them with the details given below."
 msgstr ""
 
-#: lib/updater/settings-page.php:567 views/_backup_listing.php:72
+#: lib/updater/settings-page.php:570 views/_backup-home.php:507
+#: views/_backup_listing.php:73
 msgid "Type"
 msgstr ""
 
-#: lib/updater/settings-page.php:568
+#: lib/updater/settings-page.php:571
 msgid "Package"
 msgstr ""
 
-#: lib/updater/settings-page.php:569
+#: lib/updater/settings-page.php:572
 msgid "Version"
 msgstr ""
 
-#: lib/updater/settings-page.php:570
+#: lib/updater/settings-page.php:573
 msgid "Server Response"
 msgstr ""
 
-#: lib/updater/settings-page.php:579
+#: lib/updater/settings-page.php:582
 msgid "Unknown Error"
 msgstr ""
 
-#: lib/updater/settings-page.php:612
+#: lib/updater/settings-page.php:615
 #, php-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/updater/settings-page.php:614
+#: lib/updater/settings-page.php:617
 #, php-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/updater/settings-page.php:616
+#: lib/updater/settings-page.php:619
 #, php-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/updater/settings-page.php:618
+#: lib/updater/settings-page.php:621
 #, php-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: lib/updater/settings-page.php:621
+#: lib/updater/settings-page.php:624
 #, php-format
 msgid "%s ago"
 msgstr ""
@@ -2773,7 +2813,7 @@ msgstr ""
 #: lib/xzipbuddy/zbzipcore.php:985 lib/xzipbuddy/zbzipexec.php:1380
 #: lib/xzipbuddy/zbzippclzip.php:842 lib/xzipbuddy/zbzipproc.php:1585
 #: lib/zipbuddy/legacy.zipbuddy.php:934 lib/zipbuddy/zbzipcore.php:985
-#: lib/zipbuddy/zbzipexec.php:1393 lib/zipbuddy/zbzippclzip.php:843
+#: lib/zipbuddy/zbzipexec.php:1419 lib/zipbuddy/zbzippclzip.php:843
 #: lib/zipbuddy/zbzipproc.php:1585
 msgid "Zip process reported: "
 msgstr ""
@@ -2789,45 +2829,45 @@ msgstr ""
 msgid "Unknown OS type (%1$s) could not set executable paths"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:611 lib/zipbuddy/zbzipexec.php:615
+#: lib/xzipbuddy/zbzipexec.php:611
 msgid "Trying executable path for zip exec:"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:643 lib/zipbuddy/zbzipexec.php:647
+#: lib/xzipbuddy/zbzipexec.php:643 lib/zipbuddy/zbzipexec.php:644
 msgid "Exec test (zip) PASSED."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:660 lib/zipbuddy/zbzipexec.php:664
+#: lib/xzipbuddy/zbzipexec.php:660 lib/zipbuddy/zbzipexec.php:661
 msgid "Exec test (zip) FAILED: Test zip file not found."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:667 lib/zipbuddy/zbzipexec.php:671
+#: lib/xzipbuddy/zbzipexec.php:667 lib/zipbuddy/zbzipexec.php:668
 msgid "Exec test (zip) FAILED: exec Exit Code: "
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:680 lib/zipbuddy/zbzipexec.php:684
+#: lib/xzipbuddy/zbzipexec.php:680 lib/zipbuddy/zbzipexec.php:681
 #, php-format
 msgid "Exec test (zip) unable to delete test file (%s)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:691 lib/zipbuddy/zbzipexec.php:696
+#: lib/xzipbuddy/zbzipexec.php:691
 msgid "Exec test Failed: Unable to find zip executable on any specified path."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:729 lib/xzipbuddy/zbzipproc.php:926
-#: lib/zipbuddy/zbzipexec.php:739 lib/zipbuddy/zbzipproc.php:926
+#: lib/zipbuddy/zbzipproc.php:926
 msgid "Trying executable path for unzip:"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:767 lib/zipbuddy/zbzipexec.php:777
+#: lib/xzipbuddy/zbzipexec.php:767 lib/zipbuddy/zbzipexec.php:789
 msgid "Exec test (unzip) PASSED."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:776 lib/zipbuddy/zbzipexec.php:786
+#: lib/xzipbuddy/zbzipexec.php:776 lib/zipbuddy/zbzipexec.php:798
 msgid "Exec test (unzip) FAILED: Test unzip file test failed."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:777 lib/zipbuddy/zbzipexec.php:787
+#: lib/xzipbuddy/zbzipexec.php:777 lib/zipbuddy/zbzipexec.php:799
 msgid "Exec test (unzip) FAILED: exec Exit Code: "
 msgstr ""
 
@@ -2836,153 +2876,153 @@ msgstr ""
 msgid "Exec test (unzip) unable to delete test file (%s)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:801 lib/zipbuddy/zbzipexec.php:814
+#: lib/xzipbuddy/zbzipexec.php:801
 msgid ""
 "Exec test Failed: Unable to find unzip executable on any specified path."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:815 lib/zipbuddy/zbzipexec.php:828
+#: lib/xzipbuddy/zbzipexec.php:815
 msgid "Exec test FAILED: One or more required function do not exist."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:925 lib/xzipbuddy/zbzippclzip.php:474
-#: lib/xzipbuddy/zbzipproc.php:1169 lib/zipbuddy/zbzipexec.php:938
+#: lib/xzipbuddy/zbzipproc.php:1169 lib/zipbuddy/zbzipexec.php:964
 #: lib/zipbuddy/zbzippclzip.php:475 lib/zipbuddy/zbzipproc.php:1169
 msgid "Temporary working directory must be available."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:936 lib/xzipbuddy/zbzipexec.php:941
 #: lib/xzipbuddy/zbzipproc.php:1180 lib/xzipbuddy/zbzipproc.php:1185
-#: lib/zipbuddy/zbzipexec.php:949 lib/zipbuddy/zbzipexec.php:954
+#: lib/zipbuddy/zbzipexec.php:975 lib/zipbuddy/zbzipexec.php:980
 #: lib/zipbuddy/zbzipproc.php:1180 lib/zipbuddy/zbzipproc.php:1185
 #, php-format
 msgid "Using zip version: %1$s.%2$s"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:951 lib/xzipbuddy/zbzipexec.php:2038
-#: lib/xzipbuddy/zbzipproc.php:1195 lib/zipbuddy/zbzipexec.php:964
-#: lib/zipbuddy/zbzipexec.php:2056 lib/zipbuddy/zbzipproc.php:1195
+#: lib/xzipbuddy/zbzipproc.php:1195 lib/zipbuddy/zbzipexec.php:990
+#: lib/zipbuddy/zbzipexec.php:2082 lib/zipbuddy/zbzipproc.php:1195
 msgid "Using absolute zip path: "
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:974 lib/xzipbuddy/zbzippclzip.php:570
-#: lib/xzipbuddy/zbzipproc.php:1220 lib/zipbuddy/zbzipexec.php:987
+#: lib/xzipbuddy/zbzipproc.php:1220 lib/zipbuddy/zbzipexec.php:1013
 #: lib/zipbuddy/zbzippclzip.php:571 lib/zipbuddy/zbzipproc.php:1220
 msgid "Zip archive creation compression disabled based on settings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:978 lib/xzipbuddy/zbzippclzip.php:581
-#: lib/xzipbuddy/zbzipproc.php:1224 lib/zipbuddy/zbzipexec.php:991
+#: lib/xzipbuddy/zbzipproc.php:1224 lib/zipbuddy/zbzipexec.php:1017
 #: lib/zipbuddy/zbzippclzip.php:582 lib/zipbuddy/zbzipproc.php:1224
 msgid "Zip archive creation compression enabled based on settings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:992 lib/xzipbuddy/zbzipproc.php:1237
-#: lib/zipbuddy/zbzipexec.php:1005 lib/zipbuddy/zbzipproc.php:1237
+#: lib/zipbuddy/zbzipexec.php:1031 lib/zipbuddy/zbzipproc.php:1237
 msgid ""
 "Zip archive creation symbolic links will not be followed based on settings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:995 lib/xzipbuddy/zbzipexec.php:998
-#: lib/zipbuddy/zbzipexec.php:1008 lib/zipbuddy/zbzipexec.php:1011
+#: lib/zipbuddy/zbzipexec.php:1034 lib/zipbuddy/zbzipexec.php:1037
 msgid ""
 "Zip archive creation symbolic links requested to not be followed based on "
 "settings but this option is not supported on this operating system."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1003 lib/xzipbuddy/zbzipproc.php:1241
-#: lib/zipbuddy/zbzipexec.php:1016 lib/zipbuddy/zbzipproc.php:1241
+#: lib/zipbuddy/zbzipexec.php:1042 lib/zipbuddy/zbzipproc.php:1241
 msgid "Zip archive creation symbolic links will be followed based on settings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1012 lib/xzipbuddy/zbzippclzip.php:605
-#: lib/zipbuddy/zbzipexec.php:1025 lib/zipbuddy/zbzippclzip.php:606
+#: lib/zipbuddy/zbzipexec.php:1051 lib/zipbuddy/zbzippclzip.php:606
 msgid ""
 "Zip archive creation actionable warnings will be ignored based on settings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1016 lib/xzipbuddy/zbzippclzip.php:609
-#: lib/zipbuddy/zbzipexec.php:1029 lib/zipbuddy/zbzippclzip.php:610
+#: lib/zipbuddy/zbzipexec.php:1055 lib/zipbuddy/zbzippclzip.php:610
 msgid ""
 "Zip archive creation actionable warnings will not be ignored based on "
 "settings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1023 lib/xzipbuddy/zbzippclzip.php:703
-#: lib/xzipbuddy/zbzipproc.php:1261 lib/zipbuddy/zbzipexec.php:1036
+#: lib/xzipbuddy/zbzipproc.php:1261 lib/zipbuddy/zbzipexec.php:1062
 #: lib/zipbuddy/zbzippclzip.php:704 lib/zipbuddy/zbzipproc.php:1261
 msgid "Existing ZIP Archive file will be replaced."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1071 lib/xzipbuddy/zbzipproc.php:1321
-#: lib/zipbuddy/zbzipexec.php:1084 lib/zipbuddy/zbzipproc.php:1321
+#: lib/zipbuddy/zbzipexec.php:1110 lib/zipbuddy/zbzipproc.php:1321
 msgid "Calculating directories to exclude from backup."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1083 lib/xzipbuddy/zbzippclzip.php:507
-#: lib/xzipbuddy/zbzipproc.php:1333 lib/zipbuddy/zbzipexec.php:1096
+#: lib/xzipbuddy/zbzipproc.php:1333 lib/zipbuddy/zbzipexec.php:1122
 #: lib/zipbuddy/zbzippclzip.php:508 lib/zipbuddy/zbzipproc.php:1333
 msgid "Excluding"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1136 lib/xzipbuddy/zbzipproc.php:1386
-#: lib/zipbuddy/zbzipexec.php:1149 lib/zipbuddy/zbzipproc.php:1386
+#: lib/zipbuddy/zbzipexec.php:1175 lib/zipbuddy/zbzipproc.php:1386
 #, php-format
 msgid "Using exclusion file `%1$s`"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1153 lib/zipbuddy/zbzipexec.php:1166
+#: lib/xzipbuddy/zbzipexec.php:1153 lib/zipbuddy/zbzipexec.php:1192
 msgid ""
 "Zip Errors/Warnings cannot not be logged with this version of zip and "
 "exec_dir active"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1165 lib/zipbuddy/zbzipexec.php:1178
+#: lib/xzipbuddy/zbzipexec.php:1165 lib/zipbuddy/zbzipexec.php:1204
 msgid " command"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1257 lib/xzipbuddy/zbzipproc.php:1538
-#: lib/zipbuddy/zbzipexec.php:1270 lib/zipbuddy/zbzipproc.php:1538
+#: lib/zipbuddy/zbzipexec.php:1296 lib/zipbuddy/zbzipproc.php:1538
 #, php-format
 msgid "Log file could not be opened - error reported: %1$s"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1344 lib/xzipbuddy/zbzippclzip.php:804
 #: lib/xzipbuddy/zbzipproc.php:1550 lib/zipbuddy/legacy.zipbuddy.php:908
-#: lib/zipbuddy/zbzipexec.php:1357 lib/zipbuddy/zbzippclzip.php:805
+#: lib/zipbuddy/zbzipexec.php:1383 lib/zipbuddy/zbzippclzip.php:805
 #: lib/zipbuddy/zbzipproc.php:1550
 msgid "Zip process exit code: "
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1347 lib/xzipbuddy/zbzippclzip.php:807
-#: lib/xzipbuddy/zbzipproc.php:1553 lib/zipbuddy/zbzipexec.php:1360
+#: lib/xzipbuddy/zbzipproc.php:1553 lib/zipbuddy/zbzipexec.php:1386
 #: lib/zipbuddy/zbzippclzip.php:808 lib/zipbuddy/zbzipproc.php:1553
 #, php-format
 msgid "Zip process reported: %1$s warning%2$s"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1360 lib/xzipbuddy/zbzippclzip.php:820
-#: lib/xzipbuddy/zbzipproc.php:1566 lib/zipbuddy/zbzipexec.php:1373
+#: lib/xzipbuddy/zbzipproc.php:1566 lib/zipbuddy/zbzipexec.php:1399
 #: lib/zipbuddy/zbzippclzip.php:821 lib/zipbuddy/zbzipproc.php:1566
 #, php-format
 msgid "Zip process reported: %1$s information%2$s"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1376 lib/xzipbuddy/zbzippclzip.php:838
-#: lib/zipbuddy/zbzipexec.php:1389 lib/zipbuddy/zbzippclzip.php:839
+#: lib/zipbuddy/zbzipexec.php:1415 lib/zipbuddy/zbzippclzip.php:839
 #, php-format
 msgid "Zip process reported: %1$s error%2$s"
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1389 lib/xzipbuddy/zbzippclzip.php:851
 #: lib/xzipbuddy/zbzipproc.php:1594 lib/zipbuddy/legacy.zipbuddy.php:915
-#: lib/zipbuddy/zbzipexec.php:1402 lib/zipbuddy/zbzippclzip.php:852
+#: lib/zipbuddy/zbzipexec.php:1428 lib/zipbuddy/zbzippclzip.php:852
 #: lib/zipbuddy/zbzipproc.php:1594
 msgid "Zip Archive file not created - check process exit code."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1393 lib/xzipbuddy/zbzippclzip.php:855
-#: lib/xzipbuddy/zbzipproc.php:1598 lib/zipbuddy/zbzipexec.php:1406
+#: lib/xzipbuddy/zbzipproc.php:1598 lib/zipbuddy/zbzipexec.php:1432
 #: lib/zipbuddy/zbzippclzip.php:856 lib/zipbuddy/zbzipproc.php:1598
 msgid ""
 "Zip Archive file created but with errors/actionable-warnings so will be "
@@ -2990,33 +3030,33 @@ msgid ""
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1410 lib/xzipbuddy/zbzippclzip.php:872
-#: lib/xzipbuddy/zbzipproc.php:1615 lib/zipbuddy/zbzipexec.php:1423
+#: lib/xzipbuddy/zbzipproc.php:1615 lib/zipbuddy/zbzipexec.php:1449
 #: lib/zipbuddy/zbzippclzip.php:873 lib/zipbuddy/zbzipproc.php:1615
 msgid "Moving Zip Archive file to local archive directory."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1419 lib/xzipbuddy/zbzippclzip.php:883
 #: lib/xzipbuddy/zbzipproc.php:1624 lib/zipbuddy/legacy.zipbuddy.php:954
-#: lib/zipbuddy/zbzipexec.php:1432 lib/zipbuddy/zbzippclzip.php:884
+#: lib/zipbuddy/zbzipexec.php:1458 lib/zipbuddy/zbzippclzip.php:884
 #: lib/zipbuddy/zbzipproc.php:1624
 msgid "Zip Archive file moved to local archive directory."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1420 lib/xzipbuddy/zbzipproc.php:1625
-#: lib/zipbuddy/zbzipexec.php:1433 lib/zipbuddy/zbzipproc.php:1625
+#: lib/zipbuddy/zbzipexec.php:1459 lib/zipbuddy/zbzipproc.php:1625
 msgid ""
 "Zip Archive file successfully created with no errors or actionable warnings."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1428 lib/xzipbuddy/zbzippclzip.php:892
 #: lib/xzipbuddy/zbzipproc.php:1633 lib/zipbuddy/legacy.zipbuddy.php:960
-#: lib/zipbuddy/zbzipexec.php:1441 lib/zipbuddy/zbzippclzip.php:893
+#: lib/zipbuddy/zbzipexec.php:1467 lib/zipbuddy/zbzippclzip.php:893
 #: lib/zipbuddy/zbzipproc.php:1633
 msgid "Zip Archive file could not be moved to local archive directory."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1438 lib/xzipbuddy/zbzippclzip.php:884
-#: lib/xzipbuddy/zbzipproc.php:1643 lib/zipbuddy/zbzipexec.php:1451
+#: lib/xzipbuddy/zbzipproc.php:1643 lib/zipbuddy/zbzipexec.php:1477
 #: lib/zipbuddy/zbzippclzip.php:885 lib/zipbuddy/zbzipproc.php:1643
 msgid ""
 "Zip Archive file successfully created with no errors (any actionable "
@@ -3024,13 +3064,13 @@ msgid ""
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1447 lib/xzipbuddy/zbzipproc.php:1652
-#: lib/zipbuddy/zbzipexec.php:1460 lib/zipbuddy/zbzipproc.php:1652
+#: lib/zipbuddy/zbzipexec.php:1486 lib/zipbuddy/zbzipproc.php:1652
 msgid "Zip Archive file could not be found in local archive directory."
 msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1457 lib/xzipbuddy/zbzippclzip.php:902
 #: lib/xzipbuddy/zbzipproc.php:1438 lib/xzipbuddy/zbzipproc.php:1662
-#: lib/zipbuddy/legacy.zipbuddy.php:970 lib/zipbuddy/zbzipexec.php:1470
+#: lib/zipbuddy/legacy.zipbuddy.php:970 lib/zipbuddy/zbzipexec.php:1496
 #: lib/zipbuddy/zbzippclzip.php:903 lib/zipbuddy/zbzipproc.php:1438
 #: lib/zipbuddy/zbzipproc.php:1662
 msgid "Removing temporary directory."
@@ -3039,7 +3079,7 @@ msgstr ""
 #: lib/xzipbuddy/zbzipexec.php:1461 lib/xzipbuddy/zbzippclzip.php:906
 #: lib/xzipbuddy/zbzipproc.php:1442 lib/xzipbuddy/zbzipproc.php:1666
 #: lib/xzipbuddy/zipbuddy.php:961 lib/zipbuddy/legacy.zipbuddy.php:974
-#: lib/zipbuddy/zbzipexec.php:1474 lib/zipbuddy/zbzippclzip.php:907
+#: lib/zipbuddy/zbzipexec.php:1500 lib/zipbuddy/zbzippclzip.php:907
 #: lib/zipbuddy/zbzipproc.php:1442 lib/zipbuddy/zbzipproc.php:1666
 #: lib/zipbuddy/zipbuddy.php:961
 msgid "Temporary directory could not be deleted: "
@@ -3047,18 +3087,18 @@ msgstr ""
 
 #: lib/xzipbuddy/zbzipexec.php:1534 lib/xzipbuddy/zbzipexec.php:1640
 #: lib/xzipbuddy/zbzipexec.php:1793 lib/xzipbuddy/zbzipexec.php:1891
-#: lib/xzipbuddy/zbzipexec.php:2155 lib/zipbuddy/zbzipexec.php:1547
-#: lib/zipbuddy/zbzipexec.php:1653 lib/zipbuddy/zbzipexec.php:1808
-#: lib/zipbuddy/zbzipexec.php:1909 lib/zipbuddy/zbzipexec.php:2173
+#: lib/xzipbuddy/zbzipexec.php:2155 lib/zipbuddy/zbzipexec.php:1573
+#: lib/zipbuddy/zbzipexec.php:1679 lib/zipbuddy/zbzipexec.php:1834
+#: lib/zipbuddy/zbzipexec.php:1935 lib/zipbuddy/zbzipexec.php:2199
 msgid "Using absolute unzip path: "
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1577 lib/zipbuddy/zbzipexec.php:1590
+#: lib/xzipbuddy/zbzipexec.php:1577 lib/zipbuddy/zbzipexec.php:1616
 #, php-format
 msgid "exec (unzip) extracted file contents (%1$s to %2$s)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1587 lib/zipbuddy/zbzipexec.php:1600
+#: lib/xzipbuddy/zbzipexec.php:1587 lib/zipbuddy/zbzipexec.php:1626
 #, php-format
 msgid ""
 "exec (unzip) failed to open/process file to extract contents (%1$s to %2$s) "
@@ -3068,69 +3108,69 @@ msgstr ""
 #: lib/xzipbuddy/zbzipexec.php:1598 lib/xzipbuddy/zbzipexec.php:1724
 #: lib/xzipbuddy/zbzipexec.php:1830 lib/xzipbuddy/zbzipexec.php:1960
 #: lib/xzipbuddy/zbzipexec.php:2079 lib/xzipbuddy/zbzipexec.php:2206
-#: lib/zipbuddy/zbzipexec.php:1611 lib/zipbuddy/zbzipexec.php:1739
-#: lib/zipbuddy/zbzipexec.php:1848 lib/zipbuddy/zbzipexec.php:1978
-#: lib/zipbuddy/zbzipexec.php:2097 lib/zipbuddy/zbzipexec.php:2224
+#: lib/zipbuddy/zbzipexec.php:1637 lib/zipbuddy/zbzipexec.php:1765
+#: lib/zipbuddy/zbzipexec.php:1874 lib/zipbuddy/zbzipexec.php:2004
+#: lib/zipbuddy/zbzipexec.php:2123 lib/zipbuddy/zbzipexec.php:2250
 msgid "exec indicated as available method but exec function non-existent"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1688 lib/zipbuddy/zbzipexec.php:1701
+#: lib/xzipbuddy/zbzipexec.php:1688 lib/zipbuddy/zbzipexec.php:1727
 #, php-format
 msgid "exec (unzip) extracted file contents (%1$s from %2$s to %3$s%4$s)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1704 lib/zipbuddy/zbzipexec.php:1719
+#: lib/xzipbuddy/zbzipexec.php:1704 lib/zipbuddy/zbzipexec.php:1745
 #, php-format
 msgid ""
 "exec (unzip) failed to open/process file to extract contents (%1$s from %2$s "
 "to %3$s%4$s) - Error Info: %5$s."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1812 lib/zipbuddy/zbzipexec.php:1827
+#: lib/xzipbuddy/zbzipexec.php:1812 lib/zipbuddy/zbzipexec.php:1853
 msgid "File found (exec)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1817 lib/zipbuddy/zbzipexec.php:1832
+#: lib/xzipbuddy/zbzipexec.php:1817 lib/zipbuddy/zbzipexec.php:1858
 msgid "File not found (exec)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1823 lib/zipbuddy/zbzipexec.php:1838
+#: lib/xzipbuddy/zbzipexec.php:1823 lib/zipbuddy/zbzipexec.php:1864
 #, php-format
 msgid ""
 "exec (unzip) failed to open/process file to check if file exists (looking "
 "for %1$s in %2$s) - Error Info: %3$s."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1939 lib/zipbuddy/zbzipexec.php:1957
+#: lib/xzipbuddy/zbzipexec.php:1939 lib/zipbuddy/zbzipexec.php:1983
 #, php-format
 msgid "exec (unzip) listed file contents (%1$s)"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:1949 lib/zipbuddy/zbzipexec.php:1967
+#: lib/xzipbuddy/zbzipexec.php:1949 lib/zipbuddy/zbzipexec.php:1993
 #, php-format
 msgid ""
 "exec (unzip) failed to open/process file to list contents (%1$s) - Error "
 "Info: %2$s."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:2060 lib/zipbuddy/zbzipexec.php:2078
+#: lib/xzipbuddy/zbzipexec.php:2060 lib/zipbuddy/zbzipexec.php:2104
 #, php-format
 msgid "exec (zip) set comment in file %1$s"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:2068 lib/zipbuddy/zbzipexec.php:2086
+#: lib/xzipbuddy/zbzipexec.php:2068 lib/zipbuddy/zbzipexec.php:2112
 #, php-format
 msgid ""
 "exec (zip) failed to open/process file to set comment in file %1$s - Error "
 "Info: %2$s."
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:2187 lib/zipbuddy/zbzipexec.php:2205
+#: lib/xzipbuddy/zbzipexec.php:2187 lib/zipbuddy/zbzipexec.php:2231
 #, php-format
 msgid "exec (unzip) retrieved comment in file %1$s"
 msgstr ""
 
-#: lib/xzipbuddy/zbzipexec.php:2195 lib/zipbuddy/zbzipexec.php:2213
+#: lib/xzipbuddy/zbzipexec.php:2195 lib/zipbuddy/zbzipexec.php:2239
 #, php-format
 msgid ""
 "exec (unzip) failed to open/process get comment in file %1$s - Error Info: "
@@ -3912,13 +3952,59 @@ msgstr ""
 msgid "Exec command returned -1."
 msgstr ""
 
-#: lib/zipbuddy/zbzipexec.php:797
-msgid "Exec test Failed: Test file appears to be corrupted."
+#: lib/zipbuddy/zbzipexec.php:612
+msgid "Exec test (zip) trying executable path:"
 msgstr ""
 
-#: lib/zipbuddy/zbzipexec.php:804
+#: lib/zipbuddy/zbzipexec.php:693
 msgid ""
-"Exec test Failed: Test file appears to either not exist or not be readable."
+"Exec test (zip) FAILED: Unable to find zip executable on any specified path."
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:714 lib/zipbuddy/zbzipexec.php:719
+#, php-format
+msgid "Found zip version: %1$s.%2$s"
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:738
+#, php-format
+msgid "Exec test (unzip) checking test file readable: %1$s"
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:742
+#, php-format
+msgid "Exec test (unzip) checking test file intact: %1$s"
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:751
+msgid "Exec test (unzip) trying executable path:"
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:809
+#, php-format
+msgid "Exec test (unzip) FAILED: Test file appears to be corrupted: %1$s"
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:816
+msgid ""
+"Exec test (unzip) FAILED: Test file appears to either not exist or not be "
+"readable."
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:826
+msgid ""
+"Exec test (unzip) FAILED: Unable to find unzip executable on any specified "
+"path."
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:841 lib/zipbuddy/zbzipexec.php:846
+#, php-format
+msgid "Found unzip version: %1$s.%2$s"
+msgstr ""
+
+#: lib/zipbuddy/zbzipexec.php:854
+msgid ""
+"Exec test (zip/unzip) FAILED: One or more required function do not exist."
 msgstr ""
 
 #: lib/zipbuddy/zbzippclzip.php:1167
@@ -3949,35 +4035,35 @@ msgid ""
 "%2$s to %3$s%4$s) - Error Info: %5$s."
 msgstr ""
 
-#: pluginbuddy/classes/format.php:125
+#: pluginbuddy/classes/format.php:130
 msgid "second"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:126
+#: pluginbuddy/classes/format.php:131
 msgid "minute"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:127
+#: pluginbuddy/classes/format.php:132
 msgid "hour"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:128
+#: pluginbuddy/classes/format.php:133
 msgid "day"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:129
+#: pluginbuddy/classes/format.php:134
 msgid "week"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:130
+#: pluginbuddy/classes/format.php:135
 msgid "month"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:131
+#: pluginbuddy/classes/format.php:136
 msgid "year"
 msgstr ""
 
-#: pluginbuddy/classes/format.php:132
+#: pluginbuddy/classes/format.php:137
 msgid "decadeLION"
 msgstr ""
 
@@ -3994,29 +4080,29 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
-#: pluginbuddy/_pluginbuddy.php:916
+#: pluginbuddy/_pluginbuddy.php:928
 msgid "Maximum PHP execution time was not modified"
 msgstr ""
 
-#: pluginbuddy/_pluginbuddy.php:917 pluginbuddy/_pluginbuddy.php:930
+#: pluginbuddy/_pluginbuddy.php:929 pluginbuddy/_pluginbuddy.php:942
 #, php-format
 msgid ""
 "Reported PHP execution time - Configured: %1$s; Original: %2$s; Current: %3$s"
 msgstr ""
 
-#: pluginbuddy/_pluginbuddy.php:929
+#: pluginbuddy/_pluginbuddy.php:941
 #, php-format
 msgid "Attempted to set PHP execution time to %1$s"
 msgstr ""
 
-#: pluginbuddy/_pluginbuddy.php:953
+#: pluginbuddy/_pluginbuddy.php:965
 #, php-format
 msgid ""
 "Attempted to set PHP memory limit to user defined WP_MAX_MEMORY_LIMIT (%1$s) "
 "or over-ridden value"
 msgstr ""
 
-#: pluginbuddy/_pluginbuddy.php:963
+#: pluginbuddy/_pluginbuddy.php:975
 #, php-format
 msgid ""
 "Reported PHP memory limits - Configured: %1$s; Original: %2$s; Current: %3$s"
@@ -4071,41 +4157,30 @@ msgstr ""
 msgid "The local backup will be deleted upon successful transfer as selected."
 msgstr ""
 
-#: views/_backup-home.php:308
+#: views/_backup-home.php:312
 msgid "Choose a backup profile to run"
 msgstr ""
 
-#: views/_backup-home.php:312
+#: views/_backup-home.php:316
 msgid ""
 "Error: Fatal errors listed above prevent ability to create a backup. Correct "
 "them to proceed."
 msgstr ""
 
-#: views/_backup-home.php:421
+#: views/_backup-home.php:425
 msgid "No backups have been created recently."
 msgstr ""
 
-#: views/_backup-home.php:483
-msgid "Started"
+#: views/_backup-home.php:506
+msgid "Backups (Start Time)"
 msgstr ""
 
-#: views/_backup-home.php:484
-msgid "Finished"
-msgstr ""
-
-#: views/_backup_listing.php:66
+#: views/_backup_listing.php:67
 msgid "No backups have been created yet."
 msgstr ""
 
-#: views/_backup_listing.php:71
-msgid ""
-"Files include random characters in their name for increased security. Verify "
-"that write permissions are available for this directory. Backup files are "
-"stored in "
-msgstr ""
-
-#: views/_backup_listing.php:74
-msgid "Created"
+#: views/_backup_listing.php:72
+msgid "Backups"
 msgstr ""
 
 #: views/_backup_listing.php:75
@@ -4219,18 +4294,18 @@ msgstr ""
 msgid "Error starting remote send of file to migrate"
 msgstr ""
 
-#: views/migrate-home.php:165
+#: views/migrate-home.php:171
 msgid ""
 "Please set a RepairBuddy password on the BackupBuddy Settings page to "
 "download this script. This is required to prevent unauthorized access to the "
 "script when in use."
 msgstr ""
 
-#: views/migrate-home.php:165 views/migrate-home.php:167
+#: views/migrate-home.php:171 views/migrate-home.php:173
 msgid "Download the troubleshooting & repair script, repairbuddy.php"
 msgstr ""
 
-#: views/migrate-home.php:169
+#: views/migrate-home.php:175
 msgid "Download RepairBuddy troubleshooting & repair tool."
 msgstr ""
 
@@ -4406,11 +4481,11 @@ msgid "Manual backup mode"
 msgstr ""
 
 #: views/settings/_advanced.php:85
-msgid "Classic (v1.x)"
+msgid "Classic (v1.x) - Entire backup in single PHP page load"
 msgstr ""
 
 #: views/settings/_advanced.php:86
-msgid "Modern (v2.x)"
+msgid "Modern (v2.x+) - Split across page loads via WP cron"
 msgstr ""
 
 #: views/settings/_advanced.php:88
@@ -4605,6 +4680,18 @@ msgstr ""
 msgid ""
 "[Default: Enabled] When enabled BackupBuddy will ignore/not-follow symbolic "
 "links encountered during the backup process"
+msgstr ""
+
+#: views/settings/_database.php:76 views/settings/_database.php:79
+msgid "All tables in database (including non-WordPress)"
+msgstr ""
+
+#: views/settings/_database.php:76 views/settings/_database.php:79
+msgid "None (use with caution)"
+msgstr ""
+
+#: views/settings/_database.php:79
+msgid "Use global default"
 msgstr ""
 
 #: views/settings/_database.php:86

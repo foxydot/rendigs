@@ -125,6 +125,13 @@ class pb_backupbuddy_cron extends pb_backupbuddy_croncore {
 		pb_backupbuddy::status( 'details', 'Copying remote `' . $destination_type . '` file `' . $file . '` down to local.' );
 		pb_backupbuddy::set_greedy_script_limits();
 		
+		// Determine destination filename.
+		$destination_file = pb_backupbuddy::$options['backup_directory'] . basename( $file );
+		if ( file_exists( $destination_file ) ) {
+			$destination_file = str_replace( 'backup-', 'backup_copy_' . pb_backupbuddy::random_string( 5 ) . '-', $destination_file );
+		}
+		pb_backupbuddy::status( 'details', 'Filename of resulting local copy: `' . $destination_file . '`.' );
+		
 		if ( $destination_type == 'stash' ) {
 			
 			$itxapi_username = $settings['itxapi_username'];
@@ -133,7 +140,6 @@ class pb_backupbuddy_cron extends pb_backupbuddy_croncore {
 			// Load required files.
 			require_once( pb_backupbuddy::plugin_path() . '/destinations/stash/init.php' );
 			require_once( pb_backupbuddy::plugin_path() . '/destinations/stash/lib/class.itx_helper.php' );
-			require_once( pb_backupbuddy::plugin_path() . '/destinations/stash/lib/aws-sdk/sdk.class.php' );
 			
 			// Talk with the Stash API to get access to do things.
 			$stash = new ITXAPI_Helper( pb_backupbuddy_destination_stash::ITXAPI_KEY, pb_backupbuddy_destination_stash::ITXAPI_URL, $itxapi_username, $itxapi_password );
@@ -161,13 +167,6 @@ class pb_backupbuddy_cron extends pb_backupbuddy_croncore {
 				return false;
 			}
 			
-			// Determine destination filename.
-			$destination_file = pb_backupbuddy::$options['backup_directory'] . basename( $file );
-			if ( file_exists( $destination_file ) ) {
-				$destination_file = str_replace( 'backup-', 'backup_copy_' . pb_backupbuddy::random_string( 5 ) . '-', $destination_file );
-			}
-			pb_backupbuddy::status( 'details', 'Filename of resulting local copy: `' . $destination_file . '`.' );
-			
 			// Connect to Amazon S3.
 			pb_backupbuddy::status( 'details', 'Instantiating S3 object.' );
 			$s3 = new AmazonS3( $manage_data['credentials'] );
@@ -181,10 +180,20 @@ class pb_backupbuddy_cron extends pb_backupbuddy_croncore {
 				pb_backupbuddy::status( 'error', 'Error #894597845. Stash copy to local FAILURE. Details: `' . print_r( $response, true ) . '`.' );
 				return false;
 			}
-
+			
+		} elseif ( $destination_type == 's3' ) {
+			
+			require_once( pb_backupbuddy::plugin_path() . '/destinations/s3/init.php' );
+			if ( true === pb_backupbuddy_destination_s3::download_file( $settings, $file, $destination_file ) ) { // success
+				pb_backupbuddy::status( 'details', 'S3 copy to local success.' );
+				return true;
+			} else { // fail
+				pb_backupbuddy::status( 'details', 'Error #85448774. S3 copy to local FAILURE.' );
+				return false;
+			}
 			
 		} else {
-			pb_backupbuddy::status( 'error', 'Error #859485. Unknown destination type `' . $destination_type . '`.' );
+			pb_backupbuddy::status( 'error', 'Error #859485. Unknown destination type for remote copy `' . $destination_type . '`.' );
 			return false;
 		}
 		

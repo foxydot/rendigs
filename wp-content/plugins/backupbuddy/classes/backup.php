@@ -413,6 +413,8 @@ class pb_backupbuddy_backup {
 			// Default tables to backup.
 			if ( $profile['backup_nonwp_tables'] == '1' ) { // Backup all tables.
 				$base_dump_mode = 'all';
+			} elseif ( $profile['backup_nonwp_tables'] == '2' ) { // Backup no tables by default. Relies on listed additional tables.
+				$base_dump_mode = 'none';
 			} else { // Only backup matching prefix.
 				$base_dump_mode = 'prefix';
 			}
@@ -428,56 +430,70 @@ class pb_backupbuddy_backup {
 			// Calculate tables to dump based on the provided information. $tables will be an array of tables.
 			$tables = $this->_calculate_tables( $base_dump_mode, $additional_tables, $this->_backup['additional_table_excludes'] );
 			
-			// Obtain tables sizes. Surround each table name by a single quote and implode with commas for SQL query to get sizes.
-			$tables_formatted = $tables;
-			foreach( $tables_formatted as &$table_formatted ) {
-				$table_formatted = "'{$table_formatted}'";
-			}
-			$tables_formatted = implode( ',', $tables_formatted );
-			$result = mysql_query( "SHOW TABLE STATUS WHERE Name IN({$tables_formatted});", $wpdb->dbh );
-			while( $rs = mysql_fetch_array( $result ) ) {
-				$this->_backup['table_sizes'][ $rs['Name'] ] = ( $rs['Data_length'] + $rs['Index_length'] );
-			}
-			unset( $tables_formatted );
-			
-			// Tables we will try to break out into standalone steps if possible.
-			$breakout_tables_defaults = array(
-				$wpdb->prefix . 'posts',
-				$wpdb->prefix . 'postmeta',
-			);
-			
-			// Step through tables we want to break out and figure out which ones were indeed set to be backed up and break them out.
-			if ( pb_backupbuddy::$options['breakout_tables'] == '0' ) { // Breaking out DISABLED.
-				pb_backupbuddy::status( 'details', 'Breaking out tables DISABLED based on settings.' );
-			} else { // Breaking out ENABLED.
-				pb_backupbuddy::status( 'details', 'Breaking out tables ENABLED based on settings. Tables to be broken out into individual steps: `' . implode( ', ', $breakout_tables_defaults ) . '`.' );
-				foreach( (array)$breakout_tables_defaults as $breakout_tables_default ) {
-					if ( in_array( $breakout_tables_default, $tables ) ) {
-						$this->_backup['breakout_tables'][] = $breakout_tables_default;
-						$tables = array_diff( $tables, array( $breakout_tables_default ) ); // Remove from main table backup list.
+			// If calculations show NO database tables should be backed up then change mode to skip database dump.
+			if ( 0 == count( $tables ) ) {
+				pb_backupbuddy::status( 'warning', 'WARNING #857272: No database tables will be backed up based on current settings. This will not be a complete backup. Adjust settings if this is not intended and use with caution. Skipping database dump step.' );
+				$profile['skip_database_dump'] = '1';
+				$this->_backup['profile']['skip_database_dump'] = '1';
+			} else { // One or more tables set to backup.
+				
+				// Obtain tables sizes. Surround each table name by a single quote and implode with commas for SQL query to get sizes.
+				$tables_formatted = $tables;
+				foreach( $tables_formatted as &$table_formatted ) {
+					$table_formatted = "'{$table_formatted}'";
+				}
+				$tables_formatted = implode( ',', $tables_formatted );
+				$sql = "SHOW TABLE STATUS WHERE Name IN({$tables_formatted});";
+				$result = mysql_query( $sql, $wpdb->dbh );
+				if ( false === $result ) {
+					pb_backupbuddy::alert( 'Error #85473474: Unable to retrieve table status. Query: `' . $sql . '`.', true );
+					return false;
+				}
+				while( $rs = mysql_fetch_array( $result ) ) {
+					$this->_backup['table_sizes'][ $rs['Name'] ] = ( $rs['Data_length'] + $rs['Index_length'] );
+				}
+				unset( $tables_formatted );
+				
+				// Tables we will try to break out into standalone steps if possible.
+				$breakout_tables_defaults = array(
+					$wpdb->prefix . 'posts',
+					$wpdb->prefix . 'postmeta',
+				);
+				
+				// Step through tables we want to break out and figure out which ones were indeed set to be backed up and break them out.
+				if ( pb_backupbuddy::$options['breakout_tables'] == '0' ) { // Breaking out DISABLED.
+					pb_backupbuddy::status( 'details', 'Breaking out tables DISABLED based on settings.' );
+				} else { // Breaking out ENABLED.
+					pb_backupbuddy::status( 'details', 'Breaking out tables ENABLED based on settings. Tables to be broken out into individual steps: `' . implode( ', ', $breakout_tables_defaults ) . '`.' );
+					foreach( (array)$breakout_tables_defaults as $breakout_tables_default ) {
+						if ( in_array( $breakout_tables_default, $tables ) ) {
+							$this->_backup['breakout_tables'][] = $breakout_tables_default;
+							$tables = array_diff( $tables, array( $breakout_tables_default ) ); // Remove from main table backup list.
+						}
 					}
 				}
-			}
-			unset( $breakout_tables_defaults ); // No longer needed.
-			
-			$this->_backup['steps'][] = array(
-				'function'		=>	'backup_create_database_dump',
-				'args'			=>	array( $tables ),
-				'start_time'	=>	0,
-				'finish_time'	=>	0,
-				'attempts'		=>	0,
-			);
-			
-			// Set up backup steps for additional broken out tables.
-			foreach( (array)$this->_backup['breakout_tables'] as $breakout_table ) {
+				unset( $breakout_tables_defaults ); // No longer needed.
+				
 				$this->_backup['steps'][] = array(
 					'function'		=>	'backup_create_database_dump',
-					'args'			=>	array( array( $breakout_table ) ),
+					'args'			=>	array( $tables ),
 					'start_time'	=>	0,
 					'finish_time'	=>	0,
 					'attempts'		=>	0,
 				);
-			}
+				
+				// Set up backup steps for additional broken out tables.
+				foreach( (array)$this->_backup['breakout_tables'] as $breakout_table ) {
+					$this->_backup['steps'][] = array(
+						'function'		=>	'backup_create_database_dump',
+						'args'			=>	array( array( $breakout_table ) ),
+						'start_time'	=>	0,
+						'finish_time'	=>	0,
+						'attempts'		=>	0,
+					);
+				}
+				
+			} // end there being tables to backup.
 			
 		} else {
 			pb_backupbuddy::status( 'message', __( 'Skipping database dump based on advanced options.', 'it-l10n-backupbuddy' ) );
@@ -1873,12 +1889,10 @@ class pb_backupbuddy_backup {
 	private function _calculate_tables( $base_dump_mode, $additional_includes = array(), $additional_excludes = array() ) {
 		
 		global $wpdb;
-		
 		$tables = array();
 		pb_backupbuddy::status( 'details', 'Calculating mysql database tables to backup.' );
-		
-		
 		pb_backupbuddy::status( 'details', 'Base database dump mode (before inclusions/exclusions): `' . $base_dump_mode . '`.' );
+		
 		// Calculate base tables.
 		if ( $base_dump_mode == 'all' ) { // All tables in database to start with.
 			$result = mysql_query( 'SHOW TABLES', $wpdb->dbh );
@@ -1886,9 +1900,13 @@ class pb_backupbuddy_backup {
 				array_push( $tables, $row[0] );
 			}
 			mysql_free_result( $result ); // Free memory.
+		
 		} elseif ( $base_dump_mode == 'none' ) { // None to start with.
+			
 			// Do nothing.
+			
 		} elseif ( $base_dump_mode == 'prefix' ) { // Tables matching prefix.
+			
 			pb_backupbuddy::status( 'details', 'Determining database tables with prefix `' . $wpdb->prefix . '`.' );
 			$prefix_sql = str_replace( '_', '\_', $wpdb->prefix );
 			$result = mysql_query( "SHOW TABLES LIKE '{$prefix_sql}%'", $wpdb->dbh );
@@ -1896,24 +1914,24 @@ class pb_backupbuddy_backup {
 				array_push( $tables, $row[0] );
 			}
 			mysql_free_result( $result ); // Free memory.
-		} else {
+			
+		} else { // unknown dump mode.
+			
 			pb_backupbuddy::status( 'error', 'Error #454545: Unknown database dump mode.' ); // Should never see this.
+			
 		}
-		pb_backupbuddy::status( 'details', 'Database tables (' . count( $tables ) . ' tables): `' . implode( ',', $tables ) . '`' );
-		
+		pb_backupbuddy::status( 'details', 'Base database tables based on settings (' . count( $tables ) . ' tables): `' . implode( ',', $tables ) . '`' );
 		
 		// Add additional tables.
 		$tables = array_merge( $tables, $additional_includes );
 		$tables = array_filter( $tables ); // Trim any phantom tables that the above line may have introduced.
 		pb_backupbuddy::status( 'details', 'Database tables after addition (' . count( $tables ) . ' tables): `' . implode( ',', $tables ) . '`' );
 		
-		
 		// Remove excluded tables.
 		$tables = array_diff( $tables, $additional_excludes );
 		pb_backupbuddy::status( 'details', 'Database tables after exclusion (' . count( $tables ) . ' tables): `' . implode( ',', $tables ) . '`' );
 		
-		
-		return $tables;
+		return array_values( $tables ); // Clean up indexing & return.
 		
 	} // End _calculate_tables().
 	

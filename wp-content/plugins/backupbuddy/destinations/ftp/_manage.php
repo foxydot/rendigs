@@ -263,7 +263,7 @@ echo '<h3>', __('Viewing', 'it-l10n-backupbuddy' ), ' `' . $destination['title']
 							<?php echo pb_backupbuddy::$format->file_size( $backup['size'] ); ?>
 						</td>
 						<td>
-							<?php echo '<a href="' . pb_backupbuddy::page_url() . '&custom=' . $_GET['custom'] . '&destination_id=' . $_GET['destination_id'] . '&#38;copy_file=' . $backup . '">Copy to local</a>'; ?>
+							<?php echo '<a href="' . pb_backupbuddy::page_url() . '&custom=' . $_GET['custom'] . '&destination_id=' . $_GET['destination_id'] . '&#38;copy_file=' . $backup['file'] . '">Copy to local</a>'; ?>
 						</td>
 					</tr>
 					<?php

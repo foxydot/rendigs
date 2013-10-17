@@ -167,7 +167,7 @@
 	Remote destination sends now stored within individual fileoptions files prefixed with "send-" to prevent race conditions when multiple destination sends active simultaneously (ie due to chunking).
 	Misc minor destination bug fixes.
 	Misc improvement to logging for troubleshooting remote sends.
-	Updated Sucuri plan URL.
+	Updated Malware scan plan URL.
 	Many misc destination improvements behind the scenes.
 	ImportBuddy option to ignore existing WordPress tables now only warns rather than blocking proceeding.
 	S3 instantiation now casting SSL parameter to bool to insure proper passing.
@@ -246,5 +246,57 @@
 4.1.1.5 - 2013-09-14 - Dustin Bolton
 	S3 SDK rolled back to v1.5.14 due to issues introduced by Amazon's newer version.
 	Fixed ImportBuddy error on Step 3.
-	
+4.1.1.6 - 2013-10-02 - Packaging Bot (lib/updater)
+	Big rewrite to the updater in order to make the code more flexible. This improves compatibility with plugins that allow for remote updating of plugins and themes.
+	The updater now supports providing changelog details for plugins and themes that have updates available. These details can be viewed by clicking the "View version **** details" link for the appropriate plugin or theme.
+4.1.1.7 - 2013-10-02 - Dustin Bolton
+	ENHANCEMENT:
+		ImportBuddy: Now scans for php.ini file and warns of its existance and potential issues if found, particularly if importing to a new server.
+	FEATURE:
+		ImportBuddy: Ability to view MD5 file hash for backup files added.
+	ImportBuddy: Database test AJAX no longer passes success via HTML comment to prevent problems with comments being stripped server-side. eg by Cloudflare.
+	ImportBuddy: Mass database text replacement tool now available in ImportBuddy via the top menu bar to making replacements on existing WordPress installations.
+	Missing Backup page backup listing "View Hash" option re-added.
+	ENHANCEMENT:
+		Simplified backup listing using backup date & time as primary listing criteria.
+	Recent Backups page added Backup Type.
+	S3 SDK 1.6.2 re-deployed.
+	Updated S3 init and manage files to use modified method of getting bucket region to fix compatibility with some PHP 5.4 versions.s - Jeremy Trask
+	ENHANCEMENT:
+		Backup details now displays start and finish times of the overall backup process.
+	ENHANCEMENT:
+		Added File Size to Recent Backups listing.
+	Updated zbzipexec to use zip -h rather than zip -v for determining version for wider server support. - Jeremy Trask
+	No longer displaying S3 multipart upload cleanup filename & details by default. - Jeremy Trask
+	Fixed issue where file/directory excluder list did not show files for directories containing less than 3 files/directories within.
+	FEATURE:
+		New database table backup option "None" to not backup any database tables by default. A warning will be displayed in all logs to use with caution.
+	Fixed array to string conversion error on FTP management page.
+	Fixed invalid argument for foreach during integrity check when tests array is missing/invalid.
+	FEATURE:
+		Amazon S3 destination now supports setting the region for any new buckets that are created by BackupBuddy.
+	Malware scan affiliate links removed.
+4.1.1.12 - 2013-10-03 - Dustin Bolton
+	Fix for `Undefined index: ithemes_updater_path & associated error under some circumstances.`.
+	Server Information page link to force update to latest minor version removed until feature available in updater.
+	Addendum: Re-added Server Information page link to force update to latest minor version.
+4.1.1.13 - 2013-10-04 - Dustin Bolton for Updater
+	Enhancement: When releases with four version digits are released (such as 2.1.0.3), by default, the updater will not offer to update if just this last digit is updated. For instance, it will not automatically offer to update 2.1.0.1 to 2.1.0.3; rather, an automatic upgrade will become available when version 2.1.1 or greater is released. If you wish to force an update to these versions, you can add ithemes-updater-force-minor-update=1 to an admin page request (such as http://domain.com/wp-admin/index.php?ithemes-updater-force-minor-update=1) in order to force the updater make these releases available for an hour. If the update is not performed within the hour, the updater reverts back to default behavior.
+	Bug Fix: Corrected source of the following error when updating: Download failed. SSL certificate problem, verify that the CA cert is OK. Details: error:14090086:SSL routines:SSL3_GET_SERVER_CERTIFICATE:certificate verify failed
+	Bug Fix: Corrected source of the following warning: Warning: require_once(/api.php) [function.require-once]: failed to open stream: No such file or directory
+4.1.1.14 - 2013-10-07 - Packaging Bot (lib/updater)
+	Bug Fix: Corrected another source of the following warning which occur immediate after updating the plugin or theme: Warning: require_once(/api.php) [function.require-once]: failed to open stream: No such file or directory
+4.1.2.0 - 2013-10-07 - Dustin Bolton
+	S3 Remote Destination: Ability to copy remote S3 file back to server via management page.
+	S3 Remote Destination: Ability to get a download link to download remotely stored S3 file to your computer. Links valid for 1 hour.
+	Major version release of updates from 4.1.1.0 through 4.1.1.14.
+4.1.2.1 - 2013-10-08 - Dustin Bolton
+	Fixed multiple S3 copy to local issues.  Moved bucket region checking/setting to separate function to unify this code into one area so it may be used across multiple functions.
+	Fixed undefined index warning on Backup Details view when fileoptions unavailable.
+	Fixed Javascript warning in Chrome on Remote Destinations page.
+	BETA FEATURE:
+		FTP Destination path browser added. Browse your FTP server directories to help in picking FTP remote path.
+4.1.2.2 - 2013-10-14 - Dustin Bolton
+	Fixed cron hook filter not properly accepting existing incoming cron periods for plugins that run before BackupBuddy.
+	S3 destination: Translate returned bucket region of 'EU' to 'eu-west-1'.
 	

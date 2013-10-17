@@ -27,7 +27,7 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 		'max_chunk_size'			=>		'0',		// Maximum chunk size in MB. Anything larger will be chunked up into pieces this size (or less for last piece). This allows larger files to be sent than would otherwise be possible. Minimum of 5mb allowed by S3.
 		'archive_limit'				=>		'0',		// Maximum number of backups for this site in this directory for this account. No limit if zero 0.
 		'manage_all_files'			=>		'1',		// Allow user to manage all files in S3? If enabled then user can view all files after entering their password. If disabled the link to view all is hidden.
-		'region'					=>		's3.amazonaws.com',	// region server to create buckets on.
+		'region'					=>		's3.amazonaws.com',	// Endpoint to create buckets in. Although named region this is technically the ENDPOINT.
 		
 		// Do not store these for destination settings. Only used to pass to functions in this file.
 		'_multipart_id'				=>		'',			// Instance var. Internal use only for continuing a chunked upload.
@@ -53,6 +53,7 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 		
 		global $pb_backupbuddy_destination_errors;
 		$backup_type_dir = '';
+		$region = '';
 		
 		$settings['bucket'] = strtolower( $settings['bucket'] ); // Buckets must be lowercase.
 		
@@ -90,6 +91,10 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 			}
 			pb_backupbuddy::status( 'details', 'S3 instance created.' );
 			
+			// Verify bucket exists; create if not. Also set region to the region bucket exists in.
+			if ( false === self::_prepareBucketAndRegion( $s3, $settings ) ) {
+				return false;
+			}
 			
 			$this_part_number = $settings['_multipart_partnumber'] + 1;
 			pb_backupbuddy::status( 'details', 'S3 beginning upload of part `' . $this_part_number . '` of `' . count( $settings['_multipart_counts'] ) . '` parts of file `' . $settings['_multipart_file'] . '` to remote location `' . $settings['_multipart_remotefile'] . '` with multipart ID `' . $settings['_multipart_id'] . '`.' );
@@ -243,43 +248,10 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 			}
 			pb_backupbuddy::status( 'details', 'S3 instance created.' );
 			
-			// Get bucket region to determine if a bucket already exists.
-			$createBucket = false;
-			pb_backupbuddy::status( 'details', 'Determining bucket region.' );
-			$response = $s3->get_bucket_region(
-				$settings['bucket']
-			);
-			if(!$response->isOK()) { // Send FAILED.
-				$createBucket = true;
-				pb_backupbuddy::status( 'details', 'Bucket region could not be determined; bucket may not exist yet. Message details: `' . (string)$response->body->Message . '`.' );
-			} else { // Send SUCCESS.
-				pb_backupbuddy::status( 'details', 'Bucket appears to exist.' );
+			// Verify bucket exists; create if not. Also set region to the region bucket exists in.
+			if ( false === self::_prepareBucketAndRegion( $s3, $settings ) ) {
+				return false;
 			}
-			
-			// Create bucket if it does not exist.
-			if ( true === $createBucket ) {
-				try {
-					$response = $s3->create_bucket(
-						$settings['bucket'],
-						$settings['region'],
-						AmazonS3::ACL_PRIVATE
-					);
-				} catch( Exception $e ) {
-					$message = 'Exception while trying to create bucket. Details: `' . $e->getMessage() . '`.';
-					pb_backupbuddy::status( 'error', $message );
-					echo $message;
-					return false;
-				}
-				if ( ! $response->isOK() ) { // Bucket creation FAILED.
-					$message = 'Bucket could not be created. Message details: `' . (string)$response->body->Message . '`.';
-					pb_backupbuddy::status( 'details', $message );
-					echo $message;
-					return false;
-				} else { // Send SUCCESS.
-					pb_backupbuddy::status( 'details', 'Bucket creation success.' );
-				}
-			}
-			
 			
 			// Handle chunking of file into a multipart upload (if applicable).
 			$file_size = filesize( $file );
@@ -349,7 +321,7 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 			
 			
 			// SEND file.
-			pb_backupbuddy::status( 'details', 'About to put (upload) object to S3.' );
+			pb_backupbuddy::status( 'details', 'About to put (upload) object to S3: ' . $remote_path . $backup_type_dir . basename( $file ) );
 			$response = $s3->create_object(
 				$settings['bucket'],
 				$remote_path . $backup_type_dir . basename( $file ),
@@ -364,7 +336,7 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 			// Validate response. On failure notify S3 API that things went wrong.
 			if(!$response->isOK()) { // Send FAILED.
 				
-				$this_error = ' Could not upload to S3, attempt aborted.';
+				$this_error = 'Failure uploading file to S3 storage. Failure details: `' .print_r( $response, true ) . '`';
 				$pb_backupbuddy_destination_errors[] = $this_error;
 				pb_backupbuddy::status( 'error', $this_error );
 				return false;
@@ -433,6 +405,10 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 			$s3_manage = new AmazonS3( $manage_data );
 			if ( $disable_ssl === true ) {
 				@$s3_manage->disable_ssl(true);
+			}
+			
+			if ( false === self::_prepareBucketAndRegion( $s3_manage, $settings ) ) {
+				return false;
 			}
 			
 			// Get file listing.
@@ -535,6 +511,11 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 			@$s3_manage->disable_ssl(true);
 		}
 		
+		// Verify bucket exists; create if not. Also set region to the region bucket exists in.
+		if ( false === self::_prepareBucketAndRegion( $s3_manage, $settings ) ) {
+			return false;
+		}
+			
 		// Delete sent file.
 		$delete_response = 'Success.';
 		$delete_response = $s3_manage->delete_object( $credentials['bucket'], $remote_path . 'remote-send-test.php' );
@@ -574,6 +555,50 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 		return true;
 		
 	} // End test().
+	
+	
+	
+	/* download_file()
+	 *
+	 * Download remote file to local system.
+	 *
+	 * @param	array 		$settings				Destination settings.
+	 * @param	string		$remoteFile				Remote filename.
+	 * @param	string		$localDestinationFile	Full path & filename of destination file.
+	 *
+	 */
+	public static function download_file( $settings, $remoteFile, $localDestinationFile ) {
+		
+		require_once( dirname( dirname( __FILE__ ) ) . '/_s3lib/aws-sdk/sdk.class.php' );
+		
+		pb_backupbuddy::status( 'details', 'Downloading remote file `' . $remoteFile . '` from S3 to local file `' . $localDestinationFile . '`.' );
+		$manage_data = pb_backupbuddy_destination_s3::get_credentials( $settings );
+		
+		// Connect to S3.
+		$s3 = new AmazonS3( $manage_data );    // the key, secret, token
+		if ( $settings['ssl'] == '0' ) {
+			@$s3->disable_ssl(true);
+		}
+		
+		// Verify bucket exists; create if not. Also set region to the region bucket exists in.
+		if ( false === self::_prepareBucketAndRegion( $s3, $settings ) ) {
+			return false;
+		}
+		
+		$manage_data = pb_backupbuddy_destination_s3::get_credentials( $settings );
+		$remotePath = self::get_remote_path( $settings['directory'] ); // includes trailing slash.
+		
+		$get_response = $s3->get_object( $manage_data['bucket'], $remotePath . $remoteFile, array( 'fileDownload' => $localDestinationFile ) );
+		
+		if ( ! $get_response->isOK() ) {
+			pb_backupbuddy::status( 'error', 'Error #958483. Unable to retrieve S3 object `' . $remoteFile . '`.' );
+			return false;
+		} else {
+			pb_backupbuddy::status( 'details', 'Success copying remote S3 object `' . $remoteFile . '` to local.' );
+			return true;
+		}
+		
+	} // end download_file().
 	
 	
 	
@@ -617,6 +642,55 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 	} // End get_remote_path().
 	
 	
+	
+	/*	get_bucket_region()
+	 *	
+	 *	Gets the region in which the specified Amazon S3 bucket is located.
+	 *	This is a fixed up version of the Amazon SDK 1.6.2 method in s3.class.php
+	 *	which is broken under PHP 5.4 because of a broken to_string() function
+	 *	that returns a null value. This replacement avoids a direct string cast of the
+	 *	response body and does an array cast instead and that gives us the correct
+	 *	string value to put back into the response body.
+	 *
+	 *	The AmazonS3 object passed in must have already had credentials supplied
+	 *	
+	 *	@param	object	$s3		(Required) The instantiated AmazonS3 object to use
+	 *	@param	string	$bucket	(Required) The name of the bucket to use.
+	 *	@param	array	$opt	(Optional) An associative array of parameters
+	 *
+	 *	@return	CFResponse		A <CFResponse> object containing a parsed HTTP response.
+	 */
+	public static function get_bucket_region($s3, $bucket, $opt = null)
+	{
+		// Add this to our request
+		if (!$opt) $opt = array();
+		$opt['verb'] = 'GET';
+		$opt['sub_resource'] = 'location';
+		
+		// Authenticate to S3
+		$response = $s3->authenticate($bucket, $opt);
+		
+		if ($response->isOK())
+		{
+			// Handle body - this _should_ create an array with elements [@attributes] which is iself
+			// an array of attributes and [0] which should in this case be the "value" of the element or
+			// may not be present if the element is empty (has no value)
+			$response_body = (array) $response->body;
+			
+			// For US Standard region body would have empty value so no element [0] - but [@attributes]
+			// element always present so array is not empty so that is not a valid test for no value
+			( isset( $response_body[ 0 ] ) ) ? $response->body = $response_body[ 0 ] : $response->body = '' ;
+			
+			// Need to translate a returned region of EU into eu-west-1 because EU is not a region but
+			// a location constraint but it seems that in some cases this is returned as a region value.
+			( 'EU' === $response->body )? $response->body = 'eu-west-1' : false ;
+		}
+		
+		return $response;
+	}
+	
+	
+	
 	/* multipart_cleanup()
 	 *
 	 * S3 does NOT automatically clean up failred or expired multipart chunk files so clean up for them.
@@ -641,6 +715,12 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 		}
 		pb_backupbuddy::status( 'details', 'S3 instance created. Listing in progress multipart uploads ...' );
 		
+		// Verify bucket exists; create if not. Also set region to the region bucket exists in.
+		if ( false === self::_prepareBucketAndRegion( $s3, $settings, $createBucket = false ) ) {
+			return false;
+		}
+		
+		// Get the in progress multipart uploads
 		$response = $s3->list_multipart_uploads(
 			$settings['bucket'],
 			array(
@@ -686,6 +766,92 @@ class pb_backupbuddy_destination_s3 { // Change class name end to match destinat
 		return true;
 		
 	} // end multipart_cleanup().
+	
+	
+	
+	/* _prepareBucketAndRegion()
+	 *
+	 * Validates bucket existance, creating if needed.  Sets region for non-US usage.
+	 *
+	 * @param	object		&$s3			S3 object currently in use. Pased by reference so region can be set.
+	 * @param	array 		$settings		Destination settings array.
+	 * @param	bool		$createBucket	Whether or not to create bucket if it does not currently exist.
+	 * @return	bool						true on all okay, false otherwise.
+	 *
+	 */
+	private static function _prepareBucketAndRegion( &$s3, $settings, $createBucket = true ) {
+		
+		// Get bucket region to determine if a bucket already exists.
+		// Assume we will not have to try and create a bucket
+		$maybe_create_bucket = false;
+		pb_backupbuddy::status( 'details', 'Getting region for bucket: `' . $settings['bucket'] . "`." );
+		$response = self::get_bucket_region( $s3, $settings['bucket'] );
+		if( !$response->isOK() ) {
+			
+			$this_error = 'Bucket region could not be determined; bucket may not exist yet. Message details: `' . (string)$response->body->Message . '`.';
+			pb_backupbuddy::status( 'details' , $this_error );
+			
+			// Assume we have to create the bucket
+			$region = '';
+			$maybe_create_bucket = true;
+			
+		} else {
+			
+			pb_backupbuddy::status( 'details', 'Bucket exists in region: ' .  (($response->body ==="") ? 'us-east-1' : $response->body ) );
+			$region = $response->body; // Must leave as is for actual operational usage
+			
+		}
+
+		// Set region context for later operations - note that if we are going to try and create
+		// a bucket the region will have been set to empty so we'll get the bucket created in the
+		// user-specified region.
+		if ( '' == $region ) { // Bucket has no current region (ie it does not exist). Set user-specified region for new buckets.
+			$s3->set_region( $settings['region'] );
+		} else {
+			$s3->set_region( 's3-' . $region . '.amazonaws.com' );
+		}
+		
+		// Create bucket if it does not exist AND parameter pased to this function to create the bucket set to true.
+		// Region/endpoint used based on user-defined setting.
+		if ( ( true === $maybe_create_bucket ) && ( true === $createBucket ) ) {
+		
+			pb_backupbuddy::status( 'details', 'Attempting to create bucket `' . $settings['bucket'] . '` at region endpoint `' . $settings['region'] . '`.' );
+			try {
+				$response = $s3->create_bucket(
+					$settings['bucket'],
+					$settings['region'],
+					AmazonS3::ACL_PRIVATE
+				);
+			} catch( Exception $e ) {
+				$message = 'Exception while trying to create bucket `' . $settings['bucket'] . '` at region endpoint `' . $settings['region'] . '`. Details: `' . $e->getMessage() . '`.';
+				pb_backupbuddy::status( 'error', $message );
+				echo $message;
+				return false;
+			}
+			
+			if ( ! $response->isOK() ) { // Bucket creation FAILED.
+			
+				$message = 'Failure creating bucket `' . $settings['bucket'] . '` at region endpoint `' . $settings['region'] . '`. Message details: `' . (string)$response->body->Message . '`.';
+				pb_backupbuddy::status( 'details', $message );
+				echo $message;
+				return false;
+				
+			} else { // Send SUCCESS.
+				
+				if ( is_object( $response->body ) ) {
+					$messageDetails = (string)$response->body->Message;
+				} else {
+					$messageDetails = '';
+				}
+				pb_backupbuddy::status( 'details', 'Success creating bucket `' . $settings['bucket'] . '` at region endpoint `' . $settings['region'] . '`. Message details: `' . $messageDetails . '`.' );
+				unset( $messageDetails );
+				
+			}
+		} // end if create bucket.
+		
+		return true;
+		
+	} // end _prepareBucketAndRegion().
 	
 	
 } // End class.

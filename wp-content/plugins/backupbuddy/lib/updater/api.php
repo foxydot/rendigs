@@ -3,11 +3,16 @@
 /*
 Provides an easy to use interface for communicating with the iThemes updater server.
 Written by Chris Jean for iThemes.com
-Version 1.0.0
+Version 1.1.0
 
 Version History
 	1.0.0 - 2013-04-11 - Chris Jean
 		Release ready
+	1.0.1 - 2013-09-19 - Chris Jean
+		Updated requires to not use dirname().
+		Updated ithemes-updater-object to ithemes-updater-settings.
+	1.1.0 - 2013-10-02 - Chris Jean
+		Added get_package_changelog().
 */
 
 
@@ -29,13 +34,118 @@ class Ithemes_Updater_API {
 		return self::get_response( 'get_package_details', compact( 'packages' ), true );
 	}
 	
+	public static function get_package_changelog( $package, $cur_version = false ) {
+		$response = wp_remote_get( 'http://api.ithemes.com/product/changelog?package=' . urlencode( $package ) );
+		
+		if ( is_wp_error( $response ) )
+			return sprintf( __( '<p>Unable to get changelog data at this time.</p><p>Error <code>%1$s</code>: %2$s</p>', 'it-l10n-backupbuddy' ), $response->get_error_code(), $response->get_error_message() );
+		
+		if ( ! is_array( $response ) || ! isset( $response['body'] ) )
+			return __( '<p>Unable to get changelog data at this time.</p><p>Error: Unrecognized response from <code>wp_remote_get</code>.</p>', 'it-l10n-backupbuddy' );
+		
+		if ( isset( $response['response']['code'] ) && ( '200' != $response['response']['code'] ) )
+			return sprintf( __( '<p>Unable to get changelog data at this time.</p><p>Error code <code>%1$s</code>: %2$s</p>', 'it-l10n-backupbuddy' ), $response['response']['code'], $response['response']['message'] );
+		
+		
+		$body = $response['body'];
+		
+		if ( '{' === substr( $body, 0, 1 ) ) {
+			$error = json_decode( $body, true );
+			
+			if ( is_array( $error ) && isset( $error['error'] ) && is_array( $error['error'] ) && isset( $error['error']['type'] ) && isset( $error['error']['message'] ) )
+				return sprintf( __( '<p>Unable to get changelog data at this time.</p><p>Error <code>%1$s</code>: %2$s</p>', 'it-l10n-backupbuddy' ), $error['error']['type'], $error['error']['message'] );
+			else
+				return __( '<p>Unable to get changelog data at this time.</p><p>Error: Unrecognized response from iThemes API server.</p>', 'it-l10n-backupbuddy' );
+		}
+		
+		
+		$versions = array();
+		$version = false;
+		$depth = 0;
+		
+		$lines = preg_split( '/[\n\r]+/', $body );
+		
+		foreach ( $lines as $line ) {
+			if ( preg_match( '/^\d/', $line ) ) {
+				if ( ! empty( $version ) && ( $depth > 0 ) ) {
+					while ( $depth-- > 0 )
+						$versions[$version] .= "</ul>\n";
+				}
+				
+				$depth = 0;
+				
+				$parts = preg_split( '/\s+-\s+/', $line );
+				$version = $parts[0];
+				
+				if ( version_compare( $version, $cur_version, '<=' ) ) {
+					$version = '';
+					continue;
+				}
+				
+				$versions[$version] = '';
+				
+				continue;
+			}
+			else if ( preg_match( '/^\S/', $line ) ) {
+				$version = '';
+				continue;
+			}
+			else if ( empty( $version ) ) {
+				continue;
+			}
+			
+			$line = str_replace( '    ', "\t", $line );
+			$line = str_replace( "\t", '', $line, $count );
+			$line = preg_replace( '/^\s+/', '', $line );
+			
+			if ( empty( $line ) )
+				continue;
+			
+			$details = '';
+			
+			if ( $count > $depth ) {
+				$details .= "<ul>\n";
+				$depth++;
+			}
+			else if ( $count < $depth ) {
+				$details .= "</ul>\n";
+				$depth--;
+			}
+			
+			$details .= "<li>$line</li>\n";
+			
+			
+			$versions[$version] .= $details;
+		}
+		
+		if ( ! empty( $version ) && ( $depth > 0 ) ) {
+			while ( $depth-- > 0 )
+				$versions[$version] .= "</ul>\n";
+		}
+		
+		
+		uksort( $versions, 'version_compare' );
+		$versions = array_reverse( $versions );
+		
+		
+		$changelog = '';
+		
+		foreach ( $versions as $version => $details )
+			$changelog .= "<h4>$version</h4>\n$details\n";
+		
+		$changelog = preg_replace( '/\s+$/', '', $changelog );
+		
+		
+		return $changelog;
+	}
+	
 	public static function get_response( $action, $args, $cache = false ) {
 		if ( ! isset( $GLOBALS[self::$clear_cache_index] ) )
 			$GLOBALS[self::$clear_cache_index] = false;
 		
 		
-		require_once( dirname( __FILE__ ) . '/server.php' );
-		require_once( dirname( __FILE__ ) . '/updates.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/server.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/updates.php' );
 		
 		
 		if ( isset( $args['packages'] ) )
@@ -48,7 +158,7 @@ class Ithemes_Updater_API {
 		
 		if ( false !== $cache ) {
 			$cache_var = "ithemes-updater-$action";
-			$cache_length = $GLOBALS['ithemes-updater-object']->get_option( 'server-cache' );
+			$cache_length = $GLOBALS['ithemes-updater-settings']->get_option( 'server-cache' );
 			$md5 = substr( md5( serialize( $args ) ), 0, 5 );
 			$time = time();
 			
@@ -100,8 +210,8 @@ class Ithemes_Updater_API {
 	}
 	
 	private static function get_request_package_details( $desired_packages = array() ) {
-		require_once( dirname( __FILE__ ) . '/packages.php' );
-		require_once( dirname( __FILE__ ) . '/keys.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/packages.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/keys.php' );
 		
 		
 		$all_packages = Ithemes_Updater_Packages::get_local_details();

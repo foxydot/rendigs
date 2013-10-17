@@ -3,11 +3,14 @@
 /*
 Code to render and manage the settings page for the updater system.
 Written by Chris Jean for iThemes.com
-Version 1.0.0
+Version 1.0.1
 
 Version History
 	1.0.0 - 2013-04-11 - Chris Jean
 		Release ready
+	1.0.1 - 2013-09-19 - Chris Jean
+		Updated requires to not use dirname().
+		Updated ithemes-updater-object to ithemes-updater-settings.
 */
 
 
@@ -23,12 +26,12 @@ class Ithemes_Updater_Settings_Page {
 	
 	
 	public function __construct() {
-		require_once( dirname( __FILE__ ) . '/functions.php' );
-		require_once( dirname( __FILE__ ) . '/api.php' );
-		require_once( dirname( __FILE__ ) . '/keys.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/functions.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/api.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/keys.php' );
 		
 		
-		$this->path_url = Ithemes_Updater_Functions::get_url( dirname( __FILE__ ) );
+		$this->path_url = Ithemes_Updater_Functions::get_url( $GLOBALS['ithemes_updater_path'] );
 		
 		list( $this->self_url ) = explode( '?', $_SERVER['REQUEST_URI'] );
 		$this->self_url .= '?page=' . $this->page_name;
@@ -113,7 +116,7 @@ class Ithemes_Updater_Settings_Page {
 		}
 		
 		
-		$GLOBALS['ithemes-updater-object']->update_options( $settings );
+		$GLOBALS['ithemes-updater-settings']->update_options( $settings );
 		
 		$this->messages[] = __( 'Settings saved', 'it-l10n-backupbuddy' );
 	}
@@ -243,7 +246,7 @@ class Ithemes_Updater_Settings_Page {
 	}
 	
 	public function list_packages( $action, $post_data ) {
-		require_once( dirname( __FILE__ ) . '/packages.php' );
+		require_once( $GLOBALS['ithemes_updater_path'] . '/packages.php' );
 		$details = Ithemes_Updater_Packages::get_full_details();
 		$packages = $details['packages'];
 		
@@ -302,7 +305,7 @@ class Ithemes_Updater_Settings_Page {
 			return;
 		
 		
-		$show_on_sites = $GLOBALS['ithemes-updater-object']->get_option( 'show_on_sites' );
+		$show_on_sites = $GLOBALS['ithemes-updater-settings']->get_option( 'show_on_sites' );
 		
 ?>
 	<form id="posts-filter" enctype="multipart/form-data" method="post" action="<?php echo $this->self_url; ?>">

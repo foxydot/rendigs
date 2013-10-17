@@ -64,7 +64,6 @@ $settings_form->add_setting( array(
 	'rules'		=>		'required|string[1-45]',
 ) );
 
-
 $settings_form->add_setting( array(
 	'type'		=>		'text',
 	'name'		=>		'bucket',
@@ -73,6 +72,26 @@ $settings_form->add_setting( array(
 	'after'		=>		'',
 	'css'		=>		'width: 255px;',
 	'rules'		=>		'required|string[1-45]',
+) );
+
+
+$settings_form->add_setting( array(
+	'type'		=>		'select',
+	'name'		=>		'region',
+	'title'		=>		__( 'New bucket region', 'it-l10n-backupbuddy' ),
+	'options'	=>		array(
+								's3.amazonaws.com'					=>		'US Standard [default]',
+								's3-us-west-2.amazonaws.com'		=>		'US West (Oregon)',
+								's3-us-west-1.amazonaws.com'		=>		'US West (Northern California)',
+								's3-eu-west-1.amazonaws.com'		=>		'EU (Ireland)',
+								's3-ap-southeast-1.amazonaws.com'	=>		'Asia Pacific (Singapore)',
+								's3-ap-southeast-2.amazonaws.com'	=>		'Asia Pacific (Sydney)',
+								's3-ap-northeast-1.amazonaws.com'	=>		'Asia Pacific (Tokyo)',
+								's3-sa-east-1.amazonaws.com'		=>		'South America (Sao Paulo)',
+							),
+	'tip'		=>		__('[Default: US Standard] - Determines the region where NEW buckets will be created (if any). If your bucket already exists then it will NOT be modified.', 'it-l10n-backupbuddy' ),
+	'rules'		=>		'required',
+	'after'		=>		' <span class="description">Applies to <b>new</b> buckets only.</span>',
 ) );
 
 $settings_form->add_setting( array(

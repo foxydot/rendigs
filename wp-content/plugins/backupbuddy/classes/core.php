@@ -919,21 +919,9 @@ class pb_backupbuddy_core {
 					// Calculate time ago.
 					$time_ago = '';
 					if ( isset( $backup_options->options['integrity'] ) && ( isset( $backup_options->options['integrity']['modified'] ) ) ) {
-						$time_ago = '<span class="description">' . pb_backupbuddy::$format->time_ago( $backup_options->options['integrity']['modified'] ) . ' ago</span>';
+						$time_ago = pb_backupbuddy::$format->time_ago( $backup_options->options['integrity']['modified'] ) . ' ago';
 					}
 					
-					// Calculate main row string.
-					if ( $type == 'default' ) { // Default backup listing.
-						$main_string = '<a href="' . pb_backupbuddy::ajax_url( 'download_archive' ) . '&backupbuddy_backup=' . basename( $file ) . '">' . basename( $file ) . '</a>';
-					} elseif ( $type == 'migrate' ) { // Migration backup listing.
-						$main_string = '<a class="pb_backupbuddy_hoveraction_migrate" rel="' . basename( $file ) . '" href="' . pb_backupbuddy::page_url() . '&migrate=' . basename( $file ) . '&value=' . basename( $file ) . '">' . basename( $file ) . '</a>';
-					} else {
-						$main_string = '{Unknown type.}';
-					}
-					// Add comment to main row string if applicable.
-					if ( isset( $backup_options->options['integrity']['comment'] ) && ( $backup_options->options['integrity']['comment'] !== false ) && ( $backup_options->options['integrity']['comment'] !== '' ) ) {
-						$main_string .= '<br><span class="description">Note: <span class="pb_backupbuddy_notetext">' . htmlentities( $backup_options->options['integrity']['comment'] ) . '</span></span>';
-					}
 					
 					$detected_type = pb_backupbuddy::$format->prettify( $backup_options->options['integrity']['detected_type'], $pretty_type );
 					if ( $detected_type == '' ) {
@@ -945,13 +933,28 @@ class pb_backupbuddy_core {
 					}
 					
 					$file_size = pb_backupbuddy::$format->file_size( $backup_options->options['integrity']['size'] );
-					$modified = pb_backupbuddy::$format->date( pb_backupbuddy::$format->localize_time( $backup_options->options['integrity']['modified'] ) ) . '<br>' . $time_ago;
+					$modified = pb_backupbuddy::$format->date( pb_backupbuddy::$format->localize_time( $backup_options->options['integrity']['modified'] ), 'l, F j, Y - g:i:s a' );
 					$modified_time = $backup_options->options['integrity']['modified'];
 					if ( isset( $backup_options->options['integrity']['status'] ) ) { // Pre-v4.0.
 						$status = $backup_options->options['integrity']['status'];
 					} else { // v4.0+
 						$status = $backup_options->options['integrity']['is_ok'];
 					}
+					
+					
+					// Calculate main row string.
+					if ( $type == 'default' ) { // Default backup listing.
+						$main_string = '<a href="' . pb_backupbuddy::ajax_url( 'download_archive' ) . '&backupbuddy_backup=' . basename( $file ) . '" class="backupbuddyFileTitle" title="' . basename( $file ) . '">' . $modified . ' (' . $time_ago . ')</a>';
+					} elseif ( $type == 'migrate' ) { // Migration backup listing.
+						$main_string = '<a class="pb_backupbuddy_hoveraction_migrate backupbuddyFileTitle" rel="' . basename( $file ) . '" href="' . pb_backupbuddy::page_url() . '&migrate=' . basename( $file ) . '&value=' . basename( $file ) . '" title="' . basename( $file ) . '">' . $modified . ' (' . $time_ago . ')</a>';
+					} else {
+						$main_string = '{Unknown type.}';
+					}
+					// Add comment to main row string if applicable.
+					if ( isset( $backup_options->options['integrity']['comment'] ) && ( $backup_options->options['integrity']['comment'] !== false ) && ( $backup_options->options['integrity']['comment'] !== '' ) ) {
+						$main_string .= '<br><span class="description">Note: <span class="pb_backupbuddy_notetext">' . htmlentities( $backup_options->options['integrity']['comment'] ) . '</span></span>';
+					}
+					
 					
 					$integrity = pb_backupbuddy::$format->prettify( $status, $pretty_status ) . ' ';
 					if ( isset( $backup_options->options['integrity']['scan_notes'] ) && count( (array)$backup_options->options['integrity']['scan_notes'] ) > 0 ) {
@@ -966,10 +969,9 @@ class pb_backupbuddy_core {
 				
 				
 				$backups[basename( $file )] = array(
-					array( basename( $file ), $main_string ),
+					array( basename( $file ), $main_string . '<br><span class="description">' . basename( $file ) . '</span>' ),
 					$detected_type,
 					$file_size,
-					$modified,
 					$integrity,
 				);
 				
@@ -1849,7 +1851,7 @@ class pb_backupbuddy_core {
 		// Cleanup remote S3 multipart chunking.
 		foreach( pb_backupbuddy::$options['remote_destinations'] as $destination ) {
 			if ( $destination['type'] != 's3' ) { continue; }
-			if ( $destination['max_chunk_size'] == '0' ) { continue; }
+			if ( isset( $destination['max_chunk_size'] ) && ( $destination['max_chunk_size'] == '0' ) ) { continue; }
 			
 			pb_backupbuddy::status( 'details', 'Found S3 Multipart Chunking Destinations to cleanup.' );
 			require_once( pb_backupbuddy::plugin_path() . '/destinations/bootstrap.php' );

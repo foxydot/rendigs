@@ -791,7 +791,7 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 			unset( $file );
 			
 			
-			if( count( $files ) > 2 ) { /* The 2 accounts for . and .. */
+			if( count( $files ) > 0 ) { // Files found.
 				echo '<ul class="jqueryFileTree" style="display: none;">';
 				foreach( $files as $file ) {
 					if( file_exists( str_replace( '//', '/', $root . $file ) ) ) {
@@ -1213,6 +1213,20 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 		
 		$integrity = $backup_options->options['integrity'];
 		
+		echo '<p><b>' . __( 'Backup File', 'it-l10n-backupbuddy' ) . '</b>: ' . $integrity['file'] . '</p>';
+		
+		$start_time = 'Unknown';
+		$finish_time = 'Unknown';
+		if ( isset( $backup_options->options['start_time'] ) ) {
+			$start_time = pb_backupbuddy::$format->date( pb_backupbuddy::$format->localize_time( $backup_options->options['start_time'] ) ) . ' <span class="description">(' . pb_backupbuddy::$format->time_ago( $backup_options->options['finish_time'] ) . ' ago)</span>';
+			if ( $backup_options->options['finish_time'] > 0 ) {
+				$finish_time = pb_backupbuddy::$format->date( pb_backupbuddy::$format->localize_time( $backup_options->options['finish_time'] ) ) . ' <span class="description">(' . pb_backupbuddy::$format->time_ago( $backup_options->options['finish_time'] ) . ' ago)</span>';
+			} else { // unfinished.
+				$finish_time = '<i>Unfinished</i>';
+			}
+		}
+		
+		
 		//***** BEGIN TESTS AND RESULTS.
 		if ( isset( $integrity['status_details'] ) ) { // $integrity['status_details'] is NOT array (old, pre-3.1.9).
 			echo '<h3>Integrity Technical Details</h3>';
@@ -1248,7 +1262,7 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 				}
 			} else { // 4.0+ Tests.
 				$tests = array();
-				foreach( $integrity['tests'] as $test ) {
+				foreach( (array)$integrity['tests'] as $test ) {
 					if ( true === $test['pass'] ) {
 						$status_text = '<span class="pb_label pb_label-success">Pass</span>';
 					} else {
@@ -1280,6 +1294,7 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 		
 		//***** BEGIN STEPS.
 		$steps = array();
+		$steps[] = array( 'Start Time', $start_time, '' );
 		if ( isset( $backup_options->options['steps'] ) ) {
 			foreach( $backup_options->options['steps'] as $step ) {
 				if ( isset( $step['finish_time'] ) && ( $step['finish_time'] != 0 ) ) {
@@ -1333,21 +1348,23 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 			$step_times[] = 'unknown';
 		} // End if serial in array is NOT set.
 		
+		
 		// Total overall time from initiation to end.
 		if ( isset( $backup_options->options['finish_time'] ) && isset( $backup_options->options['start_time'] ) && ( $backup_options->options['finish_time'] != 0 ) && ( $backup_options->options['start_time'] != 0 ) ) {
 			$total_time = ( $backup_options->options['finish_time'] - $backup_options->options['start_time'] ) . ' seconds';
 		} else {
 			$total_time = '<i>Unknown</i>';
 		}
+		$steps[] = array( 'Finish Time', $finish_time, '' );
 		$steps[] = array(
 			'<b>Total Overall Time</b>',
 			$total_time,
-			'N/A',
+			'',
 		);
 		
 		$columns = array(
-			__( 'Backup Steps', 'it-l10n-backupbuddy' ),
-			__( 'Time Taken', 'it-l10n-backupbuddy' ),
+			__( 'Backup', 'it-l10n-backupbuddy' ),
+			__( 'Time', 'it-l10n-backupbuddy' ),
 			__( 'Attempts', 'it-l10n-backupbuddy' ),
 		);
 		
@@ -1934,6 +1951,11 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 	
 	
 	
+	/* backup_profile_settings()
+	 *
+	 * View a specified profile's settings.
+	 *
+	 */
 	function backup_profile_settings() {
 		
 		pb_backupbuddy::$ui->ajax_header();
@@ -1945,7 +1967,11 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 	
 	
 	
-	
+	/* restore_file_view()
+	 *
+	 * View contents of a file (text) that is inside a zip archive.
+	 *
+	 */
 	function restore_file_view() {
 		
 		pb_backupbuddy::$ui->ajax_header( true, false ); // js, no padding
@@ -2013,6 +2039,11 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 	
 	
 	
+	/* restore_file_restore()
+	 *
+	 * AJAX page for thickbox for restoring a file from inside an archive..
+	 *
+	 */
 	public function restore_file_restore() {
 		
 		$success = false;
@@ -2182,6 +2213,11 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 	
 	
 	
+	/* email_error_test()
+	 *
+	 * Test sending emails on the Settings page. Tries sending email and dies with "1" on success, else error message string echo'd out and dies.
+	 *
+	 */
 	function email_error_test() {
 		
 		$email = pb_backupbuddy::_POST( 'email' );
@@ -2195,6 +2231,11 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 	
 	
 	
+	/* remotesend_details()
+	 *
+	 * View log for a remote destination file transfer. Outputs HTML and information and die()'s.
+	 *
+	 */
 	function remotesend_details() {
 		
 		$send_id = pb_backupbuddy::_GET( 'send_id' );
@@ -2220,6 +2261,11 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 	
 	
 	
+	/* remotesend_abort()
+	 *
+	 * Abort an in-progress demote destination file transfer. Dies with outputting "1" on success.
+	 *
+	 */
 	function remotesend_abort() {
 		
 		$send_id = pb_backupbuddy::_GET( 'send_id' );
@@ -2241,6 +2287,214 @@ class pb_backupbuddy_ajax extends pb_backupbuddy_ajaxcore {
 		die( '1' );
 		
 	} // End remotesend_abort().
+	
+	
+	
+	/* destination_ftp_pathpicker()
+	 *
+	 * description
+	 *
+	 */
+	function destination_ftp_pathpicker() {
+		
+		function pb_backupbuddy_ftp_listDetailed($resource, $directory = '.') { 
+			if (is_array($children = @ftp_rawlist($resource, $directory))) { 
+			    $items = array(); 
+
+			    foreach ($children as $child) { 
+			        $chunks = preg_split("/\s+/", $child); 
+			        list($item['rights'], $item['number'], $item['user'], $item['group'], $item['size'], $item['month'], $item['day'], $item['time']) = $chunks; 
+			        $item['type'] = $chunks[0]{0} === 'd' ? 'directory' : 'file'; 
+			        array_splice($chunks, 0, 8); 
+			        $items[implode(" ", $chunks)] = $item; 
+			    } 
+
+			    return $items; 
+			} 
+			return false;
+		} // end listDetailed subfunction.
+		
+		
+		$settings = array(
+			'address'		=> pb_backupbuddy::_GET( 'pb_backupbuddy_address' ),
+			'username'		=> pb_backupbuddy::_GET( 'pb_backupbuddy_username' ),
+			'password'		=> pb_backupbuddy::_GET( 'pb_backupbuddy_password' ),
+			'ftps'			=> pb_backupbuddy::_GET( 'pb_backupbuddy_ftps' ),
+			'active_mode'	=> pb_backupbuddy::_GET( 'pb_backupbuddy_active_mode' ),
+		);
+		
+		if ( ( $settings['address'] == '' ) || ( $settings['username'] == '' ) || ( $settings['password'] == '' ) ) {
+			die( __('Missing required FTP server inputs.', 'it-l10n-backupbuddy' ) );
+		}
+		
+		// Settings
+		if ( $settings['active_mode'] == '0' ) {
+			$active_mode = false;
+		} else {
+			$active_mode = true;
+		}
+		$server = $settings['address'];
+		$port = '21';
+		if ( strstr( $server, ':' ) ) {
+			$server_params = explode( ':', $server );
+			
+			$server = $server_params[0];
+			$port = $server_params[1];
+		}
+		
+		// Connect.
+		if ( $settings['ftps'] == '0' ) {
+			$conn_id = @ftp_connect( $server, $port, 10 ); // timeout of 10 seconds.
+			if ( $conn_id === false ) {
+				$error = __( 'Unable to connect to FTP address `' . $server . '` on port `' . $port . '`.', 'it-l10n-backupbuddy' );
+				$error .= "\n" . __( 'Verify the server address and port (default 21). Verify your host allows outgoing FTP connections.', 'it-l10n-backupbuddy' );
+				die( $error );
+			}
+		} else {
+			if ( function_exists( 'ftp_ssl_connect' ) ) {
+				$conn_id = @ftp_ssl_connect( $server, $port );
+				if ( $conn_id === false ) {
+					die( __('Destination server does not support FTPS?', 'it-l10n-backupbuddy' ) );
+				}
+			} else {
+				die( __('Your web server doesnt support FTPS.', 'it-l10n-backupbuddy' ) );
+			}
+		}
+		
+		// Authenticate.
+		$login_result = @ftp_login( $conn_id, $settings['username'], $settings['password'] );
+		if ( ( !$conn_id ) || ( !$login_result ) ) {
+			pb_backupbuddy::status( 'details', 'FTP test: Invalid user/pass.' );
+			$response = __('Unable to login to FTP server. Bad user/pass.', 'it-l10n-backupbuddy' );
+			if ( $settings['ftps'] != '0' ) {
+				$response .= "\n\nNote: You have FTPs enabled. You may get this error if your host does not support encryption at this address/port.";
+			}
+			die( $response );
+		}
+		
+		pb_backupbuddy::status( 'details', 'FTP test: Success logging in.' );
+		
+		// Handle active/pasive mode.
+		if ( $active_mode === true ) { // do nothing, active is default.
+			pb_backupbuddy::status( 'details', 'Active FTP mode based on settings.' );
+		} elseif ( $active_mode === false ) { // Turn passive mode on.
+			pb_backupbuddy::status( 'details', 'Passive FTP mode based on settings.' );
+			ftp_pasv( $conn_id, true );
+		} else {
+			pb_backupbuddy::status( 'error', 'Unknown FTP active/passive mode: `' . $active_mode . '`.' );
+		}
+		
+		// Calculate root.
+		$ftpRoot = urldecode( pb_backupbuddy::_POST( 'dir' ) );
+		if ( '' == $ftpRoot ) { // No root passed so figure out root from FTP server itself.
+			$ftpRoot = ftp_pwd( $conn_id );
+		}
+		
+		$ftpList = pb_backupbuddy_ftp_listDetailed( $conn_id, $ftpRoot );
+		
+		/*
+		echo '<pre>';
+		print_r( $ftpList );
+		echo '</pre>';
+		*/
+		
+		echo '<ul class="jqueryFileTree pb_backupbuddy_ftpdestination_pathpickerboxtree">';
+		if ( count( $ftpList ) > 2 ) {
+			foreach( $ftpList as $fileName => $file ) {
+				if ( ( '.' == $fileName ) || ( '..' == $fileName ) ) {
+					continue;
+				}
+				if ( 'directory' == $file['type'] ) { // Directory.
+					echo '<li class="directory collapsed">';
+					$return = '';
+					$return .= '<div class="pb_backupbuddy_treeselect_control">';
+					$return .= '<img src="' . pb_backupbuddy::plugin_url() . '/images/greenplus.png" style="vertical-align: -3px;" title="Add to exclusions..." class="pb_backupbuddy_filetree_select">';
+					$return .= '</div>';
+					echo '<a href="#" rel="' . htmlentities( $ftpRoot . $fileName ) . '/" title="Toggle expand...">' . htmlentities($fileName) . $return . '</a>';
+					echo '</li>';
+				} else { // File.
+					echo '<li class="file collapsed">';
+					echo '<a href="#" rel="' . htmlentities( $ftpRoot . $fileName ) . '">' . htmlentities($fileName) . '</a>';
+					echo '</li>';
+				}
+			}
+		} else {
+			echo '<ul class="jqueryFileTree">';
+			echo '<li><a href="#" rel="' . htmlentities( pb_backupbuddy::_POST( 'dir' ) . 'NONE' ) . '"><i>Empty Directory ...</i></a></li>';
+			echo '</ul>';
+		}
+		echo '</ul>';
+		
+		die();
+		
+		
+		
+		
+		
+		
+		
+		$root = ABSPATH . urldecode( pb_backupbuddy::_POST( 'dir' ) );
+		
+		if( file_exists( $root ) ) {
+			$files = scandir( $root );
+			
+			natcasesort( $files );
+			
+			// Sort with directories first.
+			$sorted_files = array(); // Temporary holder for sorting files.
+			$sorted_directories = array(); // Temporary holder for sorting directories.
+			foreach( $files as $file ) {
+				if ( ( $file == '.' ) || ( $file == '..' ) ) {
+					continue;
+				}
+				if( is_file( str_replace( '//', '/', $root . $file ) ) ) {
+					array_push( $sorted_files, $file );
+				} else {
+					array_unshift( $sorted_directories, $file );
+				}
+			}
+			$files = array_merge( array_reverse( $sorted_directories ), $sorted_files );
+			unset( $sorted_files );
+			unset( $sorted_directories );
+			unset( $file );
+			
+			
+			if( count( $files ) > 0 ) { // Files found.
+				echo '<ul class="jqueryFileTree" style="display: none;">';
+				foreach( $files as $file ) {
+					if( file_exists( str_replace( '//', '/', $root . $file ) ) ) {
+						if ( is_dir( str_replace( '//', '/', $root . $file ) ) ) { // Directory.
+							echo '<li class="directory collapsed">';
+							$return = '';
+							$return .= '<div class="pb_backupbuddy_treeselect_control">';
+							$return .= '<img src="' . pb_backupbuddy::plugin_url() . '/images/redminus.png" style="vertical-align: -3px;" title="Add to exclusions..." class="pb_backupbuddy_filetree_exclude">';
+							$return .= '</div>';
+							echo '<a href="#" rel="' . htmlentities( str_replace( ABSPATH, '', $root ) . $file) . '/" title="Toggle expand...">' . htmlentities($file) . $return . '</a>';
+							echo '</li>';
+						} else { // File.
+							echo '<li class="file collapsed">';
+							$return = '';
+							$return .= '<div class="pb_backupbuddy_treeselect_control">';
+							$return .= '<img src="' . pb_backupbuddy::plugin_url() . '/images/redminus.png" style="vertical-align: -3px;" title="Add to exclusions..." class="pb_backupbuddy_filetree_exclude">';
+							$return .= '</div>';
+							echo '<a href="#" rel="' . htmlentities( str_replace( ABSPATH, '', $root ) . $file) . '">' . htmlentities($file) . $return . '</a>';
+							echo '</li>';
+						}
+					}
+				}
+				echo '</ul>';
+			} else {
+				echo '<ul class="jqueryFileTree" style="display: none;">';
+				echo '<li><a href="#" rel="' . htmlentities( pb_backupbuddy::_POST( 'dir' ) . 'NONE' ) . '"><i>Empty Directory ...</i></a></li>';
+				echo '</ul>';
+			}
+		} else {
+			echo 'Error #1127555. Unable to read site root.';
+		}
+		
+		die();
+		
+	} // End destination_ftp_pathpicker().
 	
 	
 	

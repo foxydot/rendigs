@@ -139,7 +139,7 @@ pb_backupbuddy::add_ajax( 'backup_profile_settings' ); // Settings page backup p
 pb_backupbuddy::add_ajax( 'email_error_test' ); // Test email error notification.
 pb_backupbuddy::add_ajax( 'remotesend_details' ); // Display backup integrity status.
 pb_backupbuddy::add_ajax( 'remotesend_abort' ); // Abort an in-process remote destination send.
-
+pb_backupbuddy::add_ajax( 'destination_ftp_pathpicker' ); // FTP destination path picker.
 
 /********** DASHBOARD (admin) **********/
 

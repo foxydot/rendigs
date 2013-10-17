@@ -58,6 +58,24 @@ if ( $settings['ssl'] == '0' ) {
 	@$s3->disable_ssl(true);
 }
 
+// The bucket must be in existence and we must get it's region to be able to proceed
+$region = '';
+pb_backupbuddy::status( 'details', 'Getting region for bucket: `' . $settings['bucket'] . "`." );
+$response = pb_backupbuddy_destination_s3::get_bucket_region( $s3, $settings['bucket'] );
+if( !$response->isOK() ) {
+
+	$this_error = 'Bucket region could not be determined for management operation. Message details: `' . (string)$response->body->Message . '`.';
+	pb_backupbuddy::status( 'error' , $this_error );
+	
+} else {
+
+	pb_backupbuddy::status( 'details', 'Bucket exists in region: ' .  (($response->body ==="") ? 'us-east-1' : $response->body ) );
+	$region = $response->body; // Must leave as is for actual operational usage
+	
+}
+
+// Set region context for later operations - will be s3.amazonaws.com or s3-<region>.amazonaws.com
+$s3->set_region( 's3' . ( ($region == "" ) ? "" : '-' . $region ) . '.amazonaws.com' );
 
 // Handle deletion.
 if ( pb_backupbuddy::_POST( 'bulk_action' ) == 'delete_backup' ) {
@@ -93,7 +111,6 @@ if ( pb_backupbuddy::_GET( 'copy_file' ) != '' ) {
 
 // Handle download link
 if ( pb_backupbuddy::_GET( 'downloadlink_file' ) != '' ) {
-	
 	$link = $s3->get_object( $manage_data['bucket'], $remote_path . pb_backupbuddy::_GET( 'downloadlink_file' ), array('preauth'=>time()+3600));
 	pb_backupbuddy::alert( 'You may download this backup (' . pb_backupbuddy::_GET( 'downloadlink_file' ) . ') with <a href="' . $link . '">this link</a>. The link is valid for one hour.' );
 }
@@ -175,7 +192,7 @@ if ( count( $backup_list ) == 0 ) {
 		array(
 			'action'		=>	pb_backupbuddy::page_url() . '&custom=remoteclient&destination_id=' . htmlentities( pb_backupbuddy::_GET( 'destination_id' ) ) . '&remote_path=' . htmlentities( pb_backupbuddy::_GET( 'remote_path' ) ),
 			'columns'		=>	array( 'Backup File', 'Uploaded <img src="' . pb_backupbuddy::plugin_url() . '/images/sort_down.png" style="vertical-align: 0px;" title="Sorted most recent first">', 'File Size', 'Type' ),
-			//'hover_actions'	=>	array( 'copy' => 'Copy to Local', 'download_link' => 'Get download link' ),
+			'hover_actions'	=>	array( 'copy' => 'Copy to Local', 'download_link' => 'Get download link' ),
 			'hover_action_column_key'	=>	'0',
 			'bulk_actions'	=>	array( 'delete_backup' => 'Delete' ),
 			'css'			=>		'width: 100%;',

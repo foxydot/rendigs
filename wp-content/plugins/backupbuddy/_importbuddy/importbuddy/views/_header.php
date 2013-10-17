@@ -63,13 +63,13 @@ if ( ! defined( 'PB_IMPORTBUDDY' ) || ( true !== PB_IMPORTBUDDY ) ) {
 				if ( true === Auth::is_authenticated() ) { // Only display these links if logged in.
 					echo '<a ';
 					if ( pb_backupbuddy::_GET( 'step' ) != '' ) { echo 'class="activePage" '; }
-					echo 'href="?step=1">Restore / Import</a>';
+					echo 'href="?step=1">Restore / Migrate</a>';
 					
-					/*
+					
 					echo '<a ';
 					if ( pb_backupbuddy::_GET( 'page' ) == 'dbreplace' ) { echo 'class="activePage" '; }
-					echo 'href="?page=dbreplace">Database Replace</a>';
-					*/
+					echo 'href="?page=dbreplace">Database Text Replace</a>';
+					
 				}
 				
 				$simpleVersion = pb_backupbuddy::$options['bb_version'];

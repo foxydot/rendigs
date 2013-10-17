@@ -35,7 +35,7 @@ pb_backupbuddy::add_cron( 'process_destination_copy', 10, 3 ); // New copy mecha
 
 
 /********** FILTERS (global) **********/
-pb_backupbuddy::add_filter( 'cron_schedules', 10, 0 ); // Add schedule periods such as bimonthly, etc into cron.
+pb_backupbuddy::add_filter( 'cron_schedules' ); // Add schedule periods such as bimonthly, etc into cron. By default passes 1 param at priority 10.
 if ( '1' == pb_backupbuddy::$options['disable_https_local_ssl_verify'] ) {
 	$disable_local_ssl_verify_anon_function = create_function( '', 'return false;' );
 	add_filter( 'https_local_ssl_verify', $disable_local_ssl_verify_anon_function, 100 );

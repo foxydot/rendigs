@@ -4,7 +4,7 @@
  *	Plugin Name: BackupBuddy
  *	Plugin URI: http://ithemes.com/purchase/backupbuddy/
  *	Description: The most complete WordPress solution for Backup, Restoration, and Migration. Backs up a customizable selection of files, settings, and content for the complete snapshot of your site. Restore and/or migrate your site to a new host or new domain with complete ease-of-mind.
- *	Version: 4.1.1.5
+ *	Version: 4.1.2.2
  *	Author: iThemes
  *	Author URI: http://ithemes.com/
  *	iThemes Package: backupbuddy
@@ -113,7 +113,7 @@ $pluginbuddy_settings = array(
 																													'title'		=>	'Database Only',
 																													'tip'		=>	'Just your database. I like your minimalist style.',
 																												),
-																								2	   => array(
+																								2 => array(
 																													'type'		=>	'full',
 																													'title'		=>	'Complete Backup',
 																												),

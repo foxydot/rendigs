@@ -152,7 +152,7 @@ function pb_backupbuddy_get_loadavg() {
 		if ( $latest_backupbuddy_version == pb_backupbuddy::settings( 'version' ) ) { // At absolute latest including minor.
 			$suggestion_text .= ' (major version) or ' . $latest_backupbuddy_version . ' (minor version)';
 		} elseif ( $latest_backupbuddy_nonminor_version != $latest_backupbuddy_version ) { // Minor version available that is newer than latest major.
-			$suggestion_text .= ' (major version) or ' . $latest_backupbuddy_version . ' (minor version; <a href="plugins.php?pluginbuddy_refresh=true&backupbuddy_force_update_minor=' . $latest_backupbuddy_version . '" title="Once you have licensed BackupBuddy you may select this to go to the Plugins page to upgrade to the latest minor version. Typically only majoy versions are available for automatic updates but this option allows you to force updating to the latest minor version.">update</a>)';
+			$suggestion_text .= ' (major version) or ' . $latest_backupbuddy_version . ' (minor version; <a href="plugins.php?ithemes-updater-force-minor-update=1" title="Once you have licensed BackupBuddy you may select this to go to the Plugins page to upgrade to the latest minor version. Typically only major versions are available for automatic updates but this option instructs the updater to display minor version updates for approximately one hour. If it does not immediately become available on the Plugins page, try refreshing a couple of times.">enable minor update</a>)';
 		} else {
 			$suggestion_text .= ' (latest)';
 		}

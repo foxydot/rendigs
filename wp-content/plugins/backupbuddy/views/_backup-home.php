@@ -300,6 +300,10 @@ wp_print_styles( 'thickbox' );
 		padding: 3px 8px;
 		cursor: pointer;
 	}
+	.backupbuddyFileTitle {
+		color: #0084CB;
+		font-size: 1.2em;
+	}
 </style>
 
 
@@ -422,6 +426,12 @@ if ( count( $backups_list ) == 0 ) {
 } else {
 	$log_directory = WP_CONTENT_DIR . '/uploads/pb_' . pb_backupbuddy::settings( 'slug' ) . '/';
 	
+	// Backup type.
+	$pretty_type = array(
+		'full'	=>	'Full',
+		'db'	=>	'Database',
+	);
+	
 	$recent_backup_count_cap = 5; // Max number of recent backups to list.
 	$backups = array();
 	foreach( $backups_list as $backup_fileoptions ) {
@@ -466,12 +476,26 @@ if ( count( $backups_list ) == 0 ) {
 			$finish_time = '<i>Unfinished</i>';
 		}
 		
+		$backupTitle = '<span class="backupbuddyFileTitle" style="color: #000;" title="' . basename( $backup['archive_file'] ) . '">' . pb_backupbuddy::$format->date( pb_backupbuddy::$format->localize_time( $backup['start_time'] ), 'l, F j, Y - g:i:s a' ) . ' (' . pb_backupbuddy::$format->time_ago( $backup['start_time'] ) . ' ago)</span><br><span class="description">' . basename( $backup['archive_file'] ) . '</span>';
+		
+		if ( isset( $backup['profile'] ) ) {
+			$backupType = pb_backupbuddy::$format->prettify( $backup['profile']['type'], $pretty_type ) . '<br><small class="description">' . $backup['profile']['title'] . '</span>';
+		} else {
+			$backupType = '<span class="description">Unknown</span>';
+		}
+		
+		if ( isset( $backup['archive_size'] ) && ( $backup['archive_size'] > 0 ) ) {
+			$archive_size = pb_backupbuddy::$format->file_size( $backup['archive_size'] );
+		} else {
+			$archive_size = 'n/a';
+		}
+		
 		// Append to list.
 		$backups[ $backup['serial'] ] = array(
-			basename( $backup['archive_file'] ),
-			pb_backupbuddy::$format->date( pb_backupbuddy::$format->localize_time( $backup['start_time'] ) ) . '<br><span class="description">' . pb_backupbuddy::$format->time_ago( $backup['start_time'] ) . ' ago</span>',
-			$finish_time,
-			$backup['trigger'],
+			array( basename( $backup['archive_file'] ), $backupTitle ),
+			$backupType,
+			$archive_size,
+			ucfirst( $backup['trigger'] ),
 			$status,
 			'start_timestamp' => $backup['start_time'], // Used by array sorter later to put backups in proper order.
 		);
@@ -479,9 +503,9 @@ if ( count( $backups_list ) == 0 ) {
 	}
 
 	$columns = array(
-		__('Backup', 'it-l10n-backupbuddy' ),
-		__('Started', 'it-l10n-backupbuddy' ),
-		__('Finished', 'it-l10n-backupbuddy' ),
+		__('Backups (Start Time)', 'it-l10n-backupbuddy' ),
+		__('Type', 'it-l10n-backupbuddy' ),
+		__('File Size', 'it-l10n-backupbuddy' ),
 		__('Trigger', 'it-l10n-backupbuddy' ),
 		__('Status', 'it-l10n-backupbuddy' ),
 	);

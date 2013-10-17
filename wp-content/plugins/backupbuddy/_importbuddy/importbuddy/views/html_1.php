@@ -37,6 +37,31 @@ require_once( '_header.php' );
 		jQuery('.leanModal').leanModal(
 			{ top : 20, overlay : 0.4, closeButton: ".modal_close" }
 		);
+		
+		/* MD5 Hash Button Clicked */
+		jQuery( '.view_hash_click' ).click( function() {
+			jQuery('#hash_view_loading').show();
+			jQuery('#hash_view_response').hide();
+			
+			var backupFile = jQuery(this).attr( 'data-file' );
+			jQuery.ajax({
+				type: 'POST',
+				url: 'importbuddy.php',
+				data: {
+					ajax: 'file_hash',
+					file: backupFile
+				},
+				dataType: 'json'
+			}).done( function(data) {
+				jQuery('#hash_view_response').html( '<b>MD5 Checksum Hash:</b> ' + data.hash );
+				jQuery('#hash_view_loading').hide();
+				jQuery('#hash_view_response').show();
+			}).fail( function( jqXHR, textStatus, errorThrown ){
+				jQuery('#hash_view_response').html( 'Error: `' + jqXHR.responseText + '`.' );
+				jQuery('#hash_view_loading').hide();
+				jQuery('#hash_view_response').show();
+			});
+		});
 	});
 </script>
 
@@ -238,8 +263,21 @@ if ( true !== Auth::is_authenticated() ) { // Need authentication.
 								// Show meta button if meta info available.
 								if ( $backup_archive['comment']['type'] != '' ) {
 									$file_hash = md5( $backup_archive['file'] );
+									echo '<a href="#hash_view" class="button button-tertiary leanModal view_hash_click" style="float: left; font-size: 10px; margin-right: 5px; padding: 4px; float: right;" id="view_hash_' . $i . '" data-file="' . $backup_archive['file'] . '">View Hash</a>';
 									echo '<a href="#info_' . $file_hash . '" class="button button-tertiary leanModal" style="float: left; font-size: 10px; margin-right: 5px; padding: 4px; float: right;" id="view_meta_' . $i . '">View Meta</a>';
 									?>
+									<div id="hash_view" style="display: none; height: 30%;">
+										<div class="modal">
+											<div class="modal_header">
+												<a class="modal_close">&times;</a>
+												<h2>View File Hash</h2>
+											</div>
+											<div class="modal_content">
+												<span id="hash_view_loading"><img src="importbuddy/images/loading.gif"> Calculating backup file MD5 Hash... This may take a moment...</span>
+												<span id="hash_view_response"></span>
+											</div>
+										</div>
+									</div>
 									<div id="<?php echo 'info_' . $file_hash; ?>" style="display: none; height: 90%;">
 										<div class="modal">
 											<div class="modal_header">

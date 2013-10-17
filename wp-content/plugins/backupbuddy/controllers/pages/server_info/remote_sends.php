@@ -16,6 +16,7 @@
 			});
 			return false;
 		});
+	});
 </script>
 <?php
 pb_backupbuddy::$classes['core']->trim_remote_send_stats();
@@ -118,8 +119,8 @@ foreach( $remote_sends as $send_id => $remote_send ) {
 	if ( 'remote-send-test.php' == $base_file ) {
 		$base_file = __( 'Remote destination test', 'it-l10n-backupbuddy' ) . '<br><span class="description" style="margin-left: 10px;">(Send & delete test file remote-send-test.php)</span>';
 		$file_size = '';
-		$trigger = 'Manual settings test';
-		$destination = 'Based on settings';
+		$trigger = __( 'Manual settings test', 'it-l10n-backupbuddy' );
+		$destination = '<span class="description">Test settings</span>';
 	}
 	
 	// Push into array.

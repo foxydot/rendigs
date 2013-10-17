@@ -1,10 +1,9 @@
 <?php
 class Auth {
 	
-	
-	
 	const MAX_LOGIN_ATTEMPTS_ALLOWED = 4; // Maximum number of invalid login attempts before locking importbuddy.
 	const RESET_DEFAULTS_ON_INVALID_LOGIN = false; // Whether or not reset all settings/options back to defaults on login failure.
+	const COOKIE_EXPIRATION = 3600; // Number of seconds an importbuddy cookie is valid for.
 	private static $_authenticated = false; // Whether user is validly authenticated or not.
 	private static $_checked = false; // Whether check() has been run yet.
 	
@@ -56,10 +55,10 @@ class Auth {
 		
 		if ( $supplied_pass_hash == $actual_pass_hash ) {
 			self::$_authenticated = true;
-			setcookie( 'importbuddy_login', md5( PB_PASSWORD . 'badgers' ), time()+3600 );
+			setcookie( 'importbuddy_login', md5( PB_PASSWORD . 'badgers' ), ( time()+ self::COOKIE_EXPIRATION ) );
 		} elseif ( isset( $_COOKIE['importbuddy_login'] ) && ( $_COOKIE['importbuddy_login'] != '' ) && ( $_COOKIE['importbuddy_login'] == md5( PB_PASSWORD . 'badgers' ) ) ) {
 			self::$_authenticated = true;
-			setcookie( 'importbuddy_login', md5( PB_PASSWORD . 'badgers' ), time()+3600 );
+			setcookie( 'importbuddy_login', md5( PB_PASSWORD . 'badgers' ), ( time() + self::COOKIE_EXPIRATION ) );
 		} else { // Incorrect hash. Reset settings & track attempts.
 			if ( '' != $supplied_pass_hash ) { // Dont count blank hash as an attempt.
 				if ( true === self::RESET_DEFAULTS_ON_INVALID_LOGIN ) {

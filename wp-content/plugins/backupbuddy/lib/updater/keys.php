@@ -1,13 +1,15 @@
 <?php
 
 /*
-Provides a reliable way of retrieving which projects have updates.
+Provides license key management.
 Written by Chris Jean for iThemes.com
-Version 1.0.0
+Version 1.0.1
 
 Version History
 	1.0.0 - 2013-04-11 - Chris Jean
 		Release ready
+	1.0.1 - 2013-09-19 - Chris Jean
+		Updated requires to no longer use dirname().
 */
 
 
@@ -22,7 +24,7 @@ class Ithemes_Updater_Keys {
 			return $all_keys;
 		
 		if ( empty( $packages ) ) {
-			require_once( dirname( __FILE__ ) . '/packages.php' );
+			require_once( $GLOBALS['ithemes_updater_path'] . '/packages.php' );
 			$packages = array_unique( array_values( Ithemes_Updater_Packages::get_all() ) );
 		}
 		
@@ -125,7 +127,7 @@ class Ithemes_Updater_Keys {
 		
 		
 		if ( empty( $packages ) ) {
-			require_once( dirname( __FILE__ ) . '/packages.php' );
+			require_once( $GLOBALS['ithemes_updater_path'] . '/packages.php' );
 			$packages = array_unique( array_values( Ithemes_Updater_Packages::get_all() ) );
 		}
 		else if ( is_string( $packages ) ) {

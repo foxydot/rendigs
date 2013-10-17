@@ -210,5 +210,5 @@ Profiles only need modified when choosing to override defaults on a per-profile 
 
 
 
-<iframe id="pb_backupbuddy_iframe" src="" width="100%" style="max-width: 1000px;" height="1800" frameBorder="0" padding="0" margin="0">Error #4584594579. Browser not compatible with iframes.</iframe>
+<iframe id="pb_backupbuddy_iframe" src="" width="100%" height="1800" frameBorder="0" padding="0" margin="0">Error #4584594579. Browser not compatible with iframes.</iframe>
 
