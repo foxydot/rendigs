@@ -64,7 +64,11 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             $i = 0;
             foreach($terms AS $term){
                 $more_practice_areas = $i==4?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
-                $practice_areas .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+                    $practice_areas .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                } else {
+                    $practice_areas .= '<li>'.$term->name.$more_practice_areas.'</li>';
+                }
                 $i++;
             }
         }
