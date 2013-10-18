@@ -233,9 +233,9 @@ if (!class_exists('MSDLawfirmAttorneyCPT')) {
 						$query->set('meta_compare','LIKE');
 					};
 					$query->set( 'post_type', array('post','page',$this->cpt) );
-					ts_data($query);
 				}
 				elseif( $query->is_main_query() && $query->is_archive && $is_attorney ) {
+                    //ts_data($query);
 					$query->set( 'orderby', 'date');
 					$query->set( 'order', 'ASC');
 					$query->set( 'posts_per_page', 100 );

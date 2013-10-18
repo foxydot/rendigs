@@ -36,7 +36,10 @@ class MSDLawfirmAttorneyWidget extends WP_Widget {
                     <option>Practice Area</option>
                     <?php
                     foreach($practice_areas AS $pa){
-                        print '<option value="/practice-areas/'.$pa->slug.'">'.$pa->name.'</option>';
+                        $mypage = get_page_by_path('/practice-areas/'.$pa->slug);
+                        if($mypage){
+                            print '<option value="/practice-areas/'.$pa->slug.'">'.$pa->name.'</option>';
+                        }
                     }
                     ?>
                 </select>
