@@ -105,7 +105,11 @@ function msd_attorney_sidebar(){
 			<h4 class="widget-title widgettitle">Practice Areas</h4>
 			<ul>';
 		foreach($terms AS $term){
-			print '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>';
+		    if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+			 print '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>';
+            } else {
+             print '<li>'.$term->name.'</li>';
+            }
 		}
 		print '</ul>
 		</div>
