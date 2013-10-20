@@ -18,6 +18,6 @@ function gs_child_script() {
 	wp_enqueue_style('tb_styles', get_stylesheet_directory_uri() . '/lib/css/tb_styles' . $css_suffix);
 	
 	//Scripts
-	wp_enqueue_script( 'common_scripts', get_stylesheet_directory_uri() . '/lib/js/common_scripts' . $js_suffix, array( 'jquery' ) , '1.0.0' );
+	wp_enqueue_script( 'common_scripts', get_stylesheet_directory_uri() . '/lib/js/common_scripts.js', array( 'jquery' ) , '1.0.0' );
 	
 }

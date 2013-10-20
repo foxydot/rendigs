@@ -31,13 +31,4 @@ jQuery(document).ready(function(){
 					event.stopPropagation();
 				} );
 			}
-			
-		
-		/*SMOOTH SCROLLING*/
-		jQuery(".scroll, .gototop a").click(function(event){		
-			event.preventDefault();
-			jQuery('html,body').animate({scrollTop:jQuery(this.hash).offset().top}, 500);
-		});
-
-
 });
