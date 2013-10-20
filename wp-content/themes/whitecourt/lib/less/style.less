@@ -73,6 +73,7 @@ textarea {
 	.rounded(6px);
 	font-size: 12px;
 	padding: 5px;
+  border: 1px solid @medgrey;
 }
 
 /* Hyperlinks
@@ -1022,7 +1023,7 @@ input.searchsubmit:hover {
 .gform_wrapper .gform_footer { padding: 0 !important; margin: 0 !important; }
 
 /*Practice Areas*/
-.section-practice-areas,.attorneys.section-attorneys,.category-news{
+.section-practice-areas,.attorneys.section-attorneys,.category-news,.blog{
   #inner{
     .wrap{
       #content{
@@ -1079,21 +1080,6 @@ input.searchsubmit:hover {
           .clearfix();
         }
       }
-      #sidebar{
-      .msd-widget-atty{
-          margin-top: 15px;
-          .widget-title{
-            text-align: center;
-            text-transform: none;
-          }
-          select,input {
-            width: 100%;
-            overflow: hidden;
-            margin: .5em 0;
-            padding: .5em;
-          }
-        }
-      }
       #sidebar-alt{
         padding-top: 3em;
         background: none;
@@ -1117,6 +1103,22 @@ input.searchsubmit:hover {
     }
   }
 }
+
+      #sidebar{
+      .msd-widget-atty{
+          margin-top: 15px;
+          .widget-title{
+            text-align: center;
+            text-transform: none;
+          }
+          select,input {
+            width: 168px;
+            overflow: hidden;
+            margin: 0.5em 0;
+            padding: 0.5em;
+          }
+        }
+      }
 .category-news.archive{
   .post.entry{
     border-bottom: 0.5px solid @ltgrey;
