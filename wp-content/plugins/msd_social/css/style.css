@@ -1,2 +1,2 @@
-.msd-connected{position:relative;float:right;padding:6px 0}.msd-connected a{float:right;display:block;position:relative;margin:0;text-decoration:none;color:#fff}.msd-connected a i{margin:1em auto}
-.msd-connected a:hover{text-decoration:none}
+.msd-connected{position:relative;float:right;padding:6px 0}.msd-connected a,.msd-connected a:link,.msd-connected a:visited{float:right;display:block;position:relative;margin:0;text-decoration:none;color:#fff}.msd-connected a i,.msd-connected a:link i,.msd-connected a:visited i{margin:1em auto}
+.msd-connected a:hover,.msd-connected a:active{text-decoration:none;color:#efefef}

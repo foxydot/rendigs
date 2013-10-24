@@ -81,7 +81,7 @@ textarea {
 
 a,
 a:visited {
-	color: @red;
+	color: @blue;
 	text-decoration: none;
 }
 
@@ -99,7 +99,7 @@ body {
 	margin:0;
 	background: @ltbeige url(../img/bkg-pg.png);
 	#wrap {
-		border-top: 10px solid @ltblue;
+		border-top: 10px solid @blue;
 	}
 }
 
@@ -165,7 +165,7 @@ body {
 	.msd-connected{
 		float: right;
 		h4.widgettitle{
-			font-size: 14px;
+			font-size: 0.8em;
 			color: @medgrey;
 			text-transform: uppercase;
 			font-weight: normal;
@@ -249,7 +249,7 @@ body {
 	.wrap:after{.clearfix;}
 	.menu-primary{
 		padding: 0; margin: 0; float:left;
-		a{color: white;font-weight: normal;text-transform:uppercase;padding: .5em .75em;display: block;}
+		a{color: white;font-weight: normal;text-transform:uppercase;padding: .5em 0.86em;display: block;}
 		li {border-left: 1px solid @white;
 			margin-left:-4px;
 			li {border: none;}
@@ -366,6 +366,9 @@ body {
 		  margin-right: 4px;
 		  display: inline-block;
 		  a{color:@white;}
+		}
+		li.last-child{
+		  margin-right: 0;
 		}
 	}
 }
@@ -1116,6 +1119,9 @@ input.searchsubmit:hover {
             overflow: hidden;
             margin: 0.5em 0;
             padding: 0.5em;
+            option{
+              padding: 0.25em 0;
+            }
           }
         }
       }

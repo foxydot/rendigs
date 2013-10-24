@@ -105,7 +105,7 @@ function msdsocial_do_footer(){
 	}
 	if(has_nav_menu('footer_menu')){$copyright .= wp_nav_menu( array( 'theme_location' => 'footer_menu','container_class' => 'ftr-menu ftr-links','echo' => FALSE ) );}
 	print '<div id="copyright" class="copyright gototop">'.$copyright.'</div><div id="social" class="social creds">';
-	if($msd_social){print '<strong>'.$msd_social->get_bizname().'</strong><br />'.$msd_social->get_address().' | '.$msd_social->get_digits();}
+	if($msd_social){print '<strong>'.$msd_social->get_bizname().'</strong><br />'.$msd_social->get_address().'&nbsp;&nbsp;|&nbsp;&nbsp;'.$msd_social->get_digits();}
 	print '</div>';
 }
 
