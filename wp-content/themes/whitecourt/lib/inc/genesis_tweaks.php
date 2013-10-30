@@ -33,7 +33,7 @@ function msd_child_add_homepage_sidebars(){
 add_action('template_redirect','msd_child_check_special_templates');
 function msd_child_check_special_templates(){
     if(stripos($_SERVER[REQUEST_URI],'practice-areas')){
-        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
+        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
         add_action('genesis_after_loop','msd_child_get_attys_in_pa');
     } 
 }
@@ -44,7 +44,7 @@ function msd_child_get_attys_in_pa(){
         print '<h3>Contact one of our '.$post->post_title.' attorneys</h3>';
     }
     foreach($attys AS $atty){
-        print $msd_lawfirm->display_class->atty_display($atty);
+        print $msd_lawfirm->display_class->atty_display($atty,array('dobio' => TRUE));
     }
 }
 

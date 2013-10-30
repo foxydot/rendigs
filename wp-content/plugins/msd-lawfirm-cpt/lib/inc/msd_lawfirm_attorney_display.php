@@ -31,6 +31,12 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             'post_type'        => $this->cpt,
             );
             $posts = get_posts($args);
+            $i = 0;
+            foreach($posts AS $post){
+                $posts[$i]->lastname = get_post_meta($post->ID,'_attorney__attorney_last_name',TRUE);
+                $i++;
+            }
+            usort($posts,array(&$this,'sort_by_lastname'));
             return $posts;
         }  
         
@@ -51,19 +57,20 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             return $posts;
         }     
         
-        function atty_display($atty){
+        function atty_display($atty,$attr = array()){
     global $post,$msd_lawfirm,$contact_info;
     //ts_data($atty);
+        extract($attr);
         $headshot = get_the_post_thumbnail($atty->ID,'mini-headshot');
         $terms = wp_get_post_terms($atty->ID,'practice_area');
         $practice_areas = '';
         if(count($terms)>0){
-            if(count($terms)>5){
-                $terms = array_slice($terms, 0, 5);
+            if(count($terms)>3){
+                $terms = array_slice($terms, 0, 3);
             }
             $i = 0;
             foreach($terms AS $term){
-                $more_practice_areas = $i==4?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
+                $more_practice_areas = $i==2?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
                 if($test = get_page_by_path('/practice-areas/'.$term->slug)){
                     $practice_areas .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
                 } else {
@@ -109,8 +116,12 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
                 <strong>Practice Areas</strong>
                 <ul class="practice-areas">
                 '.$practice_areas.'
-                </ul>
-                <div class="bio">'.$mini_bio.'</div>
+                </ul>';
+                if($dobio){
+                    $attystr .= '
+                    <div class="bio">'.$mini_bio.'</div>';
+                    }
+        $attystr .= '
                 <ul class="attorney-contact-info">
                 '.$atty_contact_info.'
                 </ul>

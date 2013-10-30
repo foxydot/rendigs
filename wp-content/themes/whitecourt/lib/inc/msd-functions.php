@@ -3,7 +3,7 @@
 /*
  * Add styles and scripts
 */
-add_action('wp_print_styles', 'msd_add_styles');
+add_action('wp_enqueue_scripts', 'msd_add_styles');
 
 function msd_add_styles() {
 	global $is_IE,$post;
@@ -20,7 +20,7 @@ function msd_add_styles() {
 		}
 	}
 }
-add_action('wp_print_scripts', 'msd_add_scripts');
+add_action('wp_enqueue_scripts', 'msd_add_scripts');
 
 function msd_add_scripts() {
 	global $is_IE,$post;
@@ -119,9 +119,9 @@ if(!function_exists('msd_str_fmt')){
 			case 'phone':
 				$str = preg_replace("/[^0-9]/", "", $str);
 				if(strlen($str) == 7)
-					$ret = preg_replace("/([0-9]{3})([0-9]{4})/", "$1-$2", $str);
+					$ret = preg_replace("/([0-9]{3})([0-9]{4})/", "$1 $2", $str);
 				elseif(strlen($str) == 10)
-					$ret = preg_replace("/([0-9]{3})([0-9]{3})([0-9]{4})/", "($1) $2-$3", $str);
+					$ret = preg_replace("/([0-9]{3})([0-9]{3})([0-9]{4})/", "$1 $2 $3", $str);
 				else
 					$ret = $str;
 				break;

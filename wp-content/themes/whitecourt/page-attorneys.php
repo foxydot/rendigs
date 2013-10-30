@@ -1,10 +1,10 @@
 <?php
-add_action('wp_enqueue_scripts','msd_child_get_bootstrap');
+add_action('wp_enqueue_scripts','msd_child_get_bootstrap',0);
 function msd_child_get_bootstrap(){
     wp_enqueue_style('bootstrap-style','//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css');
     wp_enqueue_script('bootstrap-jquery','//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js',array('jquery'));
 }
-add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
+add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
 add_action('genesis_after_loop','msd_child_atty_tabs');
 function msd_child_atty_tabs(){
     global $post,$msd_lawfirm,$contact_info;

@@ -9,7 +9,7 @@ function add_viewport_meta_tag() {
 /** Add new image sizes */
 add_image_size( 'post-image', 540, 150, TRUE );
 add_image_size( 'headshot', 373, 600, FALSE );
-add_image_size( 'mini-headshot', 120, 120, TRUE );
+add_image_size( 'mini-headshot', 120, 160, TRUE );
 
 /* Manipulate the featured image */
 //add_action( 'genesis_before_post', 'msd_post_image', 8 );
