@@ -10,7 +10,7 @@ function add_custom_metaboxes(){
 			(
 					'id' => '_subtitle',
 					'title' => 'Subtitle',
-					'types' => array('post','page','attorney'),
+					'types' => array('post','page','attorney','targeted_event'),
 					'template' => get_stylesheet_directory() . '/lib/template/subtitle-meta.php',
 			));
 }
