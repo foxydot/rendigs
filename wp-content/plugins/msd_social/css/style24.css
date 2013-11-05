@@ -1,4 +1,4 @@
-.msd-connected .social-media{margin-top:.5em}.msd-connected .social-media a{height:14px;margin:0;padding:8px;text-align:center;width:14px}
+.msd-connected .social-media{margin-top:.5em}.msd-connected .social-media a{height:14px;margin:0;padding:8px;text-align:center;width:14px;box-sizing:content-box !important;-moz-box-sizing:content-box !important}
 .msd-connected .social-media .fb{background-color:#39599f}
 .msd-connected .social-media .tw{background-position:-78px 0}
 .msd-connected .social-media .fl{background-position:-39px 0}
