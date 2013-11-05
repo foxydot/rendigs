@@ -35,7 +35,10 @@ function msd_child_check_special_templates(){
     if(stripos($_SERVER[REQUEST_URI],'practice-areas')){
         add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
         add_action('genesis_after_loop','msd_child_get_attys_in_pa');
-    } 
+    } elseif(is_home()){
+        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
+        add_action('genesis_before_loop','msd_genesis_add_title_to_loop_page');
+    }
 }
 function msd_child_get_attys_in_pa(){
     global $post,$msd_lawfirm,$contact_info;
@@ -46,6 +49,9 @@ function msd_child_get_attys_in_pa(){
     foreach($attys AS $atty){
         print $msd_lawfirm->display_class->atty_display($atty,array('dobio' => TRUE));
     }
+}
+function msd_genesis_add_title_to_loop_page(){
+    print '<h1 class="entry-title">News</h1>';
 }
 
 function msd_child_excerpt( $post_id, $excerpt_length = 30, $trailing_character = '&nbsp;<i class="icon-circle-arrow-right"></i>' ) {

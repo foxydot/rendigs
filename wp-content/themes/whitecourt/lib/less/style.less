@@ -432,9 +432,11 @@ body {
 /* Content
 ------------------------------------------------------------ */
 
-#content {
-	float: left;
-	.entry {padding:30px 0;}
+.page,.single {
+  #content {
+  	float: left;
+  	.entry {padding:30px 0;}
+  }
 }
 
 .content-sidebar-alt #content,
@@ -782,6 +784,54 @@ h5 {
 		}
 	}
 }
+
+.sidebar.widget-area .widget_nav_menu {
+  .menu {
+    padding-left: 0;
+    a:hover {text-decoration: none;}
+    li {
+      display: block;
+      .opensans;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 0 0 6px;
+      text-transform: uppercase;
+      a{
+        color: @medgrey;
+        display: block;
+        border-top: 2px solid @medgrey;
+        border-bottom: 2px solid @medgrey;
+      }
+      ul{
+      padding: 0;
+        li {
+        font-weight: normal;
+        padding: .25em 0;
+        border-bottom: 1px solid @medgrey;
+        a {
+          .arial;
+          border: none;
+          font-size: .8em;
+          color: @blue;
+          text-transform: none;
+          padding-left: 6px;
+          }
+        ul{
+          padding: 0;
+          li{
+            a{
+          padding-left: 12px;}
+          }
+          li.last-child {border-bottom: none;}
+          }
+        }
+        li:hover,li.current-menu-item {
+          background: @white;
+        }
+      }
+    }
+  }
+}
 /* Form Buttons
 ------------------------------------------------------------ */
 
@@ -1027,6 +1077,20 @@ input.searchsubmit:hover {
 .gform_wrapper .top_label input.large, .gform_wrapper .top_label select.large, .gform_wrapper .top_label textarea.textarea {
     width: 96% !important;
 }
+
+.category-news,.blog{
+  #inner{
+    .wrap{
+      #content{
+      padding-top: 30px;
+        .post{
+          margin-bottom: 1em;
+        }
+      }
+    }
+  }
+}
+
 
 /*Practice Areas*/
 .section-practice-areas,.attorneys.section-attorneys,.category-news,.blog{
