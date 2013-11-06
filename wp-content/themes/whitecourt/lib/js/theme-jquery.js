@@ -17,6 +17,11 @@ jQuery(document).ready(function($) {
 	$('div:nth-child(odd)').addClass('odd');
 
 	//$('#content-sidebar-wrap>div').equalHeightColumns();
+	
+	$('.sidebar.widget-area .widget_advanced_menu .menu li ul li').click(function(){
+	     $(this).find('ul').toggle( "slow", function() {
+        });
+	});
 		
 	//special for lifestyle
 	$('.ftr-menu ul.menu>li').after(function(){

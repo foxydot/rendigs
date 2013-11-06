@@ -764,6 +764,7 @@ h5 {
 					padding-left: 6px;
 					}
 				ul{
+				  display: none;
 					padding: 0;
 					li{
 						a{
@@ -772,8 +773,8 @@ h5 {
 					li.last-child {border-bottom: none;}
 					}
 				}
-				li:hover,li.current-menu-item {
-					background: @white;
+				li.current-menu-item,li.current-menu-ancestor {
+					ul{display: block;}
 				}
 			}
 		}
