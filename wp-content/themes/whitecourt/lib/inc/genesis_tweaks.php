@@ -37,6 +37,10 @@ function msd_child_check_special_templates(){
         add_action('genesis_after_loop','msd_child_get_attys_in_pa');
     } elseif(is_home()){
         add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
+        add_action('genesis_before_loop','msd_genesis_add_title_to_news_page');
+    } elseif(is_single() && get_post_type() == 'post'){
+        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
+    } elseif(get_post_type() == 'targeted_event'){
         add_action('genesis_before_loop','msd_genesis_add_title_to_loop_page');
     }
 }
@@ -51,6 +55,13 @@ function msd_child_get_attys_in_pa(){
     }
 }
 function msd_genesis_add_title_to_loop_page(){
+    global $wp_query;
+    if(isset($wp_query->query['event_category'])){
+        $title = "Events";
+    }
+    print '<h1 class="entry-title">'.$title.'</h1>';
+}
+function msd_genesis_add_title_to_news_page(){
     print '<h1 class="entry-title">News</h1>';
 }
 
@@ -94,10 +105,18 @@ function custom_breadcrumb_args($args) {
 remove_action('genesis_before_loop', 'genesis_do_breadcrumbs');
 add_action('genesis_before_content_sidebar_wrap', 'genesis_do_breadcrumbs');
 
-remove_action( 'genesis_before_post_content', 'genesis_post_info' );
+if(is_page()){
+    remove_action( 'genesis_before_post_content', 'genesis_post_info' );
+}
 remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
 
-/**
+add_filter( 'genesis_post_info', 'msd_post_info_filter' );
+function msd_post_info_filter($post_info) {
+    $post_info = '[post_date] [post_edit]';
+    return $post_info;
+}
+
+ /**
  * Replace footer
  */
 remove_action('genesis_footer','genesis_do_footer');
