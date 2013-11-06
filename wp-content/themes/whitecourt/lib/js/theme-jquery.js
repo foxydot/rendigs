@@ -23,6 +23,12 @@ jQuery(document).ready(function($) {
 	     $(this).parent('li').find('ul').toggle( "slow", function() {
         });
 	});
+	
+	$('.attorneys.section-attorneys #content #practice-area .practice-area h3').click(function(e){
+         $(this).parent('.practice-area').find('.attorneys').toggle( "slow", function() {
+        });
+        $(this).find('i').toggleClass('icon-angle-down').toggleClass('icon-angle-up');
+    });
 		
 	//special for lifestyle
 	$('.ftr-menu ul.menu>li').after(function(){

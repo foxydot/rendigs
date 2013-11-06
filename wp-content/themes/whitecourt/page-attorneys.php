@@ -27,10 +27,14 @@ function msd_child_atty_tabs(){
     foreach($practice_areas AS $pa){
         $attys = $msd_lawfirm->display_class->get_atty_by_practice($pa->slug);
         if(count($attys)>0){
-            print '<h3>'.$pa->name.'</h3>';
-        }
-        foreach($attys AS $atty){
-            print $msd_lawfirm->display_class->atty_display($atty);
+            print '<div class="practice-area practice-area-'.$pa->slug.'">';
+            print '<h3>'.$pa->name.' <i class="icon-large icon-angle-down"></i></h3>';
+            print '<div class="attorneys attorneys-'.$pa->slug.'">';
+            foreach($attys AS $atty){
+                print $msd_lawfirm->display_class->atty_display($atty);
+            }
+            print '</div>';
+            print '</div>';
         }
     }
     print '</div>
