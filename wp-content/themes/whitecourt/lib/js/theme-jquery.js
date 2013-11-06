@@ -18,8 +18,9 @@ jQuery(document).ready(function($) {
 
 	//$('#content-sidebar-wrap>div').equalHeightColumns();
 	
-	$('.sidebar.widget-area .widget_advanced_menu .menu li ul li').click(function(){
-	     $(this).find('ul').toggle( "slow", function() {
+	$('.sidebar.widget-area .widget_advanced_menu .menu li ul li.menu-item-has-children>a').click(function(e){
+	     e.preventDefault();
+	     $(this).parent('li').find('ul').toggle( "slow", function() {
         });
 	});
 		
