@@ -26,7 +26,7 @@ margin: 0 auto;
 overflow: visible;
 }
 
-.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol, .content-sidebar #sidebar, .content-sidebar #content,.sidebar-content #content, .sidebar-content #sidebar,.content-sidebar-sidebar #content {
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol {
 margin-right: 3.8%;
 float: left;
 min-height: 1px;
@@ -35,119 +35,54 @@ min-height: 1px;
 box-sizing: border-box;
 }
 
-	.sidebar-content #content {
-		float: right;
-	}
-
-.wrap .onecol {
+.onecol {
 width: 4.85%;
 }
 
-.wrap .twocol {
+.twocol {
 width: 13.5%;
 }
 
-.wrap .threecol, 
-.content-sidebar #sidebar-alt, 
-.sidebar-content #sidebar-alt,
-#sidebar-alt {
+.threecol {
 width: 22.05%;
 }
 
-.content-sidebar-sidebar #sidebar,
-.sidebar-sidebar-content #sidebar,
-.sidebar-content-sidebar #sidebar {
-width: 22.05%;
-}
-.wrap .fourcol{
+.fourcol{
 width: 30.75%;
 }
 
-.section-practice-areas.content-sidebar-sidebar #sidebar-alt,
-.section-practice-areas.sidebar-sidebar-content #sidebar-alt,
-.section-practice-areas.sidebar-content-sidebar #sidebar-alt,
-.section-practice-areas.sidebar-content #sidebar,
-.attorneys.section-attorneys #sidebar-alt,
-.attorneys.section-attorneys #sidebar,
-.category-news.archive #sidebar-alt,
-.category-news.single #sidebar-alt,
-.blog #sidebar-alt,
-.single-targeted_event.single #sidebar-alt {
-width: 22.05%;
-}
-.wrap .fivecol {
+.fivecol {
 width: 39.45%;
 }
 
-.content-sidebar-sidebar #sidebar-alt,
-.sidebar-sidebar-content #sidebar-alt,
-.sidebar-content-sidebar #sidebar-alt {
-  width: 48%;
-}
-
-.wrap .sixcol {
+.sixcol {
 width: 48%;
 }
 
-.wrap .sevencol {
+.sevencol {
 width: 56.75%;
 }
-.content-sidebar-sidebar #content,
-.sidebar-sidebar-content #content,
-.sidebar-content-sidebar #content{
-width: 50%;
-padding-right: 2%;
-  }
 
-.wrap .eightcol {
+.eightcol {
 width: 65.4%;
 }
 
-
-.section-practice-areas.content-sidebar-sidebar #content,
-.section-practice-areas.sidebar-sidebar-content #content,
-.section-practice-areas.sidebar-content-sidebar #content,
-.attorneys.section-attorneys #content,
-.category-news.archive #content,
-.category-news.single #content,
-.blog #content,
-.single-targeted_event.single #content{
-  width: 70.85%;
-  margin-right: 3.2%;
-  }
-  
-.wrap .ninecol,
-.content-sidebar #content,
-.sidebar-content #content {
+.ninecol {
 width: 69.85%;
 }
 
-.wrap .tencol {
+.tencol {
 width: 82.7%;
 }
-	.content-sidebar-sidebar #content-sidebar-wrap,
-	.sidebar-sidebar-content #content-sidebar-wrap,
-	.sidebar-content-sidebar #content-sidebar-wrap,
-	.sidebar-content-sidebar .breadcrumb {
 
-width: 74.05%;
-
-	}
-
-
-.wrap .elevencol {
+.elevencol {
 width: 91.35%;
 }
-
-.wrap .twelvecol {
+.twelvecol {
 width: 100%;
-float: left;
 }
 
-.last, .content-sidebar #sidebar,
-.sidebar-sidebar-content #content-sidebar-wrap,
-.sidebar-content-sidebar #content-sidebar-wrap,
-.sidebar-content-sidebar #sidebar  {
+.last  {
 margin-right: 0px;
 }
 
@@ -159,6 +94,48 @@ img {
 	height: auto;
 }
 
+.content-sidebar{
+  #content{
+    .ninecol;
+  }
+  #sidebar{
+    .threecol;
+    float: right;
+  }
+}
+.sidebar-content{
+  #content{
+    .ninecol;
+    float: right;
+  }
+  #sidebar{
+    .threecol;
+  }
+}
+.sidebar-content-sidebar{
+  #content-sidebar-wrap{
+    .ninecol;
+    float:right;
+    margin-right: 0px;
+    width: 73.65%;
+    #content{
+      .sixcol;
+      width: 51.8%;
+      margin-right: 0px;
+      padding-right: 3.8%;
+      min-height: 570px;
+    }
+    #sidebar-alt{
+      .sixcol;
+      margin-right: 0px;
+      padding: 0 3.8%;
+      min-height: 570px;
+      }
+  }
+  #sidebar{
+    .threecol;
+  }
+}
 
 /* Smaller screens */
 

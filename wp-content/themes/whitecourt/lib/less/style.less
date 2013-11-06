@@ -422,19 +422,17 @@ body {
 }
 #content-sidebar-wrap:after{.clearfix;}
 
-.sidebar-content-sidebar #content-sidebar-wrap{
-	float: right;
+.sidebar-content-sidebar{
+  #content-sidebar-wrap{
+    background: fade(@black,10%) no-repeat top center;
+  }
 }
-.sidebar-content-sidebar-alt #content-sidebar-wrap,
-.sidebar-sidebar-content #content-sidebar-wrap {
-	float: left;
-}
+
 /* Content
 ------------------------------------------------------------ */
 
 .page,.single {
   #content {
-  	float: left;
   	.entry {padding:30px 0;}
   }
 }
@@ -445,7 +443,6 @@ body {
 }
 .sidebar-content-sidebar {
   #content{
-      margin-right: 0;
       background: @white;
       .drop-shadow(12px,0,12px,0.2);
       z-index: 100;
@@ -701,12 +698,10 @@ h5 {
 ------------------------------------------------------------ */
 
 #sidebar-alt {
-	margin-right: 0px;
-	float: right;
-	background-color: @medgrey;
 	background-position: top left;
 	background-repeat: no-repeat;
 	background-image: url(../img/watch.jpg);
+	background-size: cover;
 }
 
 
@@ -1108,7 +1103,6 @@ input.searchsubmit:hover {
         .atty{
           border-bottom: 2px solid @medgrey;
           padding: 1.5em 0;
-          margin-right: 1.5em;
           .headshot{
             float: left;
             width: 17%;

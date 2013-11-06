@@ -32,14 +32,19 @@ function msd_child_add_homepage_sidebars(){
 
 add_action('template_redirect','msd_child_check_special_templates');
 function msd_child_check_special_templates(){
+    if(
+        stripos($_SERVER[REQUEST_URI],'about') ||
+        stripos($_SERVER[REQUEST_URI],'industry') ||
+        stripos($_SERVER[REQUEST_URI],'contact-us') ||
+        stripos($_SERVER[REQUEST_URI],'event-category') ||
+        stripos($_SERVER[REQUEST_URI],'social-media')
+    ){
+        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
+    };
     if(stripos($_SERVER[REQUEST_URI],'practice-areas')){
-        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
         add_action('genesis_after_loop','msd_child_get_attys_in_pa');
     } elseif(is_home()){
-        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
         add_action('genesis_before_loop','msd_genesis_add_title_to_news_page');
-    } elseif(is_single() && get_post_type() == 'post'){
-        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content' );
     } elseif(get_post_type() == 'targeted_event'){
         add_action('genesis_before_loop','msd_genesis_add_title_to_loop_page');
     }

@@ -75,10 +75,9 @@ body{font-family:"Raleway","Helvetica Neue",Arial,Helvetica,sans-serif;font-size
 .breadcrumb{font-size:14px;background:none;border:none;padding:10px 30px;float:right;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
 #content-sidebar-wrap{position:relative;background:#fff;padding:0;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
 #content-sidebar-wrap:after{*zoom:1;content:".";display:block;height:0;clear:both;visibility:hidden}
-.sidebar-content-sidebar #content-sidebar-wrap{float:right}
-.sidebar-content-sidebar-alt #content-sidebar-wrap,.sidebar-sidebar-content #content-sidebar-wrap{float:left}
-.page #content,.single #content{float:left}.page #content .entry,.single #content .entry{padding:30px 0}
-.sidebar-content-sidebar #content{margin-right:0;background:#fff;-webkit-box-shadow:12px 0 12px rgba(0,0,0,0.2);-moz-box-shadow:12px 0 12px rgba(0,0,0,0.2);box-shadow:12px 0 12px rgba(0,0,0,0.2);z-index:100;position:relative}
+.sidebar-content-sidebar #content-sidebar-wrap{background:rgba(0,0,0,0.1) no-repeat top center}
+.page #content .entry,.single #content .entry{padding:30px 0}
+.sidebar-content-sidebar #content{background:#fff;-webkit-box-shadow:12px 0 12px rgba(0,0,0,0.2);-moz-box-shadow:12px 0 12px rgba(0,0,0,0.2);box-shadow:12px 0 12px rgba(0,0,0,0.2);z-index:100;position:relative}
 .sidebar-content-sidebar #sidebar-alt{padding:0;z-index:50;position:relative}
 .full-width-content #content{width:100%}
 .post{margin:0 0 40px}
@@ -115,7 +114,7 @@ h5{font-size:18px}
 .author-box .avatar{background-color:#fff;float:left;margin:0 10px 0 0}
 .post-image{margin:0 10px 10px 0}
 .comment-list li .avatar{background-color:#fff;float:right;margin:5px 0 0 10px}
-#sidebar-alt{margin-right:0;float:right;background-color:#7b7d6f;background-position:top left;background-repeat:no-repeat;background-image:url(../img/watch.jpg)}
+#sidebar-alt{background-position:top left;background-repeat:no-repeat;background-image:url(../img/watch.jpg);background-size:cover}
 #sidebar-alt .widget{background:none;border:none}
 #sidebar{float:left;padding:44px 0 0}#sidebar .sidebar-content{margin:40px}
 #sidebar .widget{margin:0 1.5em;padding:0 0 15px}
@@ -172,7 +171,7 @@ input.searchsubmit,input.searchsubmit:hover{background:url('../img/bkg-search.pn
 .blog #inner .wrap #content,.tax-event_category #inner .wrap #content{padding-top:30px}.blog #inner .wrap #content .post,.tax-event_category #inner .wrap #content .post{margin-bottom:1em}
 .section-practice-areas #inner .wrap #content,.attorneys.section-attorneys #inner .wrap #content,.category-news #inner .wrap #content,.blog #inner .wrap #content{-webkit-box-shadow:0 0 0 rgba(0,0,0,0);-moz-box-shadow:0 0 0 rgba(0,0,0,0);box-shadow:0 0 0 rgba(0,0,0,0)}.section-practice-areas #inner .wrap #content h3,.attorneys.section-attorneys #inner .wrap #content h3,.category-news #inner .wrap #content h3,.blog #inner .wrap #content h3{text-transform:uppercase;border-top:2px solid #7b7d6f;border-bottom:2px solid #7b7d6f;padding:.5em 0;margin:0}
 .section-practice-areas #inner .wrap #content h4,.attorneys.section-attorneys #inner .wrap #content h4,.category-news #inner .wrap #content h4,.blog #inner .wrap #content h4,.section-practice-areas #inner .wrap #content h4 a,.attorneys.section-attorneys #inner .wrap #content h4 a,.category-news #inner .wrap #content h4 a,.blog #inner .wrap #content h4 a{color:#003f77}
-.section-practice-areas #inner .wrap #content .atty,.attorneys.section-attorneys #inner .wrap #content .atty,.category-news #inner .wrap #content .atty,.blog #inner .wrap #content .atty{border-bottom:2px solid #7b7d6f;padding:1.5em 0;margin-right:1.5em}.section-practice-areas #inner .wrap #content .atty .headshot,.attorneys.section-attorneys #inner .wrap #content .atty .headshot,.category-news #inner .wrap #content .atty .headshot,.blog #inner .wrap #content .atty .headshot{float:left;width:17%;padding-top:4px}
+.section-practice-areas #inner .wrap #content .atty,.attorneys.section-attorneys #inner .wrap #content .atty,.category-news #inner .wrap #content .atty,.blog #inner .wrap #content .atty{border-bottom:2px solid #7b7d6f;padding:1.5em 0}.section-practice-areas #inner .wrap #content .atty .headshot,.attorneys.section-attorneys #inner .wrap #content .atty .headshot,.category-news #inner .wrap #content .atty .headshot,.blog #inner .wrap #content .atty .headshot{float:left;width:17%;padding-top:4px}
 .section-practice-areas #inner .wrap #content .atty .info,.attorneys.section-attorneys #inner .wrap #content .atty .info,.category-news #inner .wrap #content .atty .info,.blog #inner .wrap #content .atty .info{float:right;width:82%}.section-practice-areas #inner .wrap #content .atty .info strong,.attorneys.section-attorneys #inner .wrap #content .atty .info strong,.category-news #inner .wrap #content .atty .info strong,.blog #inner .wrap #content .atty .info strong{color:#003f77}
 .section-practice-areas #inner .wrap #content .atty .info .practice-areas li,.attorneys.section-attorneys #inner .wrap #content .atty .info .practice-areas li,.category-news #inner .wrap #content .atty .info .practice-areas li,.blog #inner .wrap #content .atty .info .practice-areas li{list-style:none outside none}
 .section-practice-areas #inner .wrap #content .atty .info .bio,.attorneys.section-attorneys #inner .wrap #content .atty .info .bio,.category-news #inner .wrap #content .atty .info .bio,.blog #inner .wrap #content .atty .info .bio{padding:1em 0}
