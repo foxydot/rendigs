@@ -1,5 +1,5 @@
 <?php 
-global $contact_info,$additional_info;
+global $contact_info,$additional_info,$primary_practice_area;
 $contact_info = new WPAlchemy_MetaBox(array
 		(
 			'id' => '_contact_info',
@@ -25,6 +25,19 @@ $additional_info = new WPAlchemy_MetaBox(array
 			'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
 			'prefix' => '_attorney_' // defaults to NULL
 		));
+        
+$primary_practice_area = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_primary_practice_area',
+            'title' => 'Primary Practice Area',
+            'types' => array('attorney'),
+            'context' => 'side',
+            'priority' => 'low',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-lawfirm-cpt/msd-lawfirm-cpt.php').'lib/template/primary-practice-area.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_attorney_' // defaults to NULL
+        ));
         
 global $date_info,$location_info,$event_info;
 
