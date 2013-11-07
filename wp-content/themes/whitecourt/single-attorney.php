@@ -96,8 +96,9 @@ function font_awesome_lists($str){
 remove_action('genesis_sidebar','genesis_do_sidebar');
 add_action('genesis_sidebar','msd_attorney_sidebar');
 function msd_attorney_sidebar(){
-	global $post;
+	global $post,$primary_practice_area;
 	$terms = wp_get_post_terms($post->ID,'practice_area');
+    $ppa = $primary_practice_area->get_the_value('primary_practice_area');
 	print '<div class="sidebar-content">';
 	if(count($terms)>0){
 		print '<div class="widget">
@@ -105,12 +106,21 @@ function msd_attorney_sidebar(){
 			<h4 class="widget-title widgettitle">Practice Areas</h4>
 			<ul>';
 		foreach($terms AS $term){
-		    if($test = get_page_by_path('/practice-areas/'.$term->slug)){
-			 print '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>';
-            } else {
-             print '<li>'.$term->name.'</li>';
+		    if($term->slug == $ppa){
+		        if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+                 $ret = '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>'.$ret;
+                } else {
+                 $ret = '<li>'.$term->name.'</li>'.$ret;
+                }
+		    } else {
+    		    if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+    			 $ret .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a></li>';
+                } else {
+                 $ret .= '<li>'.$term->name.'</li>';
+                }
             }
 		}
+        print $ret;
 		print '</ul>
 		</div>
 		</div>';
