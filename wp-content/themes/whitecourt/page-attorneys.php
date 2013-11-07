@@ -31,7 +31,7 @@ function msd_child_atty_tabs(){
             print '<h3>'.$pa->name.' <i class="icon-large icon-angle-down"></i></h3>';
             print '<div class="attorneys attorneys-'.$pa->slug.'">';
             foreach($attys AS $atty){
-                print $msd_lawfirm->display_class->atty_display($atty);
+                print $msd_lawfirm->display_class->atty_display($atty,array('the_pa' => $pa->slug));
             }
             print '</div>';
             print '</div>';
