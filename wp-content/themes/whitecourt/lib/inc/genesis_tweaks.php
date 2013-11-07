@@ -56,7 +56,7 @@ function msd_child_get_attys_in_pa(){
         print '<h3>Contact one of our '.$post->post_title.' attorneys</h3>';
     }
     foreach($attys AS $atty){
-        print $msd_lawfirm->display_class->atty_display($atty,array('dobio' => TRUE));
+        print $msd_lawfirm->display_class->atty_display($atty,array('dobio' => TRUE,'the_pa' => $post->post_name));
     }
 }
 function msd_genesis_add_title_to_loop_page(){

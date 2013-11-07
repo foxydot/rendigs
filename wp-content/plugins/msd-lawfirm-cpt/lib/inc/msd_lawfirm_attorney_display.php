@@ -58,26 +58,51 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
         }     
         
         function atty_display($atty,$attr = array()){
-            global $post,$msd_lawfirm,$contact_info;
+            global $post,$msd_lawfirm,$contact_info,$primary_practice_area;
             //ts_data($atty);
             extract($attr);
             $headshot = get_the_post_thumbnail($atty->ID,'mini-headshot');
             $terms = wp_get_post_terms($atty->ID,'practice_area');
+            $primary_practice_area->the_meta($atty->ID);
+            $ppa = $primary_practice_area->get_the_value('primary_practice_area');
             $practice_areas = '';
             if(count($terms)>0){
-                if(count($terms)>3){
-                    $terms = array_slice($terms, 0, 3);
-                }
                 $i = 0;
                 foreach($terms AS $term){
                     $more_practice_areas = $i==2?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
-                    if($test = get_page_by_path('/practice-areas/'.$term->slug)){
-                        $practice_areas .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                    if($term->slug == $the_pa){
+                        if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+                            $first = '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                        } else {
+                            $first = '<li>'.$term->name.$more_practice_areas.'</li>';
+                        }
+                    } elseif($term->slug == $ppa){
+                        if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+                            $second = '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                        } else {
+                            $second = '<li>'.$term->name.$more_practice_areas.'</li>';
+                        }
                     } else {
-                        $practice_areas .= '<li>'.$term->name.$more_practice_areas.'</li>';
+                        if($test = get_page_by_path('/practice-areas/'.$term->slug)){
+                            $practice_areas[$i] .= '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
+                        } else {
+                            $practice_areas[$i] .= '<li>'.$term->name.$more_practice_areas.'</li>';
+                        }
                     }
                     $i++;
                 }
+                if($first && $second){
+                    array_unshift($practice_areas,$first,$second);
+                } elseif($first) {
+                    array_unshift($practice_areas,$first);
+                } elseif($second) {
+                    array_unshift($practice_areas,$second);
+                }
+                
+                if(count($practice_areas)>3){
+                    $practice_areas = array_slice($practice_areas, 0, 3);
+                }
+                $practice_areas = implode(' ', $practice_areas);
             }
             $mini_bio = msd_child_excerpt($atty->ID);
             $atty_contact_info = '';
