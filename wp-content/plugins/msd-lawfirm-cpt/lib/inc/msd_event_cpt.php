@@ -128,7 +128,7 @@ if (!class_exists('MSDEventCPT')) {
                 'labels' => $labels,
                 'hierarchical' => false,
                 'description' => 'Event',
-                'supports' => array( 'title', 'editor' ),
+                'supports' => array( 'title', 'editor', 'thumbnail' ),
                 'taxonomies' => array('event_type', 'event_category' ),
                 'public' => true,
                 'show_ui' => true,
@@ -384,6 +384,15 @@ if (!class_exists('MSDEventCPT')) {
                     $query->set( 'post_type', array('post','page',$this->cpt) );
                 }
             }
-        }           
+        }   
+        
+        function msd_event_date(){
+            global $post,$date_info;
+            $date_info->the_meta($post->ID);
+            $date = $date_info->get_the_value('event_datestamp');
+            if($date){
+                print '<div class="post-info odd"><span title="'.date("F d,Y",$date).'" class="date event time">'.date("F d,Y",$date).'</span></div>';
+            }
+        }        
   } //End Class
 } //End if class exists statement

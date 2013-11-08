@@ -113,7 +113,7 @@ if (!class_exists('MSDLawfirmCPT')) {
                 add_action('widgets_init',array('MSDLawfirmAttorneyWidget','init'),10);
             }
             if(class_exists('MSDEventCPT')){
-                $this->location_class = new MSDEventCPT();
+                $this->event_class = new MSDEventCPT();
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
                 register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
             }

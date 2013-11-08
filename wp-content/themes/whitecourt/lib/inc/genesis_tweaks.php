@@ -36,7 +36,6 @@ function msd_child_check_special_templates(){
         stripos($_SERVER[REQUEST_URI],'about') ||
         stripos($_SERVER[REQUEST_URI],'industry') ||
         stripos($_SERVER[REQUEST_URI],'contact-us') ||
-        stripos($_SERVER[REQUEST_URI],'event-category') ||
         stripos($_SERVER[REQUEST_URI],'social-media')
     ){
         add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
@@ -110,11 +109,18 @@ function custom_breadcrumb_args($args) {
 remove_action('genesis_before_loop', 'genesis_do_breadcrumbs');
 add_action('genesis_before_content_sidebar_wrap', 'genesis_do_breadcrumbs');
 
-if(is_page()){
-    remove_action( 'genesis_before_post_content', 'genesis_post_info' );
-}
+remove_action( 'genesis_before_post_content', 'genesis_post_info' );
 remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
 
+add_action('genesis_before_loop','msd_should_there_be_meta');
+function msd_should_there_be_meta(){
+    if(get_post_type()=='post'){
+        add_action( 'genesis_before_post_content', 'genesis_post_info' );
+    }
+    if(get_post_type()=='targeted_event'){
+        add_action( 'genesis_before_post_title', array('MSDEventCPT','msd_event_date') );
+    }
+}
 add_filter( 'genesis_post_info', 'msd_post_info_filter' );
 function msd_post_info_filter($post_info) {
     $post_info = '[post_date] [post_edit]';

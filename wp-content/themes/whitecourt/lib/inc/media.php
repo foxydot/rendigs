@@ -7,16 +7,27 @@ function add_viewport_meta_tag() {
 }
 
 /** Add new image sizes */
-add_image_size( 'post-image', 540, 150, TRUE );
+add_image_size( 'post-image', 540, 200, FALSE );
 add_image_size( 'headshot', 373, 600, FALSE );
 add_image_size( 'mini-headshot', 120, 160, TRUE );
 
 /* Manipulate the featured image */
-add_action( 'genesis_before_post', 'msd_post_image', 8 );
+add_action('genesis_before_content','msd_add_post_images');
+function msd_add_post_images(){
+    if(is_archive() || is_home()){
+        add_action( 'genesis_before_post', 'msd_post_image', 8 );
+    } elseif(is_single()){
+        add_action( 'genesis_post_content', 'msd_post_image', 1);
+    }
+}
 function msd_post_image() {
 	global $post;
    	//setup thumbnail image args to be used with genesis_get_image();
-	$size = 'mini-headshot'; // Change this to whatever add_image_size you want
+   	if(is_archive() || is_home()){
+   	    $size = 'mini-headshot'; // Change this to whatever add_image_size you want
+   	} elseif(is_single()){
+        $size = 'post-image'; // Change this to whatever add_image_size you want
+   	}
 	$default_attr = array(
 			'class' => "alignleft attachment-$size $size",
 			'alt'   => $post->post_title,
@@ -24,7 +35,7 @@ function msd_post_image() {
 	);
 
 	// This is the most important part!  Checks to see if the post has a Post Thumbnail assigned to it. You can delete the if conditional if you want and assume that there will always be a thumbnail
-	if ( has_post_thumbnail() && (is_archive() || is_home()) ) {
+	if ( has_post_thumbnail() && !is_page() ) {
 		printf( '%s', genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) ) );
 	}
 
