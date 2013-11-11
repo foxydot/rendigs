@@ -3,15 +3,17 @@
 
 .home{
 	#content-sidebar-wrap{
-		background: url(../img/bkg-home-lighthouse.jpg) no-repeat center center;
+		background: url(../img/bkg-home-lighthouse.jpg) no-repeat top left;
+		background-size: cover;
 		min-height: 510px;
 		padding: 0;
 		#content{
-			width: 68.05%;
+			width: 45.05%;
 			margin-right: 3.8%;
 			color: @white;
+			float: left;
 			.entry{
-			  padding: 25px 215px 75px 30px;
+			  padding: 25px 0 0 3.8%;
   			.entry-title{
   				color: @dkyellow;
   			}
@@ -54,4 +56,29 @@
 		}
 	}
 	.readmore {.button();margin:0;}
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 767px) {
+  .home{
+    #content-sidebar-wrap{
+      #content{
+        width: 60%;
+        float: none;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width : 480px) {  
+    .home{
+    #content-sidebar-wrap{
+      #content{
+        width: 100%;
+        float: none;
+      }
+    }
+  }
 }

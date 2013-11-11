@@ -17,7 +17,11 @@ function msd_add_post_images(){
     if(is_archive() || is_home()){
         add_action( 'genesis_before_post', 'msd_post_image', 8 );
     } elseif(is_single()){
-        add_action( 'genesis_post_content', 'msd_post_image', 1);
+        if(get_post_type() == 'attorney'){
+            
+        } else {
+            add_action( 'genesis_post_content', 'msd_post_image', 1);
+        }
     }
 }
 function msd_post_image() {
