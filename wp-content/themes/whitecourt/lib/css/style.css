@@ -6,7 +6,7 @@ ol li{list-style-type:decimal}
 .clearfix:before,.clearfix:after{content:" ";display:table}
 .clearfix:after{clear:both}
 .clearfix{*zoom:1}
-.opensans{font-family:"Raleway","Open Sans","Trebuchet MS",Calibri,sans-serif}
+@font-face{font-family:'FontAwesome';src:url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/font/fontawesome-webfont.eot?v=3.2.1');src:url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/font/fontawesome-webfont.eot?#iefix&v=3.2.1') format('embedded-opentype'),url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/font/fontawesome-webfont.woff?v=3.2.1') format('woff'),url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/font/fontawesome-webfont.ttf?v=3.2.1') format('truetype'),url('http://netdna.bootstrapcdn.com/font-awesome/3.2.1/font/fontawesome-webfont.svg#fontawesomeregular?v=3.2.1') format('svg');font-weight:normal;font-style:normal}.opensans{font-family:"Raleway","Open Sans","Trebuchet MS",Calibri,sans-serif}
 .arial{font-family:"Raleway","Helvetica Neue",Arial,Helvetica,sans-serif}
 .button:hover,.button:visited,.button a,.button a:hover,.button a:visited{color:#474747;text-decoration:none}
 .five-sixths,.four-fifths,.four-sixths,.one-fifth,.one-fourth,.one-half,.one-sixth,.one-third,.three-fifths,.three-fourths,.three-sixths,.two-fifths,.two-fourths,.two-sixths,.two-thirds{float:left;margin:0 0 20px;padding-left:3%}
@@ -104,7 +104,9 @@ h4{font-size:18px}
 .widget-area h4 a{color:#c8c8c8;text-decoration:none}
 #footer-widgets h4{background:none;border:none;padding:0}
 h5{font-size:18px}
-.archive-page ul li,.entry-content ul li,.hentry ul li{list-style:square inside none;margin-bottom:.25em}
+.entry-content ol,.entry-content ul{margin-bottom:25px}
+.archive-page ul li,.entry-content ul li,.hentry ul li{list-style:none outside none;margin-bottom:.25em}
+.archive-page ul li:before,.entry-content ul li:before,.hentry ul li:before{font-family:'FontAwesome';content:'\f0DA';margin:0 5px 0 0;color:#7b7d6f}
 .post-info{font-size:14px;margin:-5px 0 15px}
 .post-meta{border-top:1px solid #c8c8c8;clear:both;font-size:14px;padding:5px 0 0}
 .author-box{background-color:#c8c8c8}

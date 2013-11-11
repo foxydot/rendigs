@@ -605,14 +605,26 @@ h5 {
 
 .entry-content ol,
 .entry-content ul {
-	
+  margin-bottom: 25px;
 }
 
 .archive-page ul li,
 .entry-content ul li,
 .hentry ul li {
-	list-style: square inside none;
+	list-style: none outside none;
 	margin-bottom: .25em;
+}
+.archive-page,
+.entry-content,
+.hentry{
+  ul{
+    li:before {    
+    font-family: 'FontAwesome';
+    content: '\f0DA';
+    margin:0 5px 0 0;
+    color: @medgrey;
+    }
+  }
 }
 
 .entry-content ol li {

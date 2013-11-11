@@ -17,9 +17,7 @@ function msd_add_post_images(){
     if(is_archive() || is_home()){
         add_action( 'genesis_before_post', 'msd_post_image', 8 );
     } elseif(is_single()){
-        if(get_post_type() == 'attorney'){
-            
-        } else {
+        if(get_post_type() == 'post' || get_post_type() == 'targeted_event'){
             add_action( 'genesis_post_content', 'msd_post_image', 1);
         }
     }
