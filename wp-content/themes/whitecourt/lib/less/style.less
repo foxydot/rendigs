@@ -248,19 +248,23 @@ body {
 	position: relative;
 	.wrap:after{.clearfix;}
 	.menu-primary{
-		padding: 0; margin: 0; float:left;
+		padding: 0; margin: 0; float:none; width:100%;
 		a{color: white;font-weight: normal;text-transform:uppercase;padding: .5em 0.86em;display: block;}
-		li {border-left: 1px solid @medgrey;
+		li {border-right: 1px solid @medgrey;
 			margin-left:-4px;
 			li {border: none;}
 		}
 		li:hover, li.current-menu-item, li.current-menu-ancestor {
 			.quickgradient(darken(@medgrey,20%));
 		}
+		li.right {
+		  float:right;
+		  border: none;
+		}
 		li.search:hover{
 			.quickgradient(lighten(@medgrey,10%));
 		}
-		li.first-child{margin-left:0;}
+		>li.first-child{margin-left:0;border-left:1px solid @medgrey;}
 	}
 	.s {margin:0;width:200px;}
 	.searchform {padding: 0.5em 0 0.5em 0.5em;}
