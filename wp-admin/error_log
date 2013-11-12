@@ -1,0 +1,42 @@
+[11-Oct-2013 18:53:21 UTC] PHP Parse error:  syntax error, unexpected T_SL in /home/msdlabtw/public_html/rendigs/wp-content/plugins/gravityforms/gravityforms.php on line 69
+[11-Oct-2013 18:53:48 UTC] PHP Parse error:  syntax error, unexpected T_SL in /home/msdlabtw/public_html/rendigs/wp-content/plugins/gravityforms/gravityforms.php on line 69
+[11-Oct-2013 19:57:57 UTC] PHP Warning:  include(/home/msdlabtw/public_html/rendigs/wp-content/plugins/msd-custom-cpt/lib/template/date-information.php): failed to open stream: No such file or directory in /home/msdlabtw/public_html/rendigs/wp-content/plugins/msd-lawfirm-cpt/lib/wpalchemy/MetaBox.php on line 826
+[11-Oct-2013 19:57:57 UTC] PHP Warning:  include(): Failed opening '/home/msdlabtw/public_html/rendigs/wp-content/plugins/msd-custom-cpt/lib/template/date-information.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/msdlabtw/public_html/rendigs/wp-content/plugins/msd-lawfirm-cpt/lib/wpalchemy/MetaBox.php on line 826
+[18-Oct-2013 00:50:29 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 00:50:29 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 18:07:30 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 18:07:30 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:25:00 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:25:00 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:26:19 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:26:19 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:26:54 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:26:54 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:29:24 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:29:24 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:30:02 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[18-Oct-2013 21:30:02 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 22:41:44 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 22:41:44 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 22:43:32 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 22:43:32 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 22:44:08 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 22:44:08 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 23:13:33 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 23:13:33 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 23:29:13 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 23:29:13 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 23:31:00 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[20-Oct-2013 23:31:00 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[05-Nov-2013 21:26:49 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[05-Nov-2013 21:26:49 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[06-Nov-2013 21:20:23 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[06-Nov-2013 21:20:23 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[08-Nov-2013 14:55:12 UTC] WordPress database error Duplicate column name 'term_reverse' for query ALTER TABLE renrelevanssi ADD COLUMN term_reverse VARCHAR(50); made by activate_plugin, do_action('activate_relevanssi/relevanssi.php'), call_user_func_array, relevanssi_install, _relevanssi_install, relevanssi_create_database_tables
+[08-Nov-2013 14:55:12 UTC] WordPress database error Duplicate key name 'relevanssi_term_reverse_idx' for query CREATE INDEX relevanssi_term_reverse_idx ON renrelevanssi (term_reverse(10)); made by activate_plugin, do_action('activate_relevanssi/relevanssi.php'), call_user_func_array, relevanssi_install, _relevanssi_install, relevanssi_create_database_tables
+[08-Nov-2013 15:19:59 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[08-Nov-2013 15:19:59 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[08-Nov-2013 15:20:56 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[08-Nov-2013 15:20:57 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[08-Nov-2013 15:22:19 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
+[08-Nov-2013 15:22:19 UTC] PHP Warning:  implode(): Invalid arguments passed in /home/msdlabtw/public_html/rendigs/wp-content/plugins/dynamic-widgets/mods/custompost_module.php on line 216
