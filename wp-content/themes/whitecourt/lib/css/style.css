@@ -188,11 +188,15 @@ input.searchsubmit,input.searchsubmit:hover{background:url('../img/bkg-search.pn
 .attorneys.section-attorneys #content #practice-area .practice-area .attorneys{display:none}.attorneys.section-attorneys #content #practice-area .practice-area .attorneys .atty{border-top:2px solid #7b7d6f;border-bottom:0 solid #7b7d6f}
 #sidebar .msd-widget-atty{margin-top:15px}#sidebar .msd-widget-atty .widget-title{text-align:center;text-transform:none}
 #sidebar .msd-widget-atty select,#sidebar .msd-widget-atty input{width:168px;overflow:hidden;margin:.5em 0;padding:.5em}#sidebar .msd-widget-atty select option,#sidebar .msd-widget-atty input option{padding:.25em 0}
+#sidebar #menu-basic-authorizations-menu li{display:inline-block;margin-right:6px}
+#sidebar #menu-basic-authorizations-menu li a:after{content:"Cincinnati, OH";display:block;font-style:italic;text-transform:none}
+#sidebar #menu-basic-authorizations-menu li:last-child{margin:0}
+#sidebar ul.bullets{margin-left:1em}#sidebar ul.bullets li:before{font-family:'FontAwesome';content:'\f0DA';margin:0 5px 0 0;color:#7b7d6f}
 .category-news.archive .post.entry{border-bottom:.5px solid #c8c8c8;margin:0}
 .type-targeted_event .post-info{margin:0}.type-targeted_event .post-info span.date.event{font-size:1.2em;color:#003f77}
 .testimonials .in-listing-testimonial .testimonial-data .testimonial-content i{color:#c8c8c8}
 .testimonials .in-listing-testimonial .testimonial-data .testimonial-author{font-style:italic}
 .readmore{background-color:#f1c801;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;padding:6px 24px;font-family:"Raleway","Open Sans","Trebuchet MS",Calibri,sans-serif;color:#fff !important;font-size:12px;font-weight:normal;text-transform:uppercase;display:table;margin:12px auto}
 .entry-content h6{font-family:"Raleway","Helvetica Neue",Arial,Helvetica,sans-serif;font-weight:bold;border-top:1px solid #7b7d6f;padding-top:10px}
-.widget_text p,.widget_sp_image p{font-size:12px}
+.widget_text p,.widget_sp_image p,.widget_text li,.widget_sp_image li{font-size:12px}
 .widget_text .readmore,.widget_sp_image .readmore{background-color:#f1c801;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-moz-background-clip:padding;-webkit-background-clip:padding-box;background-clip:padding-box;padding:6px 24px;font-family:"Raleway","Open Sans","Trebuchet MS",Calibri,sans-serif;color:#fff !important;font-size:12px;font-weight:normal;text-transform:uppercase;display:table;margin:12px auto}

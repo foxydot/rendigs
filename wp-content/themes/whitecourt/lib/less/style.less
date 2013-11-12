@@ -1221,6 +1221,31 @@ input.searchsubmit:hover {
             }
           }
         }
+        #menu-basic-authorizations-menu{
+          li {
+            display: inline-block;
+            margin-right: 6px;
+            a{}
+            a:after{
+              content: "Cincinnati, OH";
+              display: block;
+              font-style: italic;
+              text-transform: none;
+            }
+          }
+          li:last-child{
+            margin: 0;
+          }
+        }
+        ul.bullets{
+          margin-left: 1em;
+          li:before{
+            font-family: 'FontAwesome';
+            content: '\f0DA';
+            margin:0 5px 0 0;
+            color: @medgrey;
+          }
+        }
       }
 .category-news.archive{
   .post.entry{
@@ -1261,7 +1286,7 @@ input.searchsubmit:hover {
 	}
 }
 .widget_text, .widget_sp_image{
-	p {font-size: 12px;}
+	p, li {font-size: 12px;}
 	 .readmore{
 	.button();
 	}
