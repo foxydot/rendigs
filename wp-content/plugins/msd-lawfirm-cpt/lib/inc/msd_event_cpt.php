@@ -31,7 +31,7 @@ if (!class_exists('MSDEventCPT')) {
             add_action('admin_head', array(&$this,'codex_custom_help_tab'));
             
             //Filters
-            add_filter( 'pre_get_posts', array(&$this,'custom_query') );
+           // add_filter( 'pre_get_posts', array(&$this,'custom_query') );
             add_filter( 'enter_title_here', array(&$this,'change_default_title') );
             
             add_image_size('sponsor',275,120,FALSE);
@@ -369,16 +369,14 @@ if (!class_exists('MSDEventCPT')) {
             if(!is_admin()){
                 $is_event = ($query->query_vars['event_type'])?TRUE:FALSE;
                 if($query->is_main_query() && $query->is_search){
-                    $searchterm = $query->query_vars['s'];
-                    // we have to remove the "s" parameter from the query, because it will prevent the posts from being found
-                    $query->query_vars['s'] = "";
                     
-                    if ($searchterm != "") {
-                        $query->set('meta_value',$searchterm);
-                        $query->set('meta_compare','LIKE');
-                    };
-                    $query->set( 'post_type', array('post','page',$this->cpt) );
-                    ts_data($query);
+                    $post_types = $query->query_vars['post_type'];
+                    if(count($post_types)==0){
+                        $post_types[] = 'post';
+                        $post_types[] = 'page';
+                    }
+                    $post_types[] = $this->cpt;
+                    $query->set( 'post_type', $post_types );
                 }
                 elseif( $query->is_main_query() && $query->is_archive ) {
                     $query->set( 'post_type', array('post','page',$this->cpt) );

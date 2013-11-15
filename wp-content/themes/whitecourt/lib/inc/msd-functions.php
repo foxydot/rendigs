@@ -141,7 +141,8 @@ function set_section(){
 }
 
 function get_topmost_parent($post_id){
-	$parent_id = get_post($post_id)->post_parent;
+    $this_post = get_post($post_id);
+	$parent_id = $this_post->post_parent;
 	if($parent_id == 0){
 		$parent_id = $post_id;
 	}else{

@@ -1,6 +1,16 @@
 <?php
+//add_filter('pre_get_posts','what_is_the_query',100);
+function what_is_the_query($query){
+    ts_data($query);
+    return $query;
+}
+//add_action('wp_footer','get_hooks');
+function get_hooks(){
+    
+global $wp_filter; ts_var( $wp_filter['get_the_excerpt'] );
+}
 /*
- * A useful troubleshooting function. Displays arrays in an easy to follow format in a textarea.
+* A useful troubleshooting function. Displays arrays in an easy to follow format in a textarea.
 */
 if ( ! function_exists( 'ts_data' ) ) :
 function ts_data($data){

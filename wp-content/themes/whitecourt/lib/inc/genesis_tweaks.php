@@ -32,6 +32,9 @@ function msd_child_add_homepage_sidebars(){
 
 add_action('template_redirect','msd_child_check_special_templates');
 function msd_child_check_special_templates(){
+    global $post;
+    $post_data = get_post(get_topmost_parent($post->ID));
+    $section = $post_data->post_name;
     if(
         stripos($_SERVER[REQUEST_URI],'about') ||
         stripos($_SERVER[REQUEST_URI],'industry') ||
@@ -39,8 +42,10 @@ function msd_child_check_special_templates(){
         stripos($_SERVER[REQUEST_URI],'social-media')
     ){
         add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_sidebar_content_sidebar' );
-    } elseif(stripos($_SERVER[REQUEST_URI],'auth')){
+    } elseif($section == 'auth'){
         add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_content_sidebar' );
+    } elseif(is_search()){
+        add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
     };
     if(stripos($_SERVER[REQUEST_URI],'practice-areas')){
         add_action('genesis_after_loop','msd_child_get_attys_in_pa');
@@ -70,6 +75,25 @@ function msd_genesis_add_title_to_loop_page(){
 function msd_genesis_add_title_to_news_page(){
     print '<h1 class="entry-title">News</h1>';
 }
+function new_excerpt_more($more) {
+       global $post;
+    return ' <a class="moretag" href="'. get_permalink($post->ID) . '">Read More&nbsp;<i class="icon-circle-arrow-right"></i></a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+add_filter( 'get_the_content_more_link', 'new_excerpt_more' );
+function child_theme_setup() {
+    // override parent theme's 'more' text for excerpts
+    remove_filter( 'excerpt_more', 'twentyeleven_auto_excerpt_more' ); 
+    remove_filter( 'get_the_excerpt', 'twentyeleven_custom_excerpt_more' );
+}
+add_action( 'after_setup_theme', 'child_theme_setup' );
+
+add_filter('relevanssi_excerpt_content', 'excerpt_function', 10, 3);
+function excerpt_function($content, $post, $query) {
+        //add whatever you want to $content here
+        $content = $content.' <a href="'.get_post_permalink($post_id).'">&nbsp;<i class="icon-circle-arrow-right"></i></a>';
+    return $content;
+}
 
 function msd_child_excerpt( $post_id, $excerpt_length = 30, $trailing_character = '&nbsp;<i class="icon-circle-arrow-right"></i>' ) {
 $the_post = get_post( $post_id );
@@ -83,7 +107,7 @@ $words = explode( ' ', $the_excerpt, $excerpt_length + 1 );
 if( count( $words ) > $excerpt_length )
 $words = array_slice( $words, 0, $excerpt_length );
  
-$the_excerpt = implode( ' ', $words ) . '<a href="'.get_post_permalink($post_id).'">'.$trailing_character.'</a>';
+$the_excerpt = implode( ' ', $words ) . ' <a href="'.get_post_permalink($post_id).'">'.$trailing_character.'</a>';
 return $the_excerpt;
 }
 
