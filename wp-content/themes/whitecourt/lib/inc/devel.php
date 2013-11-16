@@ -10,7 +10,7 @@ function get_hooks(){
 global $wp_filter; ts_var( $wp_filter['get_the_excerpt'] );
 }
 
-//add_action('wp_head','list_all_practice_areas');
+add_action('wp_head','list_all_practice_areas');
 
 function list_all_practice_areas(){
     global $msd_lawfirm;
@@ -18,7 +18,7 @@ function list_all_practice_areas(){
     foreach($practice_areas AS $pa){
         $mypage = get_page_by_path('/practice-areas/'.$pa->slug);
         $has_page = $mypage?'TRUE':'FALSE';
-        $content .= $pa->name.','.$pa->slug.','.$has_page."\n";
+        $content .= '"'.$pa->name.'","'.$pa->slug.'","'.$has_page.'"'."\n";
     }
     ts_data($content);
 }
