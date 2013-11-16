@@ -36,6 +36,9 @@
 						display: inline-block;
 						margin: 0 .5em;
 					}
+					li:before{
+					  content: '';
+					}
 					li:first-child {margin-left: 0;}
 					li:last-child {margin-right: 0;}
 				}
@@ -49,7 +52,7 @@
 				h3.toggle{
 					cursor: pointer;
 					span{
-						color: @red;
+						color: @blue;
 						text-transform: none;
 						float: right;
 					}
@@ -73,6 +76,9 @@
 							}
 						}
 					}
+          li:before{
+            content: '';
+          }
 				}
 			}
 		}

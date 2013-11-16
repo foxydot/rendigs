@@ -89,8 +89,9 @@ function msd_attorney_additional_info(){
 	<?php
 }
 function font_awesome_lists($str){
+    $str = strip_tags($str,'<a><li><ul><h3><b><strong><i>');
 	$str = preg_replace('/<ul(.*?)>/i','<ul class="icons-ul"\1>',$str);
-	$str = preg_replace('/<li>/i','<li><i class="icon-li icon-angle-right"></i>',$str);
+	$str = preg_replace('/<li>/i','<li><i class="icon-li icon-caret-right"></i>',$str);
 	return $str;
 }
 remove_action('genesis_sidebar','genesis_do_sidebar');
