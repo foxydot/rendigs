@@ -10,7 +10,7 @@ function get_hooks(){
 global $wp_filter; ts_var( $wp_filter['get_the_excerpt'] );
 }
 
-add_action('wp_head','list_all_practice_areas');
+//add_action('wp_head','list_all_practice_areas');
 
 function list_all_practice_areas(){
     global $msd_lawfirm;
