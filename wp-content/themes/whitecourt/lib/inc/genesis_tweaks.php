@@ -161,9 +161,9 @@ add_action('genesis_footer','msdsocial_do_footer');
 function msdsocial_do_footer(){
 	global $msd_social;
 	if($msd_social){
-		$copyright = '&copy;Copyright '.date('Y').' '.$msd_social->get_bizname().' <br/> All Rights Reserved';
+		$copyright = '&copy;Copyright '.date('Y').' '.$msd_social->get_bizname().'<br/> All Rights Reserved';
 	} else {
-		$copyright = '&copy;Copyright '.date('Y').' '.get_bloginfo('name').' <br/> All Rights Reserved ';
+		$copyright = '&copy;Copyright '.date('Y').' '.get_bloginfo('name').'<br/> All Rights Reserved ';
 	}
 	if(has_nav_menu('footer_menu')){$copyright .= wp_nav_menu( array( 'theme_location' => 'footer_menu','container_class' => 'ftr-menu ftr-links','echo' => FALSE ) );}
 	print '<div id="copyright" class="copyright gototop">'.$copyright.'</div><div id="social" class="social creds">';
