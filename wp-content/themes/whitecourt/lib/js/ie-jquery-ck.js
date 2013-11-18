@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e(".no-csscolumns .footer-widgets-1 .menu").columnize({columns:3});e.browser.version==8&&e("body").addClass("ie8");e.browser.version<8&&e("body").addClass("ie7")});

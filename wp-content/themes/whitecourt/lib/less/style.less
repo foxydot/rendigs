@@ -342,6 +342,32 @@ body {
 	}
 }
 
+.ie8{
+  #nav{
+    .sub-menu{
+      background: @dkgrey;
+      .drop-shadow(0, 1px, 8px, 0.4);
+      li{
+        background: @dkgrey;
+      }
+    }
+  }
+}
+.ie7{
+  #nav{
+    li{
+      float: left;
+      .sub-menu{
+        background: @dkgrey;
+        .drop-shadow(0, 1px, 8px, 0.4);
+        li{
+          background: @dkgrey;
+        }
+      }
+    }
+  }
+}
+
 /*Sub Menu Drop Down Hoveer */
 .menu-primary li li a:active,.menu-primary li li a:hover,
 .menu-secondary li li a:active,.menu-secondary li li a:hover,
