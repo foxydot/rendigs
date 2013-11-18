@@ -4,6 +4,7 @@
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action( 'genesis_loop', 'genesis_custom_loop' );
 add_filter('genesis_custom_loop_args','targeted_events_do_custom_loop');
+add_filter('genesis_custom_loop_args','targeted_past_events_do_custom_loop');
 
 remove_all_actions('genesis_post_content');
 
@@ -26,6 +27,27 @@ function targeted_events_do_custom_loop() {
             )
          ),
          'order_by' => 'meta_value',
+         'meta_key' => '_date_event_datestamp',
+    );
+    $test_query = new WP_Query(wp_parse_args($wp_query->query_vars, $args));
+    if ( !$test_query->have_posts() ) {
+        add_filter('genesis_custom_loop_args','targeted_past_events_do_custom_loop');
+    }
+    return wp_parse_args($wp_query->query_vars, $args);
+}
+function targeted_past_events_do_custom_loop() {
+    global $paged; // current paginated page
+    global $wp_query;
+    $args = array(
+        'meta_query' => array(
+            array(
+                'key' => '_date_event_datestamp',
+                'value' => time()-86400,
+                'compare' => '<'
+            ),
+         ),
+         'order_by' => 'meta_value',
+         'order' => 'ASC',
          'meta_key' => '_date_event_datestamp',
     );
     return wp_parse_args($wp_query->query_vars, $args);

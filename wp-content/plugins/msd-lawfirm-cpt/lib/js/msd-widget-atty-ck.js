@@ -1,0 +1,1 @@
+jQuery(document).ready(function(e){e(".widget_lawfirm_atty select").change(function(){var t=e(this).val();window.location=t})});
