@@ -50,3 +50,24 @@ function column_shortcode($atts, $content = null){
 }
 
 add_shortcode('columns','column_shortcode');
+
+function msdlab_clean_email($atts, $content = null){
+    extract( shortcode_atts( array(
+        'email' => false,
+        'subject' => false,
+        'cc' => false,
+        'bcc' => false,
+        'body' => false,
+    ), $atts ) );
+    $qs = '';
+    if($subject || $cc || bcc || $body){
+        $qs = '?';
+        $qs .= $subject?'subject="'.$subject.'"':'';
+        $qs .= $cc?'cc="'.$cc.'"':'';
+        $qs .= $bcc?'bcc="'.$bcc.'"':'';
+        $qs .= $body?'body="'.$body.'"':'';
+    }
+    $address = $email?$email:$content;
+    return '<a href="mailto:'.antispambot($email).$qs.'">'.antispambot($content).'</a>';
+}
+add_shortcode('clean_email','msdlab_clean_email');
