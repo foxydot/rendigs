@@ -24,12 +24,18 @@ jQuery(document).ready(function($) {
         });
 	});
 	
-	$('.attorneys.section-attorneys #content #practice-area .practice-area h3').click(function(e){
+    $('.attorneys.section-attorneys #content #practice-area .practice-area h3').click(function(e){
          $(this).parent('.practice-area').find('.attorneys').toggle( "slow", function() {
         });
         $(this).find('i').toggleClass('icon-angle-down').toggleClass('icon-angle-up');
     });
-		
+        
+    $('.textwidget .address_block h4').click(function(e){
+         $(this).next('.hidden').toggle( "slow", function() {
+        });
+        $(this).find('i').toggleClass('icon-angle-down').toggleClass('icon-angle-up');
+    });
+        
 	//special for lifestyle
 	$('.ftr-menu ul.menu>li').after(function(){
 		if(!$(this).hasClass('last-child') && $(this).hasClass('menu-item') && $(this).css('display')!='none'){
