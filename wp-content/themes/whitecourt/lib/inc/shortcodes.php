@@ -60,7 +60,7 @@ function msdlab_clean_email($atts, $content = null){
         'body' => false,
     ), $atts ) );
     $qs = '';
-    if($subject || $cc || bcc || $body){
+    if($subject || $cc || $bcc || $body){
         $qs = '?';
         $qs .= $subject?'subject="'.$subject.'"':'';
         $qs .= $cc?'cc="'.$cc.'"':'';
@@ -68,6 +68,6 @@ function msdlab_clean_email($atts, $content = null){
         $qs .= $body?'body="'.$body.'"':'';
     }
     $address = $email?$email:$content;
-    return '<a href="mailto:'.antispambot($email).$qs.'">'.antispambot($content).'</a>';
+    return '<a href="mailto:'.antispambot($address).$qs.'">'.antispambot($content).'</a>';
 }
 add_shortcode('clean_email','msdlab_clean_email');
