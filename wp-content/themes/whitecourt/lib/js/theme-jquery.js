@@ -11,10 +11,14 @@ jQuery(document).ready(function($) {
 	$('tr td:last-child').addClass('last-child');
 	$('tr td:nth-child(even)').addClass('even');
 	$('tr td:nth-child(odd)').addClass('odd');
-	$('div:first-child').addClass('first-child');
-	$('div:last-child').addClass('last-child');
-	$('div:nth-child(even)').addClass('even');
-	$('div:nth-child(odd)').addClass('odd');
+    $('div:first-child').addClass('first-child');
+    $('div:last-child').addClass('last-child');
+    $('div:nth-child(even)').addClass('even');
+    $('div:nth-child(odd)').addClass('odd');
+    $('option:first-child').addClass('first-child');
+    $('option:last-child').addClass('last-child');
+    $('option:nth-child(even)').addClass('even');
+    $('option:nth-child(odd)').addClass('odd');
 
 	//$('#content-sidebar-wrap>div').equalHeightColumns();
 	
