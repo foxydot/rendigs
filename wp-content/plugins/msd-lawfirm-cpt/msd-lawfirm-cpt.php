@@ -124,6 +124,11 @@ if (!class_exists('MSDLawfirmCPT')) {
                 $this->fullyear_class = new MSDEventFullYear();
                 //register_activation_hook( __FILE__, array(&$this->fullyear_class,'msd_add_rewite_rules') );
             }
+            if(class_exists('MSDNewsletterCPT')){
+                $this->cpt_class = new MSDNewsletterCPT();
+                register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
+                register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
+            }
         }
 
         /**

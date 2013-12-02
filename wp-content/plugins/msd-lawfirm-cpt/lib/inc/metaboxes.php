@@ -39,7 +39,7 @@ $primary_practice_area = new WPAlchemy_MetaBox(array
             'prefix' => '_attorney_' // defaults to NULL
         ));
         
-global $date_info,$location_info,$event_info;
+global $date_info,$location_info,$event_info,$newsletter_info;
 
 $date_info = new WPAlchemy_MetaBox(array
         (
@@ -52,6 +52,18 @@ $date_info = new WPAlchemy_MetaBox(array
             'autosave' => TRUE,
             'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
             'prefix' => '_date_' // defaults to NULL
+        ));
+$newsletter_info = new WPAlchemy_MetaBox(array
+        (
+            'id' => '_newsletter_information',
+            'title' => 'Newsletter File',
+            'types' => array('newsletter'),
+            'context' => 'normal',
+            'priority' => 'high',
+            'template' => WP_PLUGIN_DIR.'/'.plugin_dir_path('msd-lawfirm-cpt/msd-lawfirm-cpt.php').'lib/template/newsletter-info.php',
+            'autosave' => TRUE,
+            'mode' => WPALCHEMY_MODE_EXTRACT, // defaults to WPALCHEMY_MODE_ARRAY
+            'prefix' => '_newsletter_' // defaults to NULL
         ));
 /*$location_info = new WPAlchemy_MetaBox(array
         (
