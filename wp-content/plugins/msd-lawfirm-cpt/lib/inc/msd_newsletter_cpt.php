@@ -67,7 +67,7 @@ if (!class_exists('MSDNewsletterCPT')) {
                 'has_archive' => true,
                 'query_var' => true,
                 'can_export' => true,
-                'rewrite' => array('slug'=>'newsletter','with_front'=>false),
+                'rewrite' => array('slug'=>'resources/newsletter','with_front'=>false),
                 'capability_type' => 'post'
             );
         
