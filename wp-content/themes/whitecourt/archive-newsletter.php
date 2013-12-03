@@ -1,7 +1,13 @@
 <?php
 global $msd_hook;
 $msd_hook = 'genesis_post_title';
-add_action('wp_footer','show_actions');
+//add_action('wp_footer','show_actions');
+
+add_action('genesis_before_loop','msdlab_newsletter_page_title');
+function msdlab_newsletter_page_title(){
+   print '<h1 class="entry-title">Newsletters</h1>'; 
+}
+
 remove_action('genesis_post_title', 'genesis_do_post_title');
 add_action('genesis_post_title', 'msdlab_newsletter_do_post_title');
 function msdlab_newsletter_do_post_title(){
