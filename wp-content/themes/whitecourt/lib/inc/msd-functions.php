@@ -52,7 +52,19 @@ function fb_change_mce_buttons( $initArray ) {
 
 	return $initArray;
 }
-add_filter('tiny_mce_before_init', 'fb_change_mce_buttons');
+//add_filter('tiny_mce_before_init', 'fb_change_mce_buttons');
+
+function enable_more_buttons($buttons) {
+  $buttons[] = 'hr';
+  $buttons[] = 'sub';
+  $buttons[] = 'sup';
+  $buttons[] = 'fontselect';
+  $buttons[] = 'fontsizeselect';
+  $buttons[] = 'cleanup';
+ 
+  return $buttons;
+}
+add_filter('mce_buttons_3', 'enable_more_buttons');
 	
 // add classes for various browsers
 add_filter('body_class','browser_body_class');
