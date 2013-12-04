@@ -69,7 +69,8 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             if(count($terms)>0){
                 $i = 0;
                 foreach($terms AS $term){
-                    $more_practice_areas = $i==2?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
+                    $more_practice_areas = ''; //On the attorney pages, please remove all round circles with blue arrows under the attorney practice areas.
+                    //$more_practice_areas = $i==2?' <a href="'.get_post_permalink($atty->ID).'"><i class="icon-circle-arrow-right"></i></a>':'';
                     if($term->slug == $the_pa){
                         if($test = get_page_by_path('/practice-areas/'.$term->slug)){
                             $first = '<li><a href="/practice-areas/'.$term->slug.'">'.$term->name.'</a>'.$more_practice_areas.'</li>';
