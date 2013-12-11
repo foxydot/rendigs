@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Add styles and scripts
 */
@@ -20,7 +19,7 @@ function msd_add_styles() {
             $queue = array('msd-style');
 		}
         if($is_IE){
-            wp_enqueue_script('ie-style',get_stylesheet_directory_uri().'/lib/css/ie.css',$queue);
+            wp_enqueue_style('ie-style',get_stylesheet_directory_uri().'/lib/css/ie.css',$queue);
         }
 	}
 }
