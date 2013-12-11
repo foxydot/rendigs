@@ -166,7 +166,7 @@ function get_topmost_parent($post_id){
 	}
 	return $parent_id;
 }
-add_filter( 'the_content', 'msd_remove_msword_formatting' );
+//add_filter( 'the_content', 'msd_remove_msword_formatting' );
 function msd_remove_msword_formatting($content){
 	global $allowedposttags;
 	$allowedposttags['span']['style'] = false;
