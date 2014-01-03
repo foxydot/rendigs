@@ -35,6 +35,10 @@ if (!class_exists('MSDEventCPT')) {
             add_filter( 'enter_title_here', array(&$this,'change_default_title') );
             
             add_image_size('sponsor',275,120,FALSE);
+            // hook add_query_vars function into query_vars
+            add_filter('query_vars', array(&$this,'add_query_vars'));
+            // hook add_rewrite_rules function into rewrite_rules_array
+            add_filter('rewrite_rules_array', array(&$this,'add_rewrite_rules'));
         }
         
         function register_taxonomy_event_category(){
@@ -256,6 +260,17 @@ if (!class_exists('MSDEventCPT')) {
           // Add the help tab.
           $current_screen->add_help_tab( $args );
         
+        }
+        
+        function add_query_vars($aVars) {
+            $aVars[] = "event_archive";
+            return $aVars;
+        }
+ 
+        function add_rewrite_rules($aRules) {
+            $aNewRules['event-category/legal-events/event-archive/?$'] = 'index.php?pagename=event-archive&event_archive=true';
+            $aRules = $aNewRules + $aRules;
+            return $aRules;
         }
         
         function plugin_header() {
