@@ -65,7 +65,7 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             $terms = wp_get_post_terms($atty->ID,'practice_area');
             $primary_practice_area->the_meta($atty->ID);
             $ppa = $primary_practice_area->get_the_value('primary_practice_area');
-            $practice_areas = '';
+            $practice_areas = array();
             if(count($terms)>0){
                 $i = 0;
                 foreach($terms AS $term){
@@ -99,7 +99,6 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
                 } elseif($second) {
                     array_unshift($practice_areas,$second);
                 }
-                
                 if(count($practice_areas)>3){
                     $practice_areas = array_slice($practice_areas, 0, 3);
                 }
