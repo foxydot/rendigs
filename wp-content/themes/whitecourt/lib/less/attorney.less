@@ -44,6 +44,9 @@
 				}
 				.entry-content{
 					margin: 3em 0;
+					.mobile-headshot{
+					  display: none;
+					}
 				}
 				h3 {
 					text-transform: uppercase;
@@ -103,4 +106,9 @@
 		}
 	}
 	.readmore {.button();margin:0;}
+}
+
+
+@media only screen and (max-width : 568px) {  
+.single-attorney #content-sidebar-wrap #content .entry .entry-content .mobile-headshot {display: block;}
 }

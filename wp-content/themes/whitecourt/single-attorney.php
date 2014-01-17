@@ -16,7 +16,24 @@ function msd_add_attorney_headshot(){
 		printf( '%s', genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) ) );
 	}
 }
+
+function msd_add_attorney_mobile_headshot(){
+    global $post;
+    //setup thumbnail image args to be used with genesis_get_image();
+    $size = 'mini-headshot'; // Change this to whatever add_image_size you want
+    $default_attr = array(
+            'class' => "mobile-headshot alignleft attachment-$size $size",
+            'alt'   => $post->post_title,
+            'title' => $post->post_title,
+    );
+
+    // This is the most important part!  Checks to see if the post has a Post Thumbnail assigned to it. You can delete the if conditional if you want and assume that there will always be a thumbnail
+    if ( has_post_thumbnail() ) {
+        printf( '%s', genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) ) );
+    }
+}
 add_action('genesis_before_post_content','msd_attorney_contact_info');
+add_action('genesis_post_content','msd_add_attorney_mobile_headshot', 1);
 function msd_attorney_contact_info(){
 	global $post,$contact_info;
 	$fields = array(
