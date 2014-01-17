@@ -8,6 +8,8 @@ print 'Reduce your choices by selecting all practice areas for this Attorney and
 print '<select name="'.$mb->get_the_name().'">
     <option value="">Select...</option>';
     foreach($practice_areas AS $pa){
-        print '<option value="'.$pa->slug.'"'.$mb->the_select_state("$pa->slug").'>'.$pa->name.'</option>';
+        print '<option value="'.$pa->slug.'"';
+        $mb->the_select_state("$pa->slug");
+        print '>'.$pa->name.'</option>';
     }
-print '</select>';//TODO: Fix Primary Practice on Backend interface Use flag as favicon
+print '</select>';
