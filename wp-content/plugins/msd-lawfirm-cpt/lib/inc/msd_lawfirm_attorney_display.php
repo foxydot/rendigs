@@ -119,7 +119,7 @@ if (!class_exists('MSDLawfirmAttorneyDisplay')) {
             
             $contact_info->the_field('_attorney_linked_in');
             if($contact_info->get_the_value() != ''){
-                $atty_contact_info .= '<li class="linkedin"><a href="'.$contact_info->get_the_value().'"><i class="icon-linkedin-sign icon-large"></i> Connect</a></li>';
+                $atty_contact_info .= '<li class="linkedin"><a href="'.$contact_info->get_the_value().'" target="_blank"><i class="icon-linkedin-sign icon-large"></i> Connect</a></li>';
             }
             
             $contact_info->the_field('_attorney_bio_sheet');
