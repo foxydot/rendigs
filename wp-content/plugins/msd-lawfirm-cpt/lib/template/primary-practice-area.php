@@ -10,4 +10,4 @@ print '<select name="'.$mb->get_the_name().'">
     foreach($practice_areas AS $pa){
         print '<option value="'.$pa->slug.'"'.$mb->the_select_state("$pa->slug").'>'.$pa->name.'</option>';
     }
-print '</select>';
+print '</select>';//TODO: Fix Primary Practice on Backend interface Use flag as favicon

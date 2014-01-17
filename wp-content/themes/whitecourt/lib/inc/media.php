@@ -6,8 +6,8 @@ function add_viewport_meta_tag() {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1.0"/>';
 }
 
-/** Add new image sizes */
-add_image_size( 'post-image', 540, 200, FALSE );
+/** Add new image sizes */ //TODO: Add to dropdown.
+add_image_size( 'post-image', 540, 300, FALSE );
 add_image_size( 'headshot', 373, 600, FALSE );
 add_image_size( 'mini-headshot', 120, 160, TRUE );
 
@@ -18,7 +18,7 @@ function msd_add_post_images(){
         add_action( 'genesis_before_post', 'msd_post_image', 8 );
     } elseif(is_single()){
         if(get_post_type() == 'post' || get_post_type() == 'targeted_event'){
-            add_action( 'genesis_post_content', 'msd_post_image', 1);
+            add_action( 'genesis_post_content', 'msd_post_image', 1); //TODO: Is this showing up at the bottom of the page move to top, float left.
         }
     }
 }

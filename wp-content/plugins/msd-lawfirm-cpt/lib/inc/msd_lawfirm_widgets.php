@@ -32,6 +32,10 @@ class MSDLawfirmAttorneyWidget extends WP_Widget {
                     }
                     ?>
                 </select>  
+                <input type="submit" class="readmore" value="<?php print $linktext; ?>" />
+             </form>
+             <br/>
+             <form>
                 <select id="pracarea" name="pracarea" class="control">
                     <option>Practice Area</option>
                     <?php
