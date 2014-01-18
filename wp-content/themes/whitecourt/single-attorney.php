@@ -28,7 +28,7 @@ function msd_add_attorney_mobile_headshot(){
     );
 
     // This is the most important part!  Checks to see if the post has a Post Thumbnail assigned to it. You can delete the if conditional if you want and assume that there will always be a thumbnail
-    if ( has_post_thumbnail() ) {
+    if ( has_post_thumbnail() && wp_is_mobile()) {
         printf( '%s', genesis_get_image( array( 'size' => $size, 'attr' => $default_attr ) ) );
     }
 }

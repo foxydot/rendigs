@@ -35,7 +35,7 @@ if (!class_exists('MSDEventFullYear')) {
         function fix_404(){
             global $wp,$wp_query;
             if($wp->query_vars["pagename"] == 'calendar'){
-                ts_data($wp_query);
+                //ts_data($wp_query);
                 if( is_404() ){
                     $brand = $wp_query->query['tgt_brand'];
                     $year = $wp_query->query['tgt_year'];
