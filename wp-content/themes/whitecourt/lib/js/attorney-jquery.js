@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+    $('#content-sidebar-wrap>div').equalHeightColumns('refresh');
 	$('.headshot').load(function(){
 		$('#content-sidebar-wrap>div').equalHeightColumns('refresh');
 	});

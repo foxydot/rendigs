@@ -35,7 +35,7 @@ add_filter( 'image_size_names_choose', 'msd_insert_custom_image_sizes' );
 add_action('genesis_before_content','msd_add_post_images');
 function msd_add_post_images(){
     if(is_archive() || is_home()){
-        add_action( 'genesis_before_post', 'msd_post_image', 8 );
+        //add_action( 'genesis_before_post', 'msd_post_image', 8 );
     } elseif(is_single()){
         if(get_post_type() == 'post' || get_post_type() == 'targeted_event'){
             add_action( 'genesis_post_content', 'msd_post_image', 1);
