@@ -263,12 +263,13 @@ if (!class_exists('MSDEventCPT')) {
         }
         
         function add_query_vars($aVars) {
-            $aVars[] = "event_archive";
+            $aVars[] = "event_archive_year";
+            $aVars[] = "event_archive_month";
             return $aVars;
         }
  
         function add_rewrite_rules($aRules) {
-            $aNewRules['event-category/legal-events/event-archive/?$'] = 'index.php?pagename=event-archive&event_archive=true';
+            $aNewRules['event/([0-9]{4})/([0-9]{2})/?$'] = 'index.php?post_type=targeted_event&event_archive_year=$matches[1]&event_archive_month=$matches[2]';            
             $aRules = $aNewRules + $aRules;
             return $aRules;
         }

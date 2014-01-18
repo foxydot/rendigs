@@ -117,6 +117,9 @@ if (!class_exists('MSDLawfirmCPT')) {
                 register_activation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
                 register_deactivation_hook( __FILE__, create_function('','flush_rewrite_rules();') );
             }
+            if(class_exists('MSDLAB_Widget_Event_Archives')){
+                add_action('widgets_init',array('MSDLAB_Widget_Event_Archives','init'),10);
+            }
             if(class_exists('MSDEventShortcodes')){
                 $this->shortcodes_class = new MSDEventShortcodes();
             }

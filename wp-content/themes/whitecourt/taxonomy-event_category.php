@@ -33,13 +33,10 @@ function targeted_events_do_custom_loop() {
          'meta_key' => '_date_event_datestamp',
     );
     $test_query = new WP_Query(wp_parse_args($wp_query->query_vars, $args));
-    if ( !$test_query->have_posts() ) {
-        //add_filter('genesis_custom_loop_args','targeted_past_events_do_custom_loop');
-    }
     return wp_parse_args($wp_query->query_vars, $args);
 }
 
 function msd_noevents_text($text){
-    return 'There are no upcoming events scheduled at this time. View <a href="event-archive">Archived Events</a>';
+    return 'There are no upcoming events scheduled at this time.';
 }
 genesis();

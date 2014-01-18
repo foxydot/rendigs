@@ -52,5 +52,4 @@ function msdlab_newsletter_excerpt_more($more) {
        $newsletter_info->the_meta();
     return ' <a class="moretag" href="'. $newsletter_info->get_the_value('_newsletter_pdf') . '">Download PDF&nbsp;<i class="icon-download"></i></a>';
 }
-
 genesis();
